@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nevra Plastik Konya fabrikası iletişim bilgileri, telefon, e-posta, Google Haritalar konumu ve B2B fiyat teklif talep formu.">
+  <meta name="keywords" content="Nevra Plastik iletişim, Nevra Plastik telefon, Nevra Plastik adres, Konya plastik geri dönüşüm firmaları, fiyat teklifi al">
+  <meta name="author" content="Nevra Plastik">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.nevraplastik.com/iletisim"">
+  <meta property="og:title" content="İletişim & Teklif Talebi | Nevra Plastik">
+  <meta property="og:description" content="Nevra Plastik teknik kadrosu, ihtiyaçlarınıza özel çözümler üretmek için hizmetinizdedir.">
+  <meta property="og:image" content="uploads/1782162829_2949_a685cf01-90a2-4c1a-b70b-37d38e13cce4.png">
+
+  <title>İletişim & Teklif Talebi | Nevra Plastik Geri Dönüşüm Teknolojileri</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=9.3">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Fallback local database -->
+  <script src="js/fallback-data.js?v=9.4"></script>
+  <link rel="canonical" href="https://nevraplastik.com/iletisim"">
+</head>
+<body>
+  <!-- Preloader Screen -->
+  <div id="preloader">
+    <!-- Concentric Motion Spinner Container -->
+    <div class="preloader-motion-wrapper">
+      <div class="preloader-spinner-outer"></div>
+      <div class="preloader-spinner-inner"></div>
+      <div class="preloader-logo-box">
+        <img id="PreloaderLogo" src="uploads/1782162959_4446_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" data-translate-key="img_preloader_logo">
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Fixed parent viewport container */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99999;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      pointer-events: auto;
+    }
+    
+    #preloader.hide-up {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Concentric Motion Spinner Layout */
+    .preloader-motion-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preloader-spinner-outer {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #2fb14d;   /* Corporate Green */
+      border-bottom-color: #3d71b7;/* Corporate Blue */
+      animation: preloader-spin-clockwise 2.0s linear infinite;
+    }
+
+    .preloader-spinner-inner {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-left-color: #f68a35;  /* Corporate Orange */
+      border-right-color: #f68a35; /* Corporate Orange */
+      animation: preloader-spin-counter 1.5s linear infinite;
+    }
+
+    .preloader-logo-box {
+      position: absolute;
+      width: 140px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    #PreloaderLogo {
+      width: 120px;
+      height: auto;
+      display: block;
+      opacity: 0;
+      transform: scale(0);
+      animation: logo-scale-up 1.0s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes logo-scale-up {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes preloader-spin-clockwise {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes preloader-spin-counter {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+
+    /* Contact Page Grid Customization for Widen Card */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Form Toggle Tab Button Styling */
+    .form-tab-btn {
+      background: none !important;
+      border: none !important;
+      font-size: 1.05rem !important;
+      font-weight: 700 !important;
+      padding: 0.75rem 1.25rem !important;
+      cursor: pointer !important;
+      color: var(--gray) !important;
+      transition: all 0.3s ease !important;
+      border-bottom: 2px solid transparent !important;
+    }
+    .form-tab-btn:hover {
+      color: var(--dark) !important;
+    }
+    .form-tab-btn.active {
+      color: var(--primary) !important; /* Corporate Green */
+      border-bottom: 2px solid var(--primary) !important;
+      text-shadow: 0 0 0.5px var(--primary);
+    }
+
+    @media (max-width: 991px) {
+      .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+      }
+    }
+  </style>
+
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index" class="logo-link" aria-label="Nevra Plastik Anasayfa">
+        <img src="uploads/1783198954_3487_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" class="logo-img" data-translate-key="img_logo">
+      </a>
+      
+      <!-- Hamburger Menu Toggle (Desktop/Mobile) -->
+      <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menüyü Aç/Kapat">
+        <span class="hamburger"></span>
+      </button>
+
+      <!-- Navigation Menu Drawer -->
+      <nav id="primary-navigation" class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="index" class="nav-link" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="hakkimizda" class="nav-link" data-translate-key="nav_about">Hakkımızda</a></li>
+          <li><a href="urunler" class="nav-link" data-translate-key="nav_products">Ürünler</a></li>
+          <li><a href="makineler" class="nav-link" data-translate-key="nav_machines">Makineler</a></li>
+          <li><a href="uretim-sureci" class="nav-link" data-translate-key="nav_process">Üretim Süreci</a></li>
+          <li><a href="kalite" class="nav-link" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
+          <li><a href="surdurulebilirlik" class="nav-link" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
+          <li><a href="iletisim" class="nav-link active" data-translate-key="nav_contact">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action Elements -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <button id="lang-switch-btn" class="lang-switch-btn" aria-label="Dili Değiştir / Switch Language">
+          <span class="lang-text">EN</span>
+        </button>
+        <!-- Contact CTA Button -->
+        <a href="iletisim" class="btn btn-primary btn-sm header-cta" id="header-quote-btn" data-translate-key="cta_quote">Teklif Talep Et</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+    <!-- Subpage Hero -->
+    <section class="hero-section" style="padding-top: 12rem; padding-bottom: 4rem; background: var(--light-gray);">
+      <div class="container text-center scroll-reveal">
+        <span class="section-tag" data-translate-key="contact_tag">Bizimle İletişime Geçin</span>
+        <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;" data-translate-key="contact_title">Projeniz İçin Doğru Hammaddeyi Birlikte Belirleyelim</h1>
+        <p class="section-subtitle" style="margin-bottom: 0;" data-translate-key="contact_hero_sub">Nevra Plastik teknik kadrosu, ihtiyaçlarınıza özel çözümler üretmek için hizmetinizdedir.</p>
+      </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section style="background-color: var(--white); padding: 6rem 0;">
+      <div class="container">
+        
+        <div class="contact-grid">
+          
+          <!-- Column 1: Details & Map -->
+          <div class="scroll-reveal" style="display: flex; flex-direction: column; gap: 2.5rem;">
+            <div>
+              <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1.5rem;" data-translate-key="contact_details_title">Nevra Plastik İletişim Bilgileri</h2>
+              
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.5rem;">
+                <li style="display: flex; gap: 1rem; align-items: start;">
+                  <div style="background: var(--primary-light); color: var(--primary); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; font-size: 1.25rem;">📍</div>
+                  <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.25rem;" data-translate-key="info_address">Adres</h4>
+                    <p style="color: var(--gray);">Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk.<br>No:30/32, Karatay / KONYA</p>
+                  </div>
+                </li>
+                <li style="display: flex; gap: 1rem; align-items: start;">
+                  <div style="background: var(--primary-light); color: var(--primary); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; font-size: 1.25rem;">📞</div>
+                  <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.25rem;" data-translate-key="info_phone">Telefon</h4>
+                    <p><a href="tel:+903323559656" style="color: var(--dark); text-decoration: none; font-weight: 500;">+90 332 355 96 56</a></p>
+                  </div>
+                </li>
+                <li style="display: flex; gap: 1rem; align-items: start;">
+                  <div style="background: var(--primary-light); color: var(--primary); width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; font-size: 1.25rem;">✉️</div>
+                  <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.25rem;" data-translate-key="info_email">E-posta</h4>
+                    <p><a href="mailto:info@nevraplastik.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">info@nevraplastik.com</a></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Google Map -->
+            <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); height: 350px; box-shadow: var(--shadow-md);">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5142.704870307394!2d32.56357907727235!3d37.86966857196174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d09bb60603f3cf%3A0xe5f5b01672b8b4ea!2sNevra%20Plastik!5e1!3m2!1str!2str!4v1784064493476!5m2!1str!2str" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Column 2: B2B Contact Form -->
+          <div class="scroll-reveal">
+            <div class="contact-form-wrapper glass-effect" style="padding: 3rem; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); background: rgba(255, 255, 255, 0.9);">
+              
+              <!-- Form Toggle Tabs -->
+              <div class="form-toggle-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; flex-wrap: wrap;">
+                <button type="button" id="toggle-general" class="form-tab-btn active" data-translate-key="form_toggle_general">Genel İletişim</button>
+                <button type="button" id="toggle-quote" class="form-tab-btn" data-translate-key="form_toggle_quote">Hammadde Teklifi Al</button>
+                <button type="button" id="toggle-machine-quote" class="form-tab-btn" data-translate-key="form_toggle_machine_quote">Makine Teklifi Al</button>
+              </div>
+
+              <!-- Form Element -->
+              <form id="corporate-form" action="api/contact.php" method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Hidden inputs -->
+                <input type="hidden" id="form-purpose" name="purpose" value="general">
+                <input type="hidden" id="csrf_token" name="csrf_token" value="">
+                <input type="hidden" name="lang" value="tr"> <!-- Will be updated dynamically by JS -->
+                
+                <!-- Honeypot Anti-Spam protection (hidden from humans) -->
+                <div style="display: none !important;">
+                  <input type="text" name="website_hp" id="website_hp" tabindex="-1" autocomplete="off">
+                </div>
+
+                <!-- Alert Box -->
+                <div id="form-alert-box" class="form-alert" style="display: none; padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">
+                  <span class="alert-message"></span>
+                </div>
+
+                <!-- Input Name -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <label for="form-name" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_name">Ad Soyad</label>
+                  <input type="text" id="form-name" name="name" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body);">
+                </div>
+
+                <!-- Input Company -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <label for="form-company" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_company">Şirket Adı</label>
+                  <input type="text" id="form-company" name="company" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body);">
+                </div>
+
+                <!-- Input Email & Phone (Grid) -->
+                <div class="grid-2" style="gap: 1.5rem;">
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="form-email" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_email">E-posta</label>
+                    <input type="email" id="form-email" name="email" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body);">
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="form-phone" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_phone">Telefon</label>
+                    <input type="tel" id="form-phone" name="phone" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body);">
+                  </div>
+                </div>
+
+                <!-- Quote-only fields -->
+                <div class="quote-only grid-2" style="gap: 1.5rem; display: none;">
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="form-product" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_product">Talep Edilen Hammadde</label>
+                    <select id="form-product" name="product" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); background: var(--white); font-family: var(--font-body); font-size: 0.95rem;">
+                      <option value="pp" data-translate-key="opt_pp_moblen">PP Moblen Granül</option>
+                      <option value="pe" data-translate-key="opt_elteks">Elteks PE Granül</option>
+                      <option value="pprc" data-translate-key="opt_pprc">PPR-C Granül</option>
+                      <option value="other" data-translate-key="opt_other">Özel Kompaundlar (Diğer)</option>
+                    </select>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="form-qty" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_qty">Tahmini Aylık Tüketim Miktarı (Ton)</label>
+                    <input type="number" id="form-qty" name="qty" min="0" step="any" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body);">
+                  </div>
+                </div>
+
+                <!-- Machine Quote-only fields -->
+                <div class="machine-quote-only grid-2" style="gap: 1.5rem; display: none;">
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="form-machine" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_machine">Talep Edilen Makine</label>
+                    <select id="form-machine" name="machine" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); background: var(--white); font-family: var(--font-body); font-size: 0.95rem;">
+                      <option value="yatay_balya_press" data-translate-key="opt_balya_press">Yatay Balya Presi</option>
+                      <option value="capak_yikama_havuzu" data-translate-key="opt_yikama_havuzu">Yatay Çapak Yıkama Havuzu</option>
+                      <option value="granul_karistirme_mixeri" data-translate-key="opt_karistirme_mixeri">Granül Karıştırma Mikseri</option>
+                      <option value="other_machine" data-translate-key="opt_other_machine">Diğer Makine / Ekipman</option>
+                    </select>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="form-capacity" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_capacity">Talep Edilen Kapasite / Adet</label>
+                    <input type="text" id="form-capacity" name="capacity" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body);" placeholder="Örn: 500 kg/saat veya 1 adet">
+                  </div>
+                </div>
+
+                <!-- Input Message -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <label for="form-message" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_message">Mesajınız / Teknik Talepleriniz</label>
+                  <textarea id="form-message" name="message" required rows="4" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); font-family: var(--font-body); resize: vertical;"></textarea>
+                </div>
+
+                <!-- KVKK Consent -->
+                <div style="display: flex; gap: 0.75rem; align-items: start; margin-top: 0.5rem;">
+                  <input type="checkbox" id="form-kvkk" name="kvkk" required style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; margin-top: 0.25rem;">
+                  <label for="form-kvkk" style="font-size: 0.85rem; color: var(--gray); line-height: 1.4; cursor: pointer;" data-translate-key="form_kvkk_text">Nevra Plastik Kişisel Verilerin Korunması Politikasını okudum ve kabul ediyorum.</label>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="margin-top: 1rem;">
+                  <button type="submit" id="form-submit-btn" class="btn btn-primary" style="width: 100%;" data-translate-key="form_submit">Mesajı Gönder</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="main-footer">
+    <div class="container footer-grid grid-4">
+      
+      <!-- Column 1: Info -->
+      <div class="footer-col">
+        <img src="uploads/1783198954_3487_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" class="footer-logo" data-translate-key="img_logo">
+        <p class="footer-about-text" data-translate-key="footer_about">
+          2007 yılında kurulan Nevra Plastik, Sürdürülebilirlik ve kalite odaklı üretimi ile yüksek nitelikli geri dönüştürülmüş plastik hammadde tedarik etmektedir.
+        </p>
+        <div class="footer-socials">
+          <a href="https://linkedin.com/company/nevraplastik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Nevra Plastik LinkedIn" data-translate-key="social_linkedin">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="https://x.com/nevraplastik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Nevra Plastik Twitter/X" data-translate-key="social_twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/nevraplastik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Nevra Plastik Instagram" data-translate-key="social_instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Fast Links -->
+      <div class="footer-col">
+        <h4 class="footer-title" data-translate-key="footer_links_title">Hızlı Menü</h4>
+        <ul class="footer-links">
+          <li><a href="index" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="hakkimizda" data-translate-key="nav_about">Hakkımızda</a></li>
+          <li><a href="urunler" data-translate-key="nav_products">Ürünler</a></li>
+          <li><a href="uretim-sureci" data-translate-key="nav_process">Üretim Süreci</a></li>
+          <li><a href="kalite" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Products -->
+      <div class="footer-col">
+        <h4 class="footer-title" data-translate-key="footer_products_title">Ürün Grupları</h4>
+        <ul class="footer-links">
+          <li><a href="urun-pp-moblen">PP Moblen Granül</a></li>
+          <li><a href="urun-elteks">Elteks PE Granül</a></li>
+          <li><a href="urun-diger" data-translate-key="opt_compound">Kompaund & Özel Polimerler</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Location -->
+      <div class="footer-col">
+        <h4 class="footer-title" data-translate-key="footer_contact_title">İletişim Bilgileri</h4>
+        <ul class="footer-links-contact">
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_address">Adres:</span>
+            <span>Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk. No:30/32, Karatay / KONYA</span>
+          </li>
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_phone">Telefon:</span>
+            <a href="tel:+903323559656">+90 332 355 96 56</a>
+          </li>
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_email">E-posta:</span>
+            <a href="mailto:info@nevraplastik.com">info@nevraplastik.com</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-flex">
+        <p class="copyright">&copy; 2026 Nevra Plastik. <span data-translate-key="copyright_text">Tüm Hakları Saklıdır.</span> | Designed by <a href="https://www.kncdesign.com.tr" target="_blank" rel="noopener noreferrer" style="color: #ff2700; font-weight: 600; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">KNC Creative</a></p>
+        <p class="sustainable-signature">
+          <span class="green-dot"></span> <span data-translate-key="foot_signature">Sürdürülebilir Gelecek İçin Döngüsel Çözümler</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+  <script src="js/app.js?v=9.3"></script>
+</body>
+</html>

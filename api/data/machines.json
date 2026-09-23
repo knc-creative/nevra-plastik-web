@@ -1,0 +1,53 @@
+[
+  {
+    "id": "yatay-balya-press",
+    "name_tr": "Yatay Balya Presi",
+    "name_en": "Horizontal Bale Press",
+    "desc_tr": "Kağıt, karton, pet şişe ve plastik atıkların yüksek tonaj ve basınçla sıkıştırılarak balyalanmasını sağlayan otomatik yatay pres makinesi.",
+    "desc_en": "Automatic horizontal press machine that compresses and bales paper, cardboard, pet bottles and plastic wastes with high tonnage and pressure.",
+    "detail_tr": "Nevra Plastik Yatay Balya Presleri, yüksek verimli hidrolik güç üniteleri ve aşınmaya dayanıklı çelik gövde tasarımı ile endüstriyel atık yönetim süreçleri için tasarlanmıştır. Otomotiv bağlama teli sistemi ve PLC kontrol paneli sayesinde minimum operatör müdahalesi ile maksimum sıkıştırma oranına ulaşılmasını sağlar.",
+    "detail_en": "Our Nevra Plastik Horizontal Bale Presses are designed for industrial waste management processes with high efficiency hydraulic power units and wear-resistant steel body design. Thanks to the automatic wire binding system and PLC control panel, it ensures maximum compression ratio with minimum operator intervention.",
+    "features_tr": "Sürekli konveyör besleme, otomatik tel bağlama, dokunmatik PLC ekran, enerji tasarruflu hidrolik motor",
+    "features_en": "Continuous conveyor feeding, automatic wire binding, touch PLC screen, energy-saving hydraulic motor",
+    "image": "uploads/yatay_balya_press.png",
+    "status": "active"
+  },
+  {
+    "id": "yatay-yikama-havuzu",
+    "name_tr": "Yatay Çapak Yıkama Havuzu",
+    "name_en": "Horizontal Flake Washing Tank",
+    "desc_tr": "Kırma makinelerinden çıkan sert plastik çapakların kimyasal ve mekanik olarak temizlenmesini, yabancı maddelerden ayrıştırılmasını sağlayan yoğun yıkama havuzu.",
+    "desc_en": "Intensive washing tank that chemically and mechanically cleans hard plastic flakes from crushers, separating them from foreign materials.",
+    "detail_tr": "Yatay Çapak Yıkama Havuzu, suyun yoğunluğunu kullanarak PP/PE gibi yıkanan plastikleri dibe çöken yabancı maddelerden (taş, cam, metal, ağır plastikler) ayırır. Üzerindeki mekanik paletler ve tahliye helezonları sayesinde çapakları sürekli ileri taşıyarak yıkar ve bir sonraki kurutma aşamasına temiz bir şekilde aktarır. Tamamen paslanmaz çelikten imal edilmiştir.",
+    "detail_en": "Horizontal Flake Washing Tank uses water density to separate floating plastics like PP/PE from sinking foreign materials (stones, glass, metal, heavy plastics). Thanks to its mechanical paddles and discharge screws, it continuously washes flakes forward and transfers them cleanly to the drying stage. Made entirely of stainless steel.",
+    "features_tr": "AISI 304 paslanmaz çelik gövde, yüksek debili devridaim pompaları, ağır atık tahliye helezonu, hız ayarlı paletler",
+    "features_en": "AISI 304 stainless steel body, high flow recirculation pumps, heavy waste discharge screw, speed adjustable paddles",
+    "image": "uploads/yatay_yikama_havuzu.png",
+    "status": "active"
+  },
+  {
+    "id": "granul-karistirme-mixeri",
+    "name_tr": "Granül Karıştırma Mikseri",
+    "name_en": "Granule Mixing Mixer",
+    "desc_tr": "Ekstrüder çıkışında üretilen plastik granüllerin homojen bir şekilde karıştırılarak parti içi renk ve eriyik akış (MFI) kararlılığı sağlanmasını sağlayan dikey karıştırıcı mikser.",
+    "desc_en": "Vertical mixer that homogenously mixes plastic granules produced at the extruder outlet to ensure color and melt flow (MFI) stability within the batch.",
+    "detail_tr": "Nevra Dikey Granül Mikserleri, yüksek tonajlı hammadde partilerinin ambalajlanmadan önce homojen olarak harmanlanması amacıyla tasarlanmıştır. İçerisindeki merkez dikey helezon sistemi, alt hazneden aldığı granülleri yukarı taşıyıp tepe noktasından dairesel olarak püskürterek mükemmel bir karışım elde edilmesini sağlar.",
+    "detail_en": "Nevra Vertical Granule Mixers are designed to blend high tonnage raw material batches homogenously before packaging. The central vertical screw system inside carries granules from the bottom chamber upward and sprays them circularly from the top point to achieve a perfect mix.",
+    "features_tr": "Kolay temizlenebilir iç hacim, aşırı yük korumalı motor, pnömatik dolum/boşaltma vanaları, yüksek karıştırma kapasitesi",
+    "features_en": "Easy-to-clean internal volume, overload protected motor, pneumatic fill/discharge valves, high mixing capacity",
+    "image": "uploads/granul_karistirme_mixeri.png",
+    "status": "passive"
+  },
+  {
+    "id": "mach_1782718788084",
+    "name_tr": "Press",
+    "name_en": "-",
+    "desc_tr": "test",
+    "desc_en": "-",
+    "detail_tr": "detaylı test",
+    "detail_en": "-",
+    "features_tr": "-",
+    "features_en": "-",
+    "image": "uploads/1782720798_9223_WhatsApp_Image_2026-06-29_at_11.10.17.jpeg"
+  }
+]

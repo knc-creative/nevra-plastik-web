@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /nevracms
+Disallow: /nevracms.html
+Disallow: /api/data/
+Disallow: /api/cms.php
+Disallow: /api/upload.php
+
+Sitemap: https://nevraplastik.com/sitemap.xml

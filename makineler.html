@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nevra Plastik yüksek verimli geri dönüşüm makineleri imal etmektedir. Balya presi, çapak yıkama havuzu ve mikser çözümlerimiz için sayfayı inceleyin.">
+  <meta name="keywords" content="Nevra Plastik, makine imalatı, yatay balya presi, çapak yıkama havuzu, granül mikseri, plastik geri dönüşüm makineleri">
+  <meta name="author" content="Nevra Plastik">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.nevraplastik.com/makineler"">
+  <meta property="og:title" content="Geri Dönüşüm Makineleri | Nevra Plastik Geri Dönüşüm Teknolojileri">
+  <meta property="og:description" content="Geri dönüşüm hatları için ürettiğimiz yüksek performanslı yatay balya presleri, yıkama havuzları ve mikserler.">
+  <meta property="og:image" content="uploads/1784068122_1770_WhatsApp_Image_2026-07-15_at_01.14.10__1_.jpeg">
+
+  <title>Geri Dönüşüm Makineleri | Nevra Plastik Geri Dönüşüm Teknolojileri</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=9.3">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Fallback local database -->
+  <script src="js/fallback-data.js?v=9.4"></script>
+
+  <style>
+    /* Concentric Motion Spinner Layout */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99999;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      pointer-events: auto;
+    }
+    
+    #preloader.hide-up {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .preloader-motion-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preloader-spinner-outer {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #2fb14d;
+      border-bottom-color: #3d71b7;
+      animation: preloader-spin-clockwise 2.0s linear infinite;
+    }
+
+    .preloader-spinner-inner {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-left-color: #f68a35;
+      border-right-color: #f68a35;
+      animation: preloader-spin-counter 1.5s linear infinite;
+    }
+
+    .preloader-logo-box {
+      position: absolute;
+      width: 140px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    #PreloaderLogo {
+      width: 120px;
+      height: auto;
+      display: block;
+      opacity: 0;
+      transform: scale(0);
+      animation: logo-scale-up 1.0s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes logo-scale-up {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes preloader-spin-clockwise {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes preloader-spin-counter {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+
+    /* Machinery Subpage Styling */
+    .machines-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+
+    .machine-card {
+      display: flex;
+      gap: 5rem;
+      align-items: center;
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      padding: 3rem;
+      border: 1px solid var(--border-color);
+      /* Unified smooth transition to prevent snapping when active class is added */
+      transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                  transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                  box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                  border-color 0.4s ease;
+    }
+
+    .machine-card:hover {
+      /* Elevation effect without translating layout container to prevent mouse border jitter loop */
+      border-color: var(--primary-light);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .machine-card:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .machine-img-container {
+      flex: 1.1;
+      min-width: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .machine-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .machine-card:hover .machine-img {
+      transform: scale(1.03);
+    }
+
+    .machine-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      min-width: 300px;
+    }
+
+    .machine-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin: 0;
+    }
+
+    .machine-desc-short {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.15rem;
+      margin: 0;
+    }
+
+    .machine-desc-detail {
+      color: var(--gray);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .machine-features-box {
+      background: var(--light-gray);
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .features-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      color: var(--charcoal);
+    }
+
+    .machine-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .machine-features-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 992px) {
+      .machine-card, .machine-card:nth-child(even) {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+      }
+      .machine-img {
+        height: 280px;
+      }
+      .machine-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+  <link rel="canonical" href="https://nevraplastik.com/makineler"">
+</head>
+<body>
+  <!-- Preloader Screen -->
+  <div id="preloader">
+    <!-- Concentric Motion Spinner Container -->
+    <div class="preloader-motion-wrapper">
+      <div class="preloader-spinner-outer"></div>
+      <div class="preloader-spinner-inner"></div>
+      <div class="preloader-logo-box">
+        <img id="PreloaderLogo" src="uploads/1782162959_4446_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" data-translate-key="img_preloader_logo">
+      </div>
+    </div>
+  </div>
+
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index" class="logo-link" aria-label="Nevra Plastik Anasayfa">
+        <img src="uploads/1783198954_3487_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" class="logo-img" data-translate-key="img_logo">
+      </a>
+      
+      <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menüyü Aç/Kapat">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav id="primary-navigation" class="nav-menu">
+        <ul class="nav-list">
+          <li><a href="index" class="nav-link" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="hakkimizda" class="nav-link" data-translate-key="nav_about">Hakkımızda</a></li>
+          <li><a href="urunler" class="nav-link" data-translate-key="nav_products">Ürünler</a></li>
+          <li><a href="uretim-sureci" class="nav-link" data-translate-key="nav_process">Üretim Süreci</a></li>
+          <li><a href="kalite" class="nav-link" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
+          <li><a href="surdurulebilirlik" class="nav-link" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
+          <li><a href="iletisim" class="nav-link" data-translate-key="nav_contact">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="lang-switch-btn" class="lang-switch-btn" aria-label="Dili Değiştir / Switch Language">
+          <span class="lang-text">EN</span>
+        </button>
+        <a href="iletisim" class="btn btn-primary btn-sm header-cta" id="header-quote-btn" data-translate-key="cta_quote">Teklif Talep Et</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Subpage Hero -->
+    <section class="hero-section" style="padding-top: 12rem; padding-bottom: 4rem; background: var(--light-gray);">
+      <div class="container text-center scroll-reveal">
+        <span class="section-tag" data-translate-key="machinery_tag">İleri Teknoloji Mühendislik</span>
+        <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 1rem;" data-translate-key="machinery_title">Geri Dönüşüm Makineleri Üretimi</h1>
+        <p class="section-subtitle" style="margin-bottom: 0;" data-translate-key="machinery_desc">Geri dönüşüm hatları için kendi operasyonel tecrübemizle tasarlayıp imal ettiğimiz yüksek performanslı makineler.</p>
+      </div>
+    </section>
+
+    <!-- Machinery List Section -->
+    <section class="machinery-section" style="background-color: var(--white); padding: 6rem 0;">
+      <div class="container">
+        <div class="machines-list" id="machines-container">
+          <!-- Dynamic Machinery Content Loads Here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom banner -->
+    <section class="trust-section text-center" style="background-color: var(--light-gray); padding: 5rem 0;">
+      <div class="container scroll-reveal">
+        <h2 class="section-title" data-translate-key="machinery_cta_title">Tesisiniz İçin Özel Çözümler Üretelim</h2>
+        <p class="section-subtitle" style="margin-bottom: 2.5rem;" data-translate-key="machinery_cta_desc">Projenizin kapasitesine ve işleme ihtiyaçlarına göre makinelerimizi özel boyut ve konfigürasyonlarda imal edebiliyoruz.</p>
+        <a href="iletisim?purpose=machinery" class="btn btn-primary" data-translate-key="cta_quote_long">Bize Ulaşın / Teklif İsteyin</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container footer-grid grid-4">
+      <div class="footer-col">
+        <img src="uploads/1783198954_3487_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" class="footer-logo" data-translate-key="img_logo">
+        <p class="footer-about-text" data-translate-key="footer_about">
+          2007 yılında kurulan Nevra Plastik, Sürdürülebilirlik ve kalite odaklı üretimi ile yüksek nitelikli geri dönüştürülmüş plastik hammadde tedarik etmektedir.
+        </p>
+        <div class="footer-socials">
+          <a href="https://linkedin.com/company/nevraplastik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Nevra Plastik LinkedIn" data-translate-key="social_linkedin">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="https://x.com/nevraplastik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Nevra Plastik Twitter/X" data-translate-key="social_twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/nevraplastik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Nevra Plastik Instagram" data-translate-key="social_instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title" data-translate-key="footer_links_title">Hızlı Menü</h4>
+        <ul class="footer-links">
+          <li><a href="index" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="hakkimizda" data-translate-key="nav_about">Hakkımızda</a></li>
+          <li><a href="urunler" data-translate-key="nav_products">Ürünler</a></li>
+          <li><a href="makineler" data-translate-key="nav_machines">Makineler</a></li>
+          <li><a href="uretim-sureci" data-translate-key="nav_process">Üretim Süreci</a></li>
+          <li><a href="kalite" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title" data-translate-key="footer_products_title">Ürün Grupları</h4>
+        <ul class="footer-links">
+          <li><a href="urun-pp-moblen">PP Moblen Granül</a></li>
+          <li><a href="urun-elteks">Elteks PE Granül</a></li>
+          <li><a href="urun-diger" data-translate-key="opt_compound">Kompaund & Özel Polimerler</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title" data-translate-key="footer_contact_title">İletişim Bilgileri</h4>
+        <ul class="footer-links-contact">
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_address">Adres:</span>
+            <span>Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk. No:30/32, Karatay / KONYA</span>
+          </li>
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_phone">Telefon:</span>
+            <a href="tel:+903323559656">+90 332 355 96 56</a>
+          </li>
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_email">E-posta:</span>
+            <a href="mailto:info@nevraplastik.com">info@nevraplastik.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-flex">
+        <p class="copyright">&copy; 2026 Nevra Plastik. <span data-translate-key="copyright_text">Tüm Hakları Saklıdır.</span> | Designed by <a href="https://www.kncdesign.com.tr" target="_blank" rel="noopener noreferrer" style="color: #ff2700; font-weight: 600; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">KNC Creative</a></p>
+        <p class="sustainable-signature">
+          <span class="green-dot"></span> <span data-translate-key="foot_signature">Sürdürülebilir Gelecek İçin Döngüsel Çözümler</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+  <script src="js/app.js?v=9.3"></script>
+  <script>
+    // Dynamic Machinery Loader
+    document.addEventListener("DOMContentLoaded", () => {
+      const machinesContainer = document.getElementById("machines-container");
+      if (!machinesContainer) return;
+
+      function renderMachines(machines) {
+        const currentLang = localStorage.getItem("nevra_lang") || localStorage.getItem("selectedLang") || "tr";
+        const isEn = currentLang === "en";
+
+        machinesContainer.innerHTML = "";
+        
+        if (!machines || machines.length === 0) {
+          machinesContainer.innerHTML = `<div class="text-center" style="grid-column: span 12; padding: 3rem 0; color: var(--gray);">${isEn ? 'No machines found.' : 'Kayıtlı makine bulunamadı.'}</div>`;
+          return;
+        }
+
+        machines.forEach((mach, index) => {
+          const name = isEn ? mach.name_en : mach.name_tr;
+          const desc = isEn ? mach.desc_en : mach.desc_tr;
+          const detail = isEn ? mach.detail_en : mach.detail_tr;
+          const features = isEn ? mach.features_en : mach.features_tr;
+          
+          // Split features by comma
+          const featureList = features ? features.split(',').map(f => f.trim()) : [];
+          const featureItemsHTML = featureList.map(feat => `<li><span class="bullet-dot"></span>${feat}</li>`).join('');
+
+          const card = document.createElement("div");
+          card.className = "machine-card scroll-reveal";
+          card.style.transitionDelay = `${index * 0.15}s`;
+
+          card.innerHTML = `
+            <div class="machine-img-container">
+              <img src="${mach.image || 'assets/product-pp.png'}" alt="${name}" class="machine-img">
+            </div>
+            <div class="machine-content">
+              <h2 class="machine-title">${name}</h2>
+              <p class="machine-desc-short">${desc}</p>
+              <p class="machine-desc-detail">${detail}</p>
+              <div class="machine-features-box">
+                <h4 class="features-title">${isEn ? 'Key Features:' : 'Öne Çıkan Özellikler:'}</h4>
+                <ul class="machine-features-list">
+                  ${featureItemsHTML}
+                </ul>
+              </div>
+              <div style="margin-top: 1rem;">
+                <a href="iletisim?purpose=machinery&machine=${mach.id}" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  ${isEn ? 'Request Quote / Get Info' : 'Teklif Alın / Bilgi İsteyin'}
+                </a>
+              </div>
+            </div>
+          `;
+          machinesContainer.appendChild(card);
+        });
+
+        // Initialize scroll reveal on newly added elements
+        if (window.initializeScrollReveal) {
+          window.initializeScrollReveal();
+        }
+      }
+
+      function loadAndRender() {
+        const machines = (window.siteData && window.siteData.machines) ? window.siteData.machines : [];
+        renderMachines(machines);
+      }
+
+      if (window.siteData) {
+        loadAndRender();
+      } else {
+        window.addEventListener("siteDataLoaded", loadAndRender);
+      }
+
+      window.addEventListener("languageChanged", loadAndRender);
+    });
+  </script>
+</body>
+</html>

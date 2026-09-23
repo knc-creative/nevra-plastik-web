@@ -1,0 +1,52 @@
+[
+  {
+    "id": "cert_1",
+    "icon": "📄",
+    "title_tr": "Çevre İzin Lisans Belgesi",
+    "title_en": "Environmental Permit License",
+    "sub_tr": "Bakanlık Geri Kazanım Lisansı",
+    "sub_en": "Ministry Recycling License",
+    "status": "active",
+    "document_image": "uploads/1784071099_2982_WhatsApp_Image_2026-07-15_at_01.14.10__1_.jpeg"
+  },
+  {
+    "id": "cert_2",
+    "icon": "🏅",
+    "title_tr": "ISO 9001:2015",
+    "title_en": "ISO 9001:2015",
+    "sub_tr": "Kalite Yönetim Sertifikası",
+    "sub_en": "Quality Management Certificate",
+    "status": "active",
+    "document_image": ""
+  },
+  {
+    "id": "cert_3",
+    "icon": "🌿",
+    "title_tr": "ISO 14001:2015",
+    "title_en": "ISO 14001:2015",
+    "sub_tr": "Çevre Yönetim Sertifikası",
+    "sub_en": "Environmental Management Certificate",
+    "status": "active",
+    "document_image": ""
+  },
+  {
+    "id": "cert_4",
+    "icon": "™",
+    "title_tr": "Tescil Belgesi",
+    "title_en": "Trademark Registration Certificate",
+    "sub_tr": "Nevra Marka Tescili",
+    "sub_en": "Nevra Trademark Registration",
+    "status": "active",
+    "document_image": ""
+  },
+  {
+    "id": "cert_1783758059029",
+    "icon": "🏅",
+    "title_tr": "Test Belgesi TR",
+    "title_en": "Test Document EN",
+    "sub_tr": "Test Alt Bilgi",
+    "sub_en": "Test Subtitle",
+    "status": "passive",
+    "document_image": ""
+  }
+]

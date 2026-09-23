@@ -1,0 +1,33 @@
+# Görev Listesi (Sürüm 9.1)
+
+- [x] Giriş ekranındaki "Yönetici Kaydet" butonu ve buna bağlı gereksiz uyarı/seed betiği tamamen kaldırıldı.
+- [x] Backend PHP Kodlarının Güncellenmesi (`api/cms.php`)
+- [x] Ziyaretçi Sitesi (Frontend) Entegrasyonları:
+  - [x] `js/fallback-data.js` içine varsayılan sertifika verilerinin eklenmesi
+  - [x] `js/app.js` içine dinamik render fonksiyonlarının eklenmesi
+  - [x] `kalite.html` içindeki statik kart yapısının temizlenmesi
+- [/] Yönetim Paneli (`nevracms.html`) Geliştirmeleri: dinamik olarak `api/data/credentials.json` dosyasında saklanmaktadır.
+- [x] PHP backend üzerinde eksik olan Makine ve İletişim Formu veritabanı yönetim fonksiyonları (`save_machine`, `delete_machine`, `delete_contact`, `load` içinde machines/contacts döndürülmesi) eklenerek yerel mock sunucudaki özelliklerle eşitlendi.
+- [x] Ziyaretçilerin gönderdiği formların panelde görünmeme sorunu çözüldü (`api/contact.php` gönderilen formları artık `api/data/contacts.json` dosyasına da kaydediyor).
+- [x] Panelde ürün güncellendiğinde resimlerin yerel localhost URL'si (`http://localhost...`) ile kaydedilmesi ve yayında kırılmasına yol açan hata giderildi (`.getAttribute('src')` kullanılmaya başlandı).
+- [x] Mevcut veritabanındaki kırık `http://localhost:8080/` resim yolları temizlenip göreceli yollara çevrildi.
+- [x] Yönetim paneli giriş sayfasına dinamik kurumsal logo yerleştirildi (Sistem veritabanında tanımlanan logo otomatik olarak giriş sayfasında da yüklenir).
+- [x] Yönetim panelindeki tüm hover (üzerine gelme) kontrastları artırıldı; menü butonları ve tablo satırları marka rengi olan yeşil renk tonları ile vurgulandı.
+- [x] Sitenin tamamına (tüm ziyaretçi sayfalarına) ultra akıcı, ivmeli/ataletli kaydırma sağlayan modern **Lenis Smooth Scroll** kütüphanesi entegre edildi.
+- [x] CSS'teki yerel `scroll-behavior: smooth` kuralı Lenis ile çakışarak sayfa kaydırmayı tamamen kilitlediği için kaldırıldı.
+- [x] Lenis başlatma yöntemi tüm tarayıcılarla %100 uyumlu manuel `requestAnimationFrame` döngüsü ile değiştirilerek kaydırma kilidi çözüldü.
+- [x] Gelen iletişim formlarındaki ve teklif taleplerindeki hammadde/makine kısa kodları (örn: `pp`, `pe`, `yatay_balya_press`) otomatik eşleştirilerek panel tablosunda ve detay inceleme modallarında tam, okunabilir Türkçe isimleriyle (örn: `PP Moblen Granül`, `Yatay Balya Presi`) görüntülenecek şekilde güncellendi.
+- [x] Tüm ziyaretçi sayfalarında telif hakkı metniyle aynı satıra dikey çizgi ayıracıyla hizalanmış ve kalp simgesi içermeyen temiz, kurumsal "Designed by KNC Creative" imzası entegre edildi.
+- [x] Footer'daki KNC Creative imzası "https://www.kncdesign.com.tr" adresine dış bağlantı (target="_blank") olarak bağlandı ve marka rengi olan turuncu/kırmızı (#ff2700) tonuyla renklendirildi.
+- [x] Sitenin footer (alt bilgi) sosyal medya alanına LinkedIn ve Twitter/X'in yanına **Instagram** bağlantısı eklendi.
+- [x] Footer'daki eski kuş şeklindeki Twitter logosu, modern ve güncel **Twitter/X (X logosu)** SVG ikonuyla değiştirildi.
+- [x] Yönetim panelindeki "Site Metinleri" sekmesine yeni bir **"İletişim & Sosyal Medya"** alt sekmesi eklenerek `social_linkedin`, `social_twitter` ve `social_instagram` linklerinin canlı olarak panel üzerinden güncellenebilmesi sağlandı.
+- [x] "Site Metinleri" editörünün en üstüne gerçek zamanlı anahtar kelime/kod araması ve yeşil açıklama etiketlerine göre alt grup süzgeci sunan yeni bir **Filtre ve Arama Çubuğu (UI/UX)** geliştirildi.
+- [x] Menü linklerinin `href` hedeflerinin çeviri motoru tarafından Türkçe isimlerle (örn: `urunler.html` yerine `Ürünler`) üzerine yazılması ve linklerin patlaması (404 hatası) sorunu çözüldü; `href` güncelleme yetkisi sadece `social_` ile başlayan sosyal medya anahtarlarına kısıtlandı.
+- [x] Yönetim panelinin sol menüsünün en altına, yönetim sayfasını kapatmadan canlı siteyi yeni sekmede açmayı sağlayan yeşil ikonlu, sınır çizgili **"Siteye Git"** butonu entegre edildi.
+- [x] Sitenin açılışındaki yükleme ekranı (Preloader) logosu dinamikleştirildi; artık panelde "Site Görselleri" kısmından güncellediğiniz yeni logo preloader ekranında da otomatik olarak görüntülenecektir.
+- [x] "Site Görselleri" sekmesindeki resim yükleyicinin eski/kullanılmayan Firebase Storage kodunu tetikleyerek `storage is not defined` hatası vermesi sorunu çözüldü; tüm resim yüklemeleri başarıyla yerel/PHP sunucu yükleyicisine (`uploadFileToServer`) bağlandı.
+- [x] Preloader yükleme ekranı logosu (`img_preloader_logo`) ile menü çubuğundaki (navbar) ana logo (`img_logo`) birbirinden tamamen ayrıldı. Yönetim panelinin "Site Görselleri" sekmesine her iki logo için ayrı ayrı yükleme kartları ve alanları eklendi.
+- [x] **N+1 ve GDPR/KVKK Güvenlik Optimizasyonu**: Ziyaretçi sayfalarının her yüklenişinde arka planda çalışan bulk `load` API'sinin, sadece admin panelinde görünmesi gereken tüm müşteri form mesajlarını/kontak verilerini (`contacts.json`) kamuya açık şekilde yüklemesi ve gereksiz veri trafiği oluşturması engellendi. Kontak verilerinin diskten okunması ve JSON payload'una dahil edilmesi sadece aktif admin oturumları için kısıtlandı.
+- [x] **Sistem Bakım Modu (Maintenance Mode)**: Yönetim panelindeki "Güvenlik & Sistem Ayarları" sekmesine yan yana gelecek şekilde şık tasarımlı "Sistem Bakım Modu" switch'i eklendi. Aktif edildiğinde, tüm ziyaretçi sayfalarında anında devreye giren animasyonlu, logolu ve kurumsal renklerde özel Türkçe/İngilizce bakım ekranı geliştirildi. Javascript Temporal Dead Zone (TDZ) hatası çözülerek veritabanına sorunsuz şekilde kaydedilmesi ve geri bildirim popup (alert) pencereleri sağlandı.
+- [x] Sürüm numaraları önbellek kırma için `v=9.1` değerine yükseltildi ve yeni `deploy/nevra-site.zip` paketi derlendi.

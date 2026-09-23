@@ -1,0 +1,25 @@
+# Prevent direct access to JSON database files
+<FilesMatch "\.(json)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS (SSL)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect direct browser requests ending in .html to clean URLs (e.g. /hakkimizda.html -> /hakkimizda)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Clean URL Rewriting: Map extensionless requests internally to .html if file exists (e.g. /hakkimizda -> hakkimizda.html)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L,QSA]

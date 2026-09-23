@@ -1,0 +1,500 @@
+[
+  {
+    "code": "NVR-TMP",
+    "category_id": "pp",
+    "name_tr": "Tampon",
+    "name_en": "Buffer",
+    "desc_tr": "Plastik boru ekleme parçaları, contalar ve profil ekstrüzyonu için uygun yüksek viskoziteli gri hammadde.",
+    "desc_en": "High viscosity gray raw material for plastic pipe fittings, gaskets, and profile extrusion.",
+    "detail_tr": "Nevra PP-200 Gri, yüksek viskoziteli yapısı sayesinde ekstrüzyon ve enjeksiyon prosesleri için mükemmel direnç değerleri sağlar. Özellikle altyapı boru fittings malzemeleri ve endüstriyel contaların üretiminde stabil bir proses sunar.",
+    "detail_en": "Nevra PP-200 Gray, with its high-viscosity structure, provides excellent resistance values for extrusion and injection molding processes. It offers a stable process particularly for the production of pipe fittings and industrial gaskets.",
+    "mfi": "5 - 8 g/10 min (230°C / 2.16 kg)",
+    "density": "0.90 - 0.92 g/cm³",
+    "color_tr": "Gri",
+    "color_en": "Gray",
+    "usage_tr": [
+      "Boru ekleme parçaları",
+      "fittings elemanları",
+      "contalar",
+      "levha ve profil ekstrüzyonu."
+    ],
+    "usage_en": [
+      "Pipe connection parts",
+      "fittings elements",
+      "gaskets",
+      "sheet and profile extrusion."
+    ],
+    "image": "uploads/1784663263_9067_DSCF7443-2.jpg",
+    "images": [
+      "uploads/1784663263_9067_DSCF7443-2.jpg"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "pp-gray"
+  },
+  {
+    "code": "NVR-NY",
+    "category_id": "pp",
+    "name_tr": "Normal Yeşil",
+    "name_en": "Normal Green",
+    "desc_tr": "Askı, bahçe mobilyası, ev gereçleri ve oyuncak üretimine uygun ekonomik, özel renk eşleştirmeli hammadde.",
+    "desc_en": "Economical raw material for hangers, garden furniture, household goods, and toys with custom color matchings.",
+    "detail_tr": "Nevra PP-300 Renkli, oyuncak, askı, ev gereçleri gibi geniş yelpazedeki enjeksiyon kalıplama uygulamaları için ekonomik ve estetik bir çözümdür. Müşteri numunelerine göre özel renk eşleme çalışması yapılabilmektedir.",
+    "detail_en": "Nevra PP-300 Colored is an economical and aesthetic solution for a wide range of injection molding applications like toys, hangers, and household goods. Custom color matching is available according to customer samples.",
+    "mfi": "10 - 18 g/10 min (230°C / 2.16 kg)",
+    "density": "0.90 - 0.92 g/cm³",
+    "color_tr": "Siyah, Beyaz, Gri ve Özel Renkler",
+    "color_en": "Black, White, Grey, and Custom Colors",
+    "usage_tr": [
+      "Askı",
+      "mandal",
+      "bahçe mobilyaları",
+      "plastik oyuncaklar",
+      "ev gereçleri",
+      "beyaz eşya plastik parçaları."
+    ],
+    "usage_en": [
+      "Hangers",
+      "pegs",
+      "garden furniture",
+      "plastic toys",
+      "household goods",
+      "home appliance parts."
+    ],
+    "image": "uploads/1784663989_8293_DSCF7426-Edit.webp",
+    "images": [
+      "uploads/1784663989_8293_DSCF7426-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "pp-color"
+  },
+  {
+    "code": "AK-100",
+    "category_id": "pp",
+    "name_tr": "Akü",
+    "name_en": "Car Battery",
+    "desc_tr": "Kasa, kova, plastik saksı ve endüstriyel gövdeler için yüksek darbe mukavemetli enjeksiyonluk siyah hammadde.",
+    "desc_en": "Black raw material for crates, buckets, flower pots, and industrial housings with high impact resistance.",
+    "detail_tr": "Nevra PP-100 Siyah Granüllerimiz, yüksek darbe dayanımı ve mükemmel kalıp doldurma özellikleri ile üretilmektedir. Enjeksiyon kalıplama hatlarında güvenle kullanılabilir. Otomotiv yan sanayisi, ambalaj, bahçe mobilyaları gibi sanayi kollarında sıklıkla tercih edilen kararlı formülasyonlardır.",
+    "detail_en": "Our Nevra PP-100 Black Granules are manufactured with high impact strength and excellent mold-filling properties. Safe to use in injection molding lines. These are stable formulations highly preferred in industrial sectors like automotive, packaging, and garden furniture.",
+    "mfi": "8 - 15 g/10 min (230°C / 2.16 kg)",
+    "density": "0.90 - 0.92 g/cm³",
+    "color_tr": "Siyah",
+    "color_en": "Black",
+    "usage_tr": [
+      "Plastik saksı",
+      "taşıma kasaları",
+      "kovalar",
+      "otomotiv parçaları",
+      "tamponlar",
+      "endüstriyel gövdeler."
+    ],
+    "usage_en": [
+      "Plastic flower pots",
+      "transport crates",
+      "buckets",
+      "automotive parts",
+      "bumpers",
+      "industrial bodies."
+    ],
+    "image": "uploads/1784661635_5378_DSCF7491.jpg",
+    "images": [
+      "uploads/1784661635_5378_DSCF7491.jpg"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "pp-black"
+  },
+  {
+    "code": "NVR-NS",
+    "category_id": "pp",
+    "name_tr": "Normal Siyah",
+    "name_en": "Normal Black",
+    "desc_tr": "Altyapı boruları, damla sulama boruları ve şişirmelik gövdeler için yüksek mukavemetli ekstrüzyonluk hammadde.",
+    "desc_en": "High strength extrusion raw material for infrastructure pipes, irrigation pipes, and blow molded bodies.",
+    "detail_tr": "Nevra PE-HD Siyah, yüksek moleküler ağırlıklı ve mükemmel çevresel stres çatlama direncine (ESCR) sahip yüksek yoğunluklu polietilen (HDPE) granüldür. Özellikle altyapı boru hatları ve damla sulama hatları için üretilmiştir.",
+    "detail_en": "Nevra PE-HD Black is a high-density polyethylene (HDPE) granule with high molecular weight and excellent environmental stress cracking resistance (ESCR). Specifically manufactured for infrastructure pipelines and drip irrigation lines.",
+    "mfi": "0.3 - 0.7 g/10 min (190°C / 5.0 kg)",
+    "density": "0.950 - 0.960 g/cm³",
+    "color_tr": "Siyah",
+    "color_en": "Black",
+    "usage_tr": [
+      "Altyapı boruları",
+      "içme suyu boruları",
+      "damla sulama boruları",
+      "plastik bidon ve şişeler."
+    ],
+    "usage_en": [
+      "Infrastructure pipes",
+      "drinking water pipes",
+      "drip irrigation pipes",
+      "plastic canisters and bottles."
+    ],
+    "image": "uploads/1784663086_2900_DSCF7508-2.jpg",
+    "images": [
+      "uploads/1784663086_2900_DSCF7508-2.jpg"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "pe-hd"
+  },
+  {
+    "code": "NVR-KHV",
+    "category_id": "pp",
+    "name_tr": "Kahverengi",
+    "name_en": "Brown",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784664277_5961_DSCF7382-2-Edit.webp",
+    "images": [
+      "uploads/1784664277_5961_DSCF7382-2-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784663610536"
+  },
+  {
+    "code": "NVR-KRM",
+    "category_id": "pp",
+    "name_tr": "Kırmızı",
+    "name_en": "Red",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784664411_4199_DSCF7387-2-Edit.webp",
+    "images": [
+      "uploads/1784664411_4199_DSCF7387-2-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784664413651"
+  },
+  {
+    "code": "NVR-BYZ",
+    "category_id": "pp",
+    "name_tr": "Kirli Beyaz",
+    "name_en": "Off-White",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784664893_5783_DSCF7396-Edit.webp",
+    "images": [
+      "uploads/1784664893_5783_DSCF7396-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784664895037"
+  },
+  {
+    "code": "NVR-MV",
+    "category_id": "pp",
+    "name_tr": "Mavi",
+    "name_en": "Blue",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784665016_5017_ChatGPT_Image_17_Tem_2026_00_44_58-Edit.webp",
+    "images": [
+      "uploads/1784665016_5017_ChatGPT_Image_17_Tem_2026_00_44_58-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784665018669"
+  },
+  {
+    "code": "NVR-PMB",
+    "category_id": "pp",
+    "name_tr": "Pembe",
+    "name_en": "Pink",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784666157_1499_DSCF7460-Edit.webp",
+    "images": [
+      "uploads/1784666157_1499_DSCF7460-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784666016161"
+  },
+  {
+    "code": "NVR-YSL",
+    "category_id": "pp",
+    "name_tr": "Yeşil",
+    "name_en": "Green",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784666611_9532_DSCF7476-Edit.webp",
+    "images": [
+      "uploads/1784666611_9532_DSCF7476-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784666613038"
+  },
+  {
+    "id": "pe-ld-trans",
+    "category_id": "pe",
+    "code": "Nevra PE-LD",
+    "name_tr": "Şeffaf Alçak Yoğunluklu PE",
+    "name_en": "Transparent Low Density PE",
+    "desc_tr": "Endüstriyel naylon film, shrink rulo, sera örtüsü ve ambalaj poşeti imalatına uygun şeffaf film dereceli hammadde.",
+    "desc_en": "Translucent film grade raw material for industrial film, shrink rolls, greenhouse covers, and packaging bags.",
+    "detail_tr": "Nevra PE-LD Şeffaf, yüksek şeffaflık, mukavemet ve esneklik gerektiren film ekstrüzyon prosesleri için özel olarak elenmiş ve yıkanmış temiz plastik atıklardan üretilen alçak yoğunluklu polietilen (LDPE) hammaddedir.",
+    "detail_en": "Nevra PE-LD Translucent is a low-density polyethylene (LDPE) raw material produced from specially sieved and washed clean plastic waste for film extrusion processes requiring high transparency, strength, and flexibility.",
+    "mfi": "1.5 - 2.2 g/10 min (190°C / 2.16 kg)",
+    "density": "0.918 - 0.923 g/cm³",
+    "color_tr": "Şeffaf / Naturel",
+    "color_en": "Translucent / Natural",
+    "usage_tr": "Ambalaj filmleri, shrink rulolar, sera örtüleri, poşet ve torba imalatı.",
+    "usage_en": "Packaging films, shrink rolls, greenhouse covers, plastic bags.",
+    "image": "assets/product-pe.png",
+    "filter": "opacity(0.8) brightness(1.2)",
+    "detail_url": ""
+  },
+  {
+    "id": "pe-ld-black",
+    "category_id": "pe",
+    "code": "Nevra PE-LD Siyah",
+    "name_tr": "Siyah Alçak Yoğunluklu PE",
+    "name_en": "Black Low Density PE",
+    "desc_tr": "Damla sulama boruları, kablo kılıfları ve genel plastik ekstrüzyon uygulamaları için esnek hammadde.",
+    "desc_en": "Flexible raw material for drip irrigation pipes, cable jacketing, and general extrusion.",
+    "detail_tr": "Nevra PE-LD Siyah, esneklik, çevre direnci ve stabil proses performansı gerektiren kablo kılıflama ve esnek boru hatları için kararlaştırılmış alçak yoğunluklu polietilen granüldür.",
+    "detail_en": "Nevra PE-LD Black is a stabilized low-density polyethylene granule for cable sheathing and flexible pipelines requiring flexibility, environmental resistance, and stable process performance.",
+    "mfi": "0.8 - 1.5 g/10 min (190°C / 2.16 kg)",
+    "density": "0.920 - 0.925 g/cm³",
+    "color_tr": "Siyah",
+    "color_en": "Black",
+    "usage_tr": "Damla sulama boruları, kablo kaplama kılıfları, esnek boru ekstrüzyonu, çöp torbası hammaddesi.",
+    "usage_en": "Drip irrigation pipes, cable sheathing, flexible pipe extrusion, garbage bag raw material.",
+    "image": "assets/product-pe.png",
+    "filter": "brightness(0.35)",
+    "detail_url": ""
+  },
+  {
+    "id": "pprc-gray",
+    "category_id": "pprc",
+    "code": "Nevra PPR-C Gri",
+    "name_tr": "Nevra PPR-C Gri",
+    "name_en": "Nevra PPR-C Gray",
+    "desc_tr": "Sıhhi tesisat ekleme parçaları (fittings), vana gövdeleri ve gri renkli boru ekstrüzyonu için ideal hammadde.",
+    "desc_en": "Ideal raw material for sanitary pipe fittings, valve bodies, and gray pipe extrusion.",
+    "detail_tr": "Gri renk formülasyonuna sahip Nevra PPR-C, özellikle sıhhi tesisat ekleme parçaları (fittings) üretimi için mükemmel darbe direnci ve yüksek basınç dayanımı sergiler. Kalıptan kolay ayrılma ve hızlı proses avantajına sahiptir.",
+    "detail_en": "Nevra PPR-C with gray color formulation exhibits excellent impact resistance and high pressure strength, particularly for the production of sanitary plumbing pipe fittings. It has features of easy mold release and fast processing.",
+    "mfi": "0.3 - 0.6 g/10 min (230°C / 2.16 kg)",
+    "density": "0.895 - 0.905 g/cm³",
+    "color_tr": "Gri",
+    "color_en": "Gray",
+    "usage_tr": "Sıhhi tesisat fittings ek parçaları, dirsekler, manşonlar, boru hatları.",
+    "usage_en": "Sanitary plumbing fittings, elbows, couplers, pipe networks.",
+    "image": "assets/product-compound.png",
+    "filter": "grayscale(1) brightness(0.9)",
+    "detail_url": ""
+  },
+  {
+    "id": "pprc-white",
+    "category_id": "pprc",
+    "code": "Nevra PPR-C Beyaz",
+    "name_tr": "Nevra PPR-C Beyaz",
+    "name_en": "Nevra PPR-C White",
+    "desc_tr": "Bina içi temiz su dağıtım hatları ve beyaz renkli ek parçalar için pürüzsüz yüzey ve üstün kararlılık sunan reçete.",
+    "desc_en": "Recipe offering smooth surface and superior stability for indoor clean water distribution lines and white fittings.",
+    "detail_tr": "Beyaz renkli Nevra PPR-C, bina içi temiz su tesisatları için geliştirilmiştir. Hammaddelerimiz yüksek termal kararlılığa ve koku yaymayan özel saflığa sahiptir. Yüzey pürüzsüzlüğü ile kireçlenme ve aşınmayı önler.",
+    "detail_en": "White colored Nevra PPR-C was developed for indoor clean water installations. Our raw materials have high thermal stability and special purity that does not emit odor. With surface smoothness, it prevents calcification and wear.",
+    "mfi": "0.3 - 0.6 g/10 min (230°C / 2.16 kg)",
+    "density": "0.895 - 0.905 g/cm³",
+    "color_tr": "Beyaz",
+    "color_en": "White",
+    "usage_tr": "Bina içi temiz su tesisatları, beyaz sıhhi tesisat fittings malzemeleri, içme suyu hatları.",
+    "usage_en": "Domestic clean water plumbing, white sanitary fittings, drinking water networks.",
+    "image": "assets/product-compound.png",
+    "filter": "brightness(1.3)",
+    "detail_url": ""
+  },
+  {
+    "code": "NVR-LTK",
+    "category_id": "pprc",
+    "name_tr": "Gri Lateks",
+    "name_en": "Grey Latex",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784664674_1625_DSCF7415-Edit.webp",
+    "images": [
+      "uploads/1784664674_1625_DSCF7415-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784664675419"
+  },
+  {
+    "code": "NVR-LTKS",
+    "category_id": "pprc",
+    "name_tr": "Siyah Lateks",
+    "name_en": "Black Latex",
+    "desc_tr": "-",
+    "desc_en": "-",
+    "detail_tr": "-",
+    "detail_en": "-",
+    "mfi": "-",
+    "density": "-",
+    "color_tr": "-",
+    "color_en": "-",
+    "usage_tr": [
+      "-"
+    ],
+    "usage_en": [
+      "-"
+    ],
+    "image": "uploads/1784665330_3000_DSCF7434-Edit.webp",
+    "images": [
+      "uploads/1784665330_3000_DSCF7434-Edit.webp"
+    ],
+    "filter": "none",
+    "status": "active",
+    "id": "prod_1784665332536"
+  },
+  {
+    "id": "comp-calcite",
+    "category_id": "other",
+    "code": "Nevra PP-Calcite",
+    "name_tr": "Kalsit Katkılı PP Kompaund",
+    "name_en": "Calcite Filled PP Compound",
+    "desc_tr": "Kalsiyum karbonat dolgusuyla mekanik mukavemeti ve rijitliği artırılmış, bükülme direnci yüksek enjeksiyonluk hammadde.",
+    "desc_en": "Injection grade raw material with increased rigidity, mechanical strength, and flexural resistance due to calcium carbonate filler.",
+    "detail_tr": "Nevra PP-Calcite, kalsiyum karbonat (kalsit) katkısı ile zenginleştirilmiş PP kompaund granüldür. Ürünlerimizde boyutsal kararlılık, yüksek ısı direnci ve yüksek bükülme mukavemeti sağlanmıştır. Enjeksiyon maliyetlerini optimize eder.",
+    "detail_en": "Nevra PP-Calcite is a PP compound granule enriched with calcium carbonate (calcite) additive. High dimensional stability, high heat resistance, and high flexural strength are achieved in our products. It optimizes injection molding costs.",
+    "mfi": "4 - 8 g/10 min (230°C / 2.16 kg)",
+    "density": "1.05 - 1.25 g/cm³",
+    "color_tr": "Siyah, Koyu Gri",
+    "color_en": "Black, Dark Gray",
+    "usage_tr": "Otomotiv trim aksamı, beyaz eşya plastik parçaları, mobilya iskeletleri, yüksek mukavemetli endüstriyel gövdeler.",
+    "usage_en": "Automotive trim, home appliance parts, furniture frames, high strength industrial housings.",
+    "image": "assets/product-compound.png",
+    "filter": "grayscale(1) brightness(1.2)",
+    "detail_url": ""
+  },
+  {
+    "id": "comp-gf30",
+    "category_id": "other",
+    "code": "Nevra PP-GF30",
+    "name_tr": "Cam Elyaf Takviyeli PP",
+    "name_en": "Glass Fiber Reinforced PP",
+    "desc_tr": "%30 cam elyaf dolgusuyla yüksek gerilme ve bükülme direnci sunan, otomotiv ve beyaz eşya parçalarına özel kompaund.",
+    "desc_en": "Special compound offering high tensile and flexural strength with 30% glass fiber loading, tailored for automotive and appliance parts.",
+    "detail_tr": "Nevra PP-GF30, %30 oranında cam elyaf dolgu ile modifiye edilmiş mühendislik polimeridir. Yüksek çekme dayanımı, mükemmel elastikiyet modülü ve boyutsal kararlılık özellikleri ile otomotiv kaput altı parçaları ve rijit beyaz eşya aksamları için tasarlanmıştır.",
+    "detail_en": "Nevra PP-GF30 is an engineering polymer modified with 30% glass fiber loading. Designed with high tensile strength, excellent modulus of elasticity, and dimensional stability for automotive under-hood parts and rigid home appliance components.",
+    "mfi": "4 - 7 g/10 min (230°C / 2.16 kg)",
+    "density": "1.10 - 1.15 g/cm³",
+    "color_tr": "Siyah, Gri",
+    "color_en": "Black, Gray",
+    "usage_tr": "Otomotiv motor içi aksamlar, fan davlumbazları, yüksek mekanik mukavemet ve rijitlik gerektiren beyaz eşya parçaları.",
+    "usage_en": "Automotive under-the-hood parts, fan shrouds, household appliance parts requiring high mechanical strength and rigidity.",
+    "image": "assets/product-compound.png",
+    "filter": "hue-rotate(45deg) brightness(0.9)",
+    "detail_url": ""
+  },
+  {
+    "id": "comp-custom",
+    "category_id": "other",
+    "code": "Nevra Custom-Mix",
+    "name_tr": "Özel Müşteri Formülasyonları",
+    "name_en": "Custom Customer Formulations",
+    "desc_tr": "Müşterilerimizin özel makine, kalıp ve mukavemet gereksinimlerine göre AR-GE laboratuvarımızda reçetelenen kompaundlar.",
+    "desc_en": "Compounds formulated in our R&D lab according to custom machine, mold, and durability requirements of our B2B partners.",
+    "detail_tr": "Nevra Custom-Mix, B2B müşterilerimizin spesifik proses gereksinimlerine (akışkanlık, darbe mukavemeti, UV kararlılığı, elastikiyet vb.) göre AR-GE laboratuvarımızda analiz yapılarak 'terzi usulü' reçetelenen butik polimer çözümlerimizdir.",
+    "detail_en": "Nevra Custom-Mix represents our boutique polymer solutions custom-formulated through R&D lab analysis based on specific process requirements of our B2B partners, such as flowability, impact strength, UV stability, and elasticity.",
+    "mfi": "Özel Reçeteye Göre",
+    "mfi_en": "Custom Formulated",
+    "density": "İsteğe Bağlı",
+    "density_en": "On Demand",
+    "color_tr": "İsteğe Bağlı",
+    "color_en": "On Demand",
+    "usage_tr": "B2B iş ortaklarımızın makine, kalıp ve spesifikasyon gereksinimlerine özel terzi usulü formüle edilen mühendislik plastikleri.",
+    "usage_en": "Engineering plastics custom-formulated for B2B partners' machinery, molds, and mechanical specifications.",
+    "image": "assets/product-compound.png",
+    "filter": "hue-rotate(270deg) brightness(1.0)",
+    "detail_url": ""
+  }
+]

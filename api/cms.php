@@ -108,6 +108,7 @@ $translationsFile = $dataDir . '/translations.json';
 $machinesFile = $dataDir . '/machines.json';
 $certificatesFile = $dataDir . '/certificates.json';
 $contactsFile = $dataDir . '/contacts.json';
+$faqsFile = $dataDir . '/faqs.json';
 
 // Get expected setup token if any
 function getExpectedSetupToken($dataDir) {
@@ -316,6 +317,7 @@ switch ($action) {
 
         $machines = file_exists($machinesFile) ? json_decode(file_get_contents($machinesFile), true) : [];
         $certificates = file_exists($certificatesFile) ? json_decode(file_get_contents($certificatesFile), true) : [];
+        $faqs = file_exists($faqsFile) ? json_decode(file_get_contents($faqsFile), true) : [];
 
         $contacts = [];
         if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && file_exists($contactsFile)) {
@@ -330,6 +332,7 @@ switch ($action) {
             "machines" => $machines,
             "contacts" => $contacts,
             "certificates" => $certificates,
+            "faqs" => $faqs,
             "csrf_token" => (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) ? get_csrf_token() : null
         ]);
         break;
@@ -554,6 +557,78 @@ switch ($action) {
 
         safe_json_write($contactsFile, $contacts);
         echo json_encode(["status" => "success", "message" => "İletişim mesajı silindi."]);
+        break;
+
+    case 'save_faq':
+        check_admin_auth();
+        check_csrf_token();
+        $rawPost = file_get_contents('php://input');
+        $item = json_decode($rawPost, true);
+        if (!$item || !isset($item['id'])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Geçersiz SSS verisi."]);
+            exit();
+        }
+
+        $faqs = file_exists($faqsFile) ? json_decode(file_get_contents($faqsFile), true) : [];
+        $updated = false;
+        for ($i = 0; $i < count($faqs); $i++) {
+            if ($faqs[$i]['id'] === $item['id']) {
+                $faqs[$i] = $item;
+                $updated = true;
+                break;
+            }
+        }
+        if (!$updated) {
+            $faqs[] = $item;
+        }
+
+        safe_json_write($faqsFile, $faqs);
+        echo json_encode(["status" => "success", "message" => "Soru başarıyla kaydedildi."]);
+        break;
+
+    case 'delete_faq':
+        check_admin_auth();
+        check_csrf_token();
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        if (!$id) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID zorunludur."]);
+            exit();
+        }
+
+        $faqs = file_exists($faqsFile) ? json_decode(file_get_contents($faqsFile), true) : [];
+        $faqs = array_values(array_filter($faqs, function($f) use ($id) {
+            return $f['id'] !== $id;
+        }));
+
+        safe_json_write($faqsFile, $faqs);
+        echo json_encode(["status" => "success", "message" => "Soru silindi."]);
+        break;
+
+    case 'update_faq_status':
+        check_admin_auth();
+        check_csrf_token();
+        $rawPost = file_get_contents('php://input');
+        $postData = json_decode($rawPost, true);
+        $id = isset($postData['id']) ? $postData['id'] : (isset($_GET['id']) ? $_GET['id'] : '');
+        $status = isset($postData['status']) ? $postData['status'] : '';
+        if (!$id || !$status) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID ve durum zorunludur."]);
+            exit();
+        }
+
+        $faqs = file_exists($faqsFile) ? json_decode(file_get_contents($faqsFile), true) : [];
+        for ($i = 0; $i < count($faqs); $i++) {
+            if ($faqs[$i]['id'] === $id) {
+                $faqs[$i]['status'] = $status;
+                break;
+            }
+        }
+
+        safe_json_write($faqsFile, $faqs);
+        echo json_encode(["status" => "success", "message" => "Durum güncellendi."]);
         break;
 
     default:

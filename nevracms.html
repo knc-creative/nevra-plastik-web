@@ -932,6 +932,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <span>İletişim Formları</span>
           </button>
+          <button class="sidebar-btn" onclick="switchTab('tab-faqs', this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>SSS Yönetimi</span>
+          </button>
           <button class="sidebar-btn" onclick="switchTab('tab-setup', this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>Güvenlik Ayarları</span>
@@ -1274,6 +1278,64 @@
               </thead>
               <tbody>
                 <!-- Dynamic rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB: SSS (FAQ) MANAGEMENT -->
+        <div id="tab-faqs" class="tab-content">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+              <h2 style="font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em;">Sık Sorulan Sorular (SSS) Yönetimi</h2>
+              <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.25rem;">Anasayfa teaser ve SSS sayfasında gösterilen soruları ve cevapları buradan yönetebilirsiniz.</p>
+            </div>
+            <button class="btn btn-primary" onclick="openFaqModal()" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; font-size: 0.88rem; font-weight: 700;">
+              <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Yeni Soru Ekle
+            </button>
+          </div>
+
+          <!-- Filters -->
+          <div class="card" style="padding: 1rem 1.5rem; margin-bottom: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <label style="font-weight: 600; font-size: 0.85rem; color: var(--gray);">Kategori:</label>
+              <select id="faq-filter-category" class="form-control" onchange="renderFaqsTable()" style="width: auto; padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                <option value="all">Tüm Kategoriler</option>
+                <option value="products">Ürünler ve Hammaddeler</option>
+                <option value="quality">Kalite ve Teknik Özellikler</option>
+                <option value="production">Üretim ve Kapasite</option>
+                <option value="sustainability">Sürdürülebilirlik ve Geri Dönüşüm</option>
+                <option value="order">Sipariş, Numune ve İletişim</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <label style="font-weight: 600; font-size: 0.85rem; color: var(--gray);">Durum:</label>
+              <select id="faq-filter-status" class="form-control" onchange="renderFaqsTable()" style="width: auto; padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                <option value="all">Tüm Durumlar</option>
+                <option value="active">Aktif</option>
+                <option value="passive">Pasif</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-left: auto;">
+              <span id="faq-count-badge" class="badge" style="background: var(--primary-light); color: var(--primary); font-weight: 700; padding: 0.4rem 0.8rem; font-size: 0.85rem;">0 Soru</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); overflow: hidden;">
+            <table class="data-table" id="faqs-table">
+              <thead>
+                <tr>
+                  <th style="width: 60px; text-align: center;">Sıra</th>
+                  <th>Soru (TR)</th>
+                  <th style="width: 180px;">Kategori</th>
+                  <th style="width: 120px; text-align: center;">Anasayfa</th>
+                  <th style="width: 90px; text-align: center;">Durum</th>
+                  <th style="width: 150px; text-align: right;">Aksiyon</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dynamic FAQ rows -->
               </tbody>
             </table>
           </div>
@@ -1671,6 +1733,69 @@
         </div>
       </form>
     </div>
+  <!-- FAQ ADD/EDIT MODAL -->
+  <div class="modal-backdrop" id="faq-modal">
+    <div class="modal-content" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="faq-modal-title">Yeni Soru Ekle</h3>
+        <button class="close-modal-btn" onclick="closeFaqModal()">&times;</button>
+      </div>
+      <form id="faq-form" onsubmit="saveFaqForm(event)">
+        <input type="hidden" id="faq-id">
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="faq-category" class="form-control" required>
+              <option value="products">Ürünler ve Hammaddeler</option>
+              <option value="quality">Kalite ve Teknik Özellikler</option>
+              <option value="production">Üretim ve Kapasite</option>
+              <option value="sustainability">Sürdürülebilirlik ve Geri Dönüşüm</option>
+              <option value="order">Sipariş, Numune ve İletişim</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Sıralama Değeri (Örn: 1, 2, 3)</label>
+            <input type="number" id="faq-sort-order" class="form-control" min="1" value="1" required>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Yayın Durumu</label>
+            <select id="faq-status" class="form-control">
+              <option value="active">Aktif (Sitede Görünür)</option>
+              <option value="passive">Pasif (Sitede Gizlenir)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Anasayfada Göster (Max 3)</label>
+            <select id="faq-show-home" class="form-control">
+              <option value="false">Hayır (Sadece SSS Sayfasında)</option>
+              <option value="true">Evet (Anasayfa Teaser'da Göster)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Türkçe Soru</label>
+          <input type="text" id="faq-question-tr" class="form-control" placeholder="Örn: Geri dönüştürülmüş plastik hammadde nedir?" required>
+        </div>
+        <div class="form-group">
+          <label>Türkçe Cevap</label>
+          <textarea id="faq-answer-tr" class="form-control" rows="3" placeholder="Soru cevabını detaylıca yazın..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>İngilizce Soru (Opsiyonel)</label>
+          <input type="text" id="faq-question-en" class="form-control" placeholder="Örn: What is recycled plastic raw material?">
+        </div>
+        <div class="form-group">
+          <label>İngilizce Cevap (Opsiyonel)</label>
+          <textarea id="faq-answer-en" class="form-control" rows="3" placeholder="Write answer in English..."></textarea>
+        </div>
+        <div class="modal-footer" style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="closeFaqModal()">İptal</button>
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -1769,6 +1894,7 @@
     let machinesList = [];
     let contactsList = [];
     let certificatesList = [];
+    let faqsList = typeof fallbackFaqs !== 'undefined' ? [...fallbackFaqs] : [];
     let selectedImageFile = null;
 
     // Unified PHP CMS Session & Setup Check
@@ -2025,6 +2151,7 @@
           machinesList = data.machines || [];
           contactsList = data.contacts || [];
           certificatesList = data.certificates || [];
+          faqsList = data.faqs || [];
           
           if (data.translations) {
             translationsData = data.translations;
@@ -2056,6 +2183,7 @@
         machinesList = [];
         contactsList = [];
         certificatesList = [...fallbackCertificates];
+        faqsList = typeof fallbackFaqs !== 'undefined' ? [...fallbackFaqs] : [];
         translationsData = fallbackTranslations;
       }
       renderCategoriesTable();
@@ -2063,6 +2191,7 @@
       renderMachinesTable();
       renderContactsTable();
       renderCertificatesTable();
+      renderFaqsTable();
       updateProductCategoryDropdown();
       loadTranslations();
     }
@@ -5029,6 +5158,215 @@
         }
       }
     }
+
+    // --- SSS (FAQ) Operations ---
+    const faqCategoryNamesTR = {
+      "products": "Ürünler ve Hammaddeler",
+      "quality": "Kalite ve Teknik Özellikler",
+      "production": "Üretim ve Kapasite",
+      "sustainability": "Sürdürülebilirlik ve Geri Dönüşüm",
+      "order": "Sipariş, Numune ve İletişim"
+    };
+
+    function renderFaqsTable() {
+      const tbody = document.querySelector("#faqs-table tbody");
+      if (!tbody) return;
+      tbody.innerHTML = "";
+
+      const catFilter = document.getElementById("faq-filter-category") ? document.getElementById("faq-filter-category").value : "all";
+      const statusFilter = document.getElementById("faq-filter-status") ? document.getElementById("faq-filter-status").value : "all";
+
+      let filtered = [...faqsList];
+      if (catFilter !== "all") {
+        filtered = filtered.filter(f => f.category === catFilter);
+      }
+      if (statusFilter !== "all") {
+        filtered = filtered.filter(f => f.status === statusFilter);
+      }
+
+      filtered.sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99));
+
+      const badge = document.getElementById("faq-count-badge");
+      if (badge) badge.textContent = `${filtered.length} Soru`;
+
+      filtered.forEach(faq => {
+        const tr = document.createElement("tr");
+        const statusBadge = faq.status === 'passive' 
+          ? '<span class="badge status-badge-animate" style="background: #fee2e2; color: #ef4444; border: 1px solid #fca5a5; font-size: 0.72rem; padding: 2px 6px;">Pasif</span>' 
+          : '<span class="badge status-badge-animate" style="background: #dcfce7; color: #22c55e; border: 1px solid #86efac; font-size: 0.72rem; padding: 2px 6px;">Aktif</span>';
+
+        const catName = faqCategoryNamesTR[faq.category] || faq.category;
+
+        tr.innerHTML = `
+          <td style="text-align: center; font-weight: 700; color: var(--gray);">${faq.sort_order || 1}</td>
+          <td>
+            <strong>${faq.question_tr}</strong><br>
+            <span style="font-size: 0.8rem; color: var(--gray);">EN: ${faq.question_en || '-'}</span>
+          </td>
+          <td style="font-size: 0.85rem;"><span class="badge" style="background: var(--light-gray); color: var(--dark); border: 1px solid var(--border-color);">${catName}</span></td>
+          <td style="text-align: center;">
+            <label class="status-switch-container" title="Anasayfada Göster / Gizle">
+              <div class="status-switch">
+                <input type="checkbox" ${faq.show_home ? 'checked' : ''} onchange="toggleFaqShowHome('${faq.id}', this.checked)">
+                <span class="status-slider"></span>
+              </div>
+            </label>
+          </td>
+          <td style="text-align: center;">
+            <label class="status-switch-container" title="Sitede Göster / Gizle">
+              <div class="status-switch">
+                <input type="checkbox" ${faq.status !== 'passive' ? 'checked' : ''} onchange="toggleFaqStatus('${faq.id}', this.checked)">
+                <span class="status-slider"></span>
+              </div>
+            </label>
+          </td>
+          <td style="text-align: right;">
+            <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+              <button class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="editFaq('${faq.id}')">Düzenle</button>
+              <button class="btn btn-danger" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="deleteFaq('${faq.id}')">Sil</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    window.openFaqModal = function() {
+      document.getElementById("faq-form").reset();
+      document.getElementById("faq-id").value = "";
+      document.getElementById("faq-status").value = "active";
+      document.getElementById("faq-show-home").value = "false";
+      document.getElementById("faq-sort-order").value = faqsList.length + 1;
+      document.getElementById("faq-modal-title").textContent = "Yeni Soru Ekle";
+      document.getElementById("faq-modal").classList.add("show");
+    };
+
+    window.closeFaqModal = function() {
+      document.getElementById("faq-modal").classList.remove("show");
+    };
+
+    window.editFaq = function(id) {
+      const faq = faqsList.find(f => f.id === id);
+      if (!faq) return;
+
+      document.getElementById("faq-id").value = faq.id;
+      document.getElementById("faq-category").value = faq.category || "products";
+      document.getElementById("faq-sort-order").value = faq.sort_order || 1;
+      document.getElementById("faq-status").value = faq.status || "active";
+      document.getElementById("faq-show-home").value = faq.show_home ? "true" : "false";
+      document.getElementById("faq-question-tr").value = faq.question_tr || "";
+      document.getElementById("faq-answer-tr").value = faq.answer_tr || "";
+      document.getElementById("faq-question-en").value = faq.question_en || "";
+      document.getElementById("faq-answer-en").value = faq.answer_en || "";
+
+      document.getElementById("faq-modal-title").textContent = "Soru Düzenle";
+      document.getElementById("faq-modal").classList.add("show");
+    };
+
+    window.deleteFaq = async function(id) {
+      if (!confirm("Bu soruyu silmek istediğinize emin misiniz?")) return;
+      try {
+        const response = await fetch(`api/cms.php?action=delete_faq&id=${id}`, {
+          method: 'POST'
+        });
+        const resData = await response.json();
+        if (response.ok && resData.status === 'success') {
+          alert("Soru başarıyla silindi.");
+          loadCMSData();
+        } else {
+          throw new Error(resData.message || "Silme hatası.");
+        }
+      } catch (error) {
+        window.showDebugError("Soru Silme", error);
+        alert("Hata oluştu! Detaylar için debug panelini inceleyin.");
+      }
+    };
+
+    window.toggleFaqStatus = async function(id, isChecked) {
+      const faq = faqsList.find(f => f.id === id);
+      if (!faq) return;
+      faq.status = isChecked ? "active" : "passive";
+
+      try {
+        const response = await fetch(`api/cms.php?action=save_faq&id=${id}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(faq)
+        });
+        const resData = await response.json();
+        if (response.ok && resData.status === 'success') {
+          renderFaqsTable();
+        } else {
+          throw new Error(resData.message || "Durum güncelleme hatası.");
+        }
+      } catch (error) {
+        window.showDebugError("SSS Durum Güncelleme", error);
+        loadCMSData();
+      }
+    };
+
+    window.toggleFaqShowHome = async function(id, isChecked) {
+      const faq = faqsList.find(f => f.id === id);
+      if (!faq) return;
+      faq.show_home = isChecked;
+
+      try {
+        const response = await fetch(`api/cms.php?action=save_faq&id=${id}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(faq)
+        });
+        const resData = await response.json();
+        if (response.ok && resData.status === 'success') {
+          renderFaqsTable();
+        } else {
+          throw new Error(resData.message || "Anasayfa görünürlük hatası.");
+        }
+      } catch (error) {
+        window.showDebugError("SSS Anasayfa Görünürlük", error);
+        loadCMSData();
+      }
+    };
+
+    window.saveFaqForm = async function(event) {
+      event.preventDefault();
+
+      let id = document.getElementById("faq-id").value;
+      if (!id) {
+        id = "faq_" + Date.now();
+      }
+
+      const faqData = {
+        id: id,
+        category: document.getElementById("faq-category").value,
+        sort_order: parseInt(document.getElementById("faq-sort-order").value, 10) || 1,
+        status: document.getElementById("faq-status").value,
+        show_home: document.getElementById("faq-show-home").value === "true",
+        question_tr: document.getElementById("faq-question-tr").value.trim(),
+        answer_tr: document.getElementById("faq-answer-tr").value.trim(),
+        question_en: document.getElementById("faq-question-en").value.trim(),
+        answer_en: document.getElementById("faq-answer-en").value.trim()
+      };
+
+      try {
+        const response = await fetch(`api/cms.php?action=save_faq&id=${id}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(faqData)
+        });
+        const resData = await response.json();
+        if (response.ok && resData.status === 'success') {
+          closeFaqModal();
+          alert("Soru başarıyla kaydedildi.");
+          loadCMSData();
+        } else {
+          throw new Error(resData.message || "Kaydetme hatası.");
+        }
+      } catch (error) {
+        window.showDebugError("SSS Kayıt", error);
+        alert("Hata oluştu! Detaylar için debug panelini inceleyin.");
+      }
+    };
 
     // Load initial theme (Default to dark theme if not saved yet)
     const savedTheme = localStorage.getItem("admin_theme") || "dark";

@@ -1366,7 +1366,8 @@ document.addEventListener('DOMContentLoaded', () => {
             products: (data.products || fallbackProducts).filter(p => p.status !== 'passive'),
             translations: data.translations || fallbackTranslations,
             machines: ((data.machines && data.machines.length > 0) ? data.machines : fallbackMachines).filter(m => m.status !== 'passive'),
-            certificates: data.certificates || fallbackCertificates
+            certificates: data.certificates || fallbackCertificates,
+            faqs: data.faqs || (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : [])
           };
         } else {
           throw new Error(data.message || 'Unknown CMS error');
@@ -1379,7 +1380,8 @@ document.addEventListener('DOMContentLoaded', () => {
           products: fallbackProducts.filter(p => p.status !== 'passive'),
           translations: fallbackTranslations,
           machines: fallbackMachines.filter(m => m.status !== 'passive'),
-          certificates: fallbackCertificates
+          certificates: fallbackCertificates,
+          faqs: typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []
         };
       })
       .finally(() => {
@@ -1473,5 +1475,148 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start initialization
   initSiteData();
+
+  // ------------------------------------------------------------------------
+  // FAQ Dynamic Rendering
+  // ------------------------------------------------------------------------
+
+  // SVG chevron icon for accordion buttons
+  const _faqChevronSVG = '<span class="faq-icon-box" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>';
+
+  function _buildFaqItemHTML(faq, lang, idx) {
+    const qText = (lang === 'en' && faq.question_en) ? faq.question_en : faq.question_tr;
+    const aText = (lang === 'en' && faq.answer_en) ? faq.answer_en : faq.answer_tr;
+    const btnId = 'faq-dyn-' + (faq.id || idx);
+    return `<div class="faq-teaser-item" data-faq-id="${faq.id || ''}"><button class="faq-teaser-question" aria-expanded="false" id="${btnId}">${_escHtml(qText)}${_faqChevronSVG}</button><div class="faq-teaser-answer" role="region" aria-labelledby="${btnId}"><div class="faq-answer-content">${_escHtml(aText)}</div></div></div>`;
+  }
+
+  function _escHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function _attachFaqAccordion(container) {
+    const items = container.querySelectorAll('.faq-teaser-item');
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-teaser-question');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        items.forEach(other => {
+          other.classList.remove('active');
+          const ob = other.querySelector('.faq-teaser-question');
+          if (ob) ob.setAttribute('aria-expanded', 'false');
+        });
+        if (!isActive) {
+          item.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  // Render FAQ teaser on index.html (show_home=true, active, max 3)
+  function renderFaqTeaser(lang) {
+    const container = document.getElementById('faq-teaser-accordion');
+    if (!container) return;
+    const faqs = (window.siteData && window.siteData.faqs) ? window.siteData.faqs : (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []);
+    const visible = faqs
+      .filter(f => f.status === 'active' && f.show_home === true)
+      .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
+      .slice(0, 3);
+    if (visible.length === 0) return;
+    container.innerHTML = visible.map((f, i) => _buildFaqItemHTML(f, lang, i)).join('');
+    _attachFaqAccordion(container);
+  }
+
+  // Render full FAQ page on sss.html (active only, grouped by category, sorted)
+  const _faqCatOrder = ['products', 'quality', 'production', 'sustainability', 'order'];
+  const _faqCatNamesTR = {
+    products: 'Ürünler ve Hammaddeler',
+    quality: 'Kalite ve Teknik Özellikler',
+    production: 'Üretim ve Kapasite',
+    sustainability: 'Sürdürülebilirlik ve Geri Dönüşüm',
+    order: 'Sipariş, Numune ve İletişim'
+  };
+  const _faqCatNamesEN = {
+    products: 'Products & Raw Materials',
+    quality: 'Quality & Technical Specs',
+    production: 'Production & Capacity',
+    sustainability: 'Sustainability & Recycling',
+    order: 'Order, Sample & Contact'
+  };
+
+  function renderFaqPage(lang) {
+    const pageContainer = document.getElementById('faq-page-container');
+    if (!pageContainer) return;
+    const faqs = (window.siteData && window.siteData.faqs) ? window.siteData.faqs : (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []);
+    const active = faqs.filter(f => f.status === 'active').sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99));
+    if (active.length === 0) {
+      pageContainer.innerHTML = '<p style="color:var(--gray);text-align:center;padding:2rem;">Henüz soru eklenmemiş.</p>';
+      return;
+    }
+    // Group by category preserving order
+    const groups = {};
+    active.forEach(f => {
+      if (!groups[f.category]) groups[f.category] = [];
+      groups[f.category].push(f);
+    });
+    // Build HTML for each category
+    const catOrder = _faqCatOrder.filter(c => groups[c]);
+    // Also include any unknown categories at end
+    Object.keys(groups).forEach(c => { if (!catOrder.includes(c)) catOrder.push(c); });
+    const catNames = lang === 'en' ? _faqCatNamesEN : _faqCatNamesTR;
+    let html = '';
+    catOrder.forEach(cat => {
+      const catFaqs = groups[cat];
+      const catLabel = catNames[cat] || cat;
+      html += `<div class="scroll-reveal" style="margin-bottom:3rem;"><h2 style="font-size:1.15rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:2px solid var(--primary-light);">${_escHtml(catLabel)}</h2><div class="faq-accordion">`;
+      catFaqs.forEach((f, i) => { html += _buildFaqItemHTML(f, lang, cat + '_' + i); });
+      html += '</div></div>';
+    });
+    pageContainer.innerHTML = html;
+    // Attach accordion to all new items
+    pageContainer.querySelectorAll('.faq-accordion').forEach(acc => _attachFaqAccordion(acc));
+    // Trigger scroll-reveal for newly added elements
+    pageContainer.querySelectorAll('.scroll-reveal').forEach(el => {
+      el.classList.add('active');
+    });
+    // Update JSON-LD
+    _updateFaqSchema(active, lang);
+  }
+
+  function _updateFaqSchema(activeFaqs, lang) {
+    const existing = document.getElementById('faq-jsonld-dynamic');
+    if (existing) existing.remove();
+    if (!activeFaqs || activeFaqs.length === 0) return;
+    const entities = activeFaqs.map(f => ({
+      '@type': 'Question',
+      name: (lang === 'en' && f.question_en) ? f.question_en : f.question_tr,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: (lang === 'en' && f.answer_en) ? f.answer_en : f.answer_tr
+      }
+    }));
+    const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: entities };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'faq-jsonld-dynamic';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
+  // Listen for siteDataLoaded and render FAQ sections
+  window.addEventListener('siteDataLoaded', function(e) {
+    const lang = localStorage.getItem('nevra_lang') || 'tr';
+    renderFaqTeaser(lang);
+    renderFaqPage(lang);
+  });
+
+  // Re-render on language switch
+  window.addEventListener('languageChanged', function(e) {
+    const lang = (e.detail && e.detail.lang) ? e.detail.lang : (localStorage.getItem('nevra_lang') || 'tr');
+    renderFaqTeaser(lang);
+    renderFaqPage(lang);
+  });
 
 });

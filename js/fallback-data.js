@@ -1133,3 +1133,249 @@ const fallbackTranslations = {
     "machinery_title": "We Manufacture High-Performance Machines for Recycling Lines"
   }
 };
+
+const fallbackFaqs = [
+  {
+    "id": "faq_001",
+    "category": "products",
+    "question_tr": "Geri dönüştürülmüş plastik hammadde nedir?",
+    "answer_tr": "Geri dönüştürülmüş plastik hammadde; endüstriyel veya evsel plastik atıkların toplanarak temizlenip işlenmesi, ardından ekstrüzyon ve granülleme süreçlerinden geçirilerek üretime hazır hâle getirilen polimer granüllerdir. Nevra Plastik, PP, PE ve özel kompaund gruplarında yüksek kaliteli geri dönüştürülmüş granüller üretmektedir.",
+    "question_en": "What is recycled plastic raw material?",
+    "answer_en": "Recycled plastic raw materials are polymer granules produced by collecting, cleaning, and processing post-industrial or post-consumer plastic waste, followed by extrusion and pelletizing processes. Nevra Plastik manufactures high-quality recycled granules in PP, PE, and custom compound categories.",
+    "show_home": true,
+    "sort_order": 1,
+    "status": "active"
+  },
+  {
+    "id": "faq_002",
+    "category": "products",
+    "question_tr": "Nevra Plastik hangi ürün gruplarını üretmektedir?",
+    "answer_tr": "Nevra Plastik başlıca üç ürün grubunda üretim yapmaktadır: PP Moblen Granül (polipropilen bazlı, enjeksiyon ve ekstrüzyon sınıfı), Elteks PE Granül (LDPE ve HDPE polietilen granüller) ve Elastomer/PPRC Granül (sıcak-soğuk su boruları için random kopolimer). Ayrıca kalsiyum karbonat, cam elyafı ve özel mineral dolgularla güçlendirilmiş kompaund polimerler de üretilmektedir.",
+    "question_en": "Which product groups does Nevra Plastik manufacture?",
+    "answer_en": "Nevra Plastik mainly produces three product groups: PP Moblen Granule (polypropylene-based, injection molding and extrusion grades), Elteks PE Granule (LDPE and HDPE polyethylene granules), and Elastomer/PPRC Granule (random copolymer for hot-cold water piping). Additionally, compound polymers reinforced with calcium carbonate, glass fiber, and special mineral fillers are produced.",
+    "show_home": false,
+    "sort_order": 2,
+    "status": "active"
+  },
+  {
+    "id": "faq_003",
+    "category": "products",
+    "question_tr": "Ürünleriniz hangi sektorlerde kullanılmaktadır?",
+    "answer_tr": "Nevra Plastik granülleri; ambalaj, inşaat, otomotiv yan sanayi, tarım ekipmanı, elektrikli ev aletleri, boru ve fitting üretimi ile tekstil sektörü başta olmak üzere pek çok B2B alanda kullanılmaktadır.",
+    "question_en": "In which industries are your products used?",
+    "answer_en": "Nevra Plastik granules are utilized in various B2B sectors including packaging, construction, automotive sub-industry, agricultural equipment, electrical home appliances, pipe and fittings manufacturing, and textiles.",
+    "show_home": false,
+    "sort_order": 3,
+    "status": "active"
+  },
+  {
+    "id": "faq_004",
+    "category": "products",
+    "question_tr": "Müşteri ihtiyacına özel plastik hammadde üretilebilir mi?",
+    "answer_tr": "Evet. MFI (Eriyik Akış Hızı), yoğunluk, renk ve dolgu maddesine göre özelleştirilmiş kompaund ve modifiye polimer üretimi yapılmaktadır. İhtiyaçlarınızı teknik ekibimizle paylaşın; size özel formülasyon çalışması başlatalım.",
+    "question_en": "Can custom plastic raw materials be produced according to customer needs?",
+    "answer_en": "Yes. Custom compounds and modified polymers are produced according to MFI (Melt Flow Index), density, color, and filler requirements. Share your specifications with our technical team to initiate custom formulation.",
+    "show_home": true,
+    "sort_order": 4,
+    "status": "active"
+  },
+  {
+    "id": "faq_005",
+    "category": "quality",
+    "question_tr": "MFI (Eriyik Akış Hızı) değeri neyi ifade eder?",
+    "answer_tr": "MFI (Melt Flow Index), bir polimerin belirli sıcaklık ve yük altında 10 dakikada ne kadar eriyik aktığını gösteren bir viskozite ölçütüdür. Düşük MFI = yüksek viskozite (ekstrüzyon için uygun), yüksek MFI = düşük viskozite (enjeksiyon için uygun). Nevra Plastik ürünleri, her ürün grubu için teknik veri sayfasında MFI aralığı belirtilerek sunulmaktadır.",
+    "question_en": "What does the MFI (Melt Flow Index) value represent?",
+    "answer_en": "MFI (Melt Flow Index) is a viscosity measure indicating how much molten polymer flows in 10 minutes under specified temperature and load. Low MFI = high viscosity (suitable for extrusion), high MFI = low viscosity (suitable for injection). Nevra Plastik products are provided with specified MFI ranges on TDS sheets for each product group.",
+    "show_home": false,
+    "sort_order": 5,
+    "status": "active"
+  },
+  {
+    "id": "faq_006",
+    "category": "quality",
+    "question_tr": "Ürünleriniz hangi kalite standartlarına uygundur?",
+    "answer_tr": "Nevra Plastik, Çevre, Şehircilik ve İklim Değişikliği Bakanlığı onaylı lisanslarla üretim yapmaktadır. Ürünlerimiz ISO 9001:2015 kalite yönetim sistemi çerçevesinde üretilmekte; her parti için MFI, yoğunluk ve renk tutarlılığı kontrolleri yapılmaktadır.",
+    "question_en": "Which quality standards do your products comply with?",
+    "answer_en": "Nevra Plastik operates under licenses approved by the Ministry of Environment, Urbanization and Climate Change. Our products are manufactured within the framework of ISO 9001:2015 quality management system, with MFI, density, and color consistency tests performed for each batch.",
+    "show_home": false,
+    "sort_order": 6,
+    "status": "active"
+  },
+  {
+    "id": "faq_007",
+    "category": "quality",
+    "question_tr": "Ürün teknik veri sayfası (TDS) temin edebilir miyim?",
+    "answer_tr": "Evet. Her ürün grubu için teknik veri sayfası (TDS) hazırlanmaktadır. Talep ettiğiniz ürünün TDS belgesini info@nevraplastik.com adresinden veya iletişim formu üzerinden talep edebilirsiniz.",
+    "question_en": "Can I obtain Technical Data Sheets (TDS) for your products?",
+    "answer_en": "Yes. Technical Data Sheets (TDS) are prepared for every product line. You can request the TDS document for any product via info@nevraplastik.com or through our contact form.",
+    "show_home": false,
+    "sort_order": 7,
+    "status": "active"
+  },
+  {
+    "id": "faq_008",
+    "category": "quality",
+    "question_tr": "Renk tutarlılığı ve lot-to-lot varyasyon nasıl kontrol edilmektedir?",
+    "answer_tr": "Her üretim partisi için renk ölçümü yapılmakta; kabul edilebilir Delta-E değeri içinde kalan ürünler sevk edilmektedir. Aynı sipariş için birden fazla parti gerektiğinde, tutarlılık sağlamak amacıyla lot bilgisi kayıt altına alınmaktadır.",
+    "question_en": "How are color consistency and lot-to-lot variations controlled?",
+    "answer_en": "Color measurement is conducted for each production batch, and products within acceptable Delta-E limits are dispatched. When multiple batches are required for an order, lot data is tracked to ensure uniformity.",
+    "show_home": false,
+    "sort_order": 8,
+    "status": "active"
+  },
+  {
+    "id": "faq_009",
+    "category": "quality",
+    "question_tr": "Sertifikat ve analiz belgeleri (CoA) temin edilebilir mi?",
+    "answer_tr": "Evet. Her sevkiyat için CoA (Certificate of Analysis) düzenlenebilmektedir. Çevre lisansı, kalite sertifikaları ve diğer belgeler talep üzerine paylaşılmaktadır.",
+    "question_en": "Are Certificates of Analysis (CoA) and certifications provided?",
+    "answer_en": "Yes. A Certificate of Analysis (CoA) can be issued for every shipment. Environmental licenses, quality certificates, and other documentation are shared upon request.",
+    "show_home": false,
+    "sort_order": 9,
+    "status": "active"
+  },
+  {
+    "id": "faq_010",
+    "category": "production",
+    "question_tr": "Yıllık üretim kapasiteniz nedir?",
+    "answer_tr": "Nevra Plastik'in mevcut yıllık granül üretim kapasitesi yaklaşık 15.000 tondur. Kapasite kullanımı hammadde temin planına göre esneyebilmektedir. Büyük hacimli projeler için önceden planlama yapılmasını öneririz.",
+    "question_en": "What is your annual production capacity?",
+    "answer_en": "Nevra Plastik has a current annual granule production capacity of approximately 15,000 tons. Capacity utilization can flex according to raw material sourcing plans. We recommend advance scheduling for large-volume projects.",
+    "show_home": false,
+    "sort_order": 10,
+    "status": "active"
+  },
+  {
+    "id": "faq_011",
+    "category": "production",
+    "question_tr": "Geri dönüştürülmüş hammadde, orijinal hammaddeye kıyasla performansı nasıldır?",
+    "answer_tr": "Doğru sınıflandırma, temizleme ve ekstrüzyon süreçleriyle üretilen geri dönüştürülmüş granüller, birçok uygulamada orijinal hammaddeye yakın mekanik özellikler sergilemektedir. Nevra Plastik'in kalite kontrol süreçleri, çıktı tutarlılığını garanti altına alır.",
+    "question_en": "How does recycled raw material perform compared to virgin material?",
+    "answer_en": "Recycled granules produced with precise sorting, washing, and extrusion processes demonstrate mechanical properties close to virgin materials in many applications. Nevra Plastik's quality control guarantees output consistency.",
+    "show_home": false,
+    "sort_order": 11,
+    "status": "active"
+  },
+  {
+    "id": "faq_012",
+    "category": "production",
+    "question_tr": "Teknik destek ve formülasyon danışmanlığı alabilir miyim?",
+    "answer_tr": "Evet. Teknik ekibimiz, uygulamanıza en uygun granül sınıfını, MFI aralığını ve dolgu/renk kombinasyonunu belirlemenize destek olmaktadır. Danışmanlık görüşmesi için iletişim formumuzu kullanabilirsiniz.",
+    "question_en": "Can I receive technical support and formulation consulting?",
+    "answer_en": "Yes. Our technical team assists in determining the ideal granule grade, MFI range, and filler/color combination for your specific application. You can use our contact form to request technical consultation.",
+    "show_home": false,
+    "sort_order": 12,
+    "status": "active"
+  },
+  {
+    "id": "faq_013",
+    "category": "production",
+    "question_tr": "Üretim tesisi ziyaret edebilir miyim?",
+    "answer_tr": "Evet. Potansiyel müşterilere ve iş ortaklarına tesis ziyareti imkânı sunulmaktadır. Ziyaret talebinizi önceden bildirmenizi ve randevu almanızı öneririz. Adres: Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk. No:30/32, Karatay / KONYA.",
+    "question_en": "Can I visit your production facility?",
+    "answer_en": "Yes. We welcome prospective customers and business partners to visit our plant. Please notify us in advance to schedule an appointment. Address: Tatlicak Mah. Vatan Sanayi Sitesi, Isildak Sk. No:30/32, Karatay / KONYA, Turkey.",
+    "show_home": false,
+    "sort_order": 13,
+    "status": "active"
+  },
+  {
+    "id": "faq_014",
+    "category": "sustainability",
+    "question_tr": "Geri dönüştürülmüş plastik kullanmak çevreye ne kadar katkı sağlar?",
+    "answer_tr": "Geri dönüştürülmüş polimer kullanımı, birincil (virgin) plastik üretimine kıyasla %80'e kadar karbon salınımını ve %65'e kadar enerji tüketimini azaltabilmektedir. Her ton geri dönüştürülmüş granül, yaklaşık 1 ton ham petrol tüketimini önlemektedir.",
+    "question_en": "How much does using recycled plastic contribute to the environment?",
+    "answer_en": "Using recycled polymers can reduce carbon emissions by up to 80% and energy consumption by up to 65% compared to virgin plastic production. Every ton of recycled granule prevents approximately 1 ton of crude oil consumption.",
+    "show_home": false,
+    "sort_order": 14,
+    "status": "active"
+  },
+  {
+    "id": "faq_015",
+    "category": "sustainability",
+    "question_tr": "Nevra Plastik'in geri dönüşüm sürecinde hammadde kaynağı nedir?",
+    "answer_tr": "Hammadde; endüstriyel üretim artıkları, ticari plastik atıklar ve lisanslı toplama kanallarından temin edilmektedir. Tüm hammadde girişleri kayıt altına alınarak izlenebilirlik sistemiyle takip edilmektedir.",
+    "question_en": "What is the raw material source for Nevra Plastik's recycling process?",
+    "answer_en": "Raw materials are sourced from post-industrial scrap, commercial plastic waste, and licensed collection networks. All incoming materials are logged and tracked via our traceability system.",
+    "show_home": false,
+    "sort_order": 15,
+    "status": "active"
+  },
+  {
+    "id": "faq_016",
+    "category": "sustainability",
+    "question_tr": "Çevre lisansı ve izin durumunuz nedir?",
+    "answer_tr": "Nevra Plastik, Çevre, Şehircilik ve İklim Değişikliği Bakanlığı tarafından verilen çevre izni ve geri kazanım lisansı kapsamında faaliyet göstermektedir. Lisans belgeleri talep üzerine paylaşılmaktadır.",
+    "question_en": "What is your environmental permit and license status?",
+    "answer_en": "Nevra Plastik operates under environmental permits and recovery licenses issued by the Ministry of Environment, Urbanization and Climate Change. License documentation is available upon request.",
+    "show_home": false,
+    "sort_order": 16,
+    "status": "active"
+  },
+  {
+    "id": "faq_017",
+    "category": "sustainability",
+    "question_tr": "Döngüsel ekonomiye nasıl katkı sağlıyorsunuz?",
+    "answer_tr": "Atık plastiği tekrar üretim zincirine kazandırarak doğal kaynak tüketimini azaltıyoruz. Yıllık 15.000 ton geri kazanım kapasitesiyle döngüsel ekonomiye doğrudan katkı sağlıyor; müşterilerimizin ESG hedeflerini destekliyoruz.",
+    "question_en": "How do you contribute to the circular economy?",
+    "answer_en": "We diminish natural resource consumption by reintroducing plastic waste into the supply chain. With an annual 15,000-ton recovery capacity, we directly advance circular economy principles and support our clients' ESG goals.",
+    "show_home": false,
+    "sort_order": 17,
+    "status": "active"
+  },
+  {
+    "id": "faq_018",
+    "category": "order",
+    "question_tr": "Numune talep edebilir miyim?",
+    "answer_tr": "Evet. Tüm ürün gruplarımızdan B2B müşterilerimize numune temin etmekteyiz. Numune talebinizi iletişim formu aracılığıyla veya doğrudan info@nevraplastik.com adresine iletebilirsiniz. Talepler genellikle 2–5 iş günü içinde karşılanmaktadır.",
+    "question_en": "Can I request a sample?",
+    "answer_en": "Yes. We supply sample materials from all product lines for B2B clients. You can submit sample requests via our contact form or directly to info@nevraplastik.com. Requests are typically processed within 2–5 business days.",
+    "show_home": true,
+    "sort_order": 18,
+    "status": "active"
+  },
+  {
+    "id": "faq_019",
+    "category": "order",
+    "question_tr": "Minimum sipariş miktarı (MOQ) nedir?",
+    "answer_tr": "Standart ürün grupları için minimum sipariş miktarı genellikle 1 ton (1.000 kg) seviyesindedir. Özel formülasyon veya kompaund ürünlerde MOQ farklılık gösterebilir. Kesin bilgi için satış ekibimizle iletişime geçiniz.",
+    "question_en": "What is the Minimum Order Quantity (MOQ)?",
+    "answer_en": "The minimum order quantity for standard product grades is generally 1 ton (1,000 kg). Custom formulations or specialty compound MOQ may vary. Please contact our sales team for exact details.",
+    "show_home": false,
+    "sort_order": 19,
+    "status": "active"
+  },
+  {
+    "id": "faq_020",
+    "category": "order",
+    "question_tr": "Sipariş ve teslimat süreci nasıl işlemektedir?",
+    "answer_tr": "Talep → Teknik değerlendirme → Teklif → Sipariş onayı → Üretim veya stoktan sevk adımlarından oluşan süreçte, standart ürünler için teslimat süresi 3–7 iş günüdür. Özel üretim gerektiren siparişlerde süre değişkenlik gösterebilir.",
+    "question_en": "How does the ordering and delivery process work?",
+    "answer_en": "The process follows Inquiry → Technical Review → Quote → Order Approval → Production or Warehouse Dispatch. Standard delivery lead time is 3–7 business days, while custom orders may vary based on schedule.",
+    "show_home": false,
+    "sort_order": 20,
+    "status": "active"
+  },
+  {
+    "id": "faq_021",
+    "category": "order",
+    "question_tr": "Ürünleriniz nasıl ambalajlanmaktadır?",
+    "answer_tr": "Granüller standart olarak 25 kg'lık kraft çuvallarda veya big-bag (jumbo çuval) ambalajında sevk edilmektedir. Müşteri talebi doğrultusunda farklı ambalaj seçenekleri değerlendirilebilir.",
+    "question_en": "How are your products packaged?",
+    "answer_en": "Granules are standardly shipped in 25 kg kraft bags or big bags (jumbo bags). Customized packaging options can be accommodated upon request.",
+    "show_home": false,
+    "sort_order": 21,
+    "status": "active"
+  },
+  {
+    "id": "faq_022",
+    "category": "order",
+    "question_tr": "Uluslararası ihracat yapıyor musunuz?",
+    "answer_tr": "Evet. Nevra Plastik, yurt içi teslimatların yanı sıra uluslararası müşterilere de ihracat yapmaktadır. İhracat teklifleri için info@nevraplastik.com adresinden bizimle iletişime geçebilirsiniz.",
+    "question_en": "Do you export internationally?",
+    "answer_en": "Yes. Nevra Plastik exports to international clients alongside domestic distribution. For export quotes, please contact us at info@nevraplastik.com.",
+    "show_home": false,
+    "sort_order": 22,
+    "status": "active"
+  }
+];
+

@@ -206,6 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Local preview helper: Python's simple server does not understand Apache clean URLs.
+  // Production keeps /sss; localhost transparently uses sss.html.
+  const isLocalPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  if (isLocalPreview) {
+    document.querySelectorAll('a[href="/sss"]').forEach(link => {
+      link.setAttribute('href', 'sss.html');
+    });
+  }
+
   // ------------------------------------------------------------------------
   // 2. Scroll Reveal Animations (Intersection Observer)
   // ------------------------------------------------------------------------
@@ -1570,9 +1579,9 @@ document.addEventListener('DOMContentLoaded', () => {
     catOrder.forEach(cat => {
       const catFaqs = groups[cat];
       const catLabel = catNames[cat] || cat;
-      html += `<div class="scroll-reveal" style="margin-bottom:3rem;"><h2 style="font-size:1.15rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:2px solid var(--primary-light);">${_escHtml(catLabel)}</h2><div class="faq-accordion">`;
+      html += `<section class="faq-category-block scroll-reveal" data-faq-category="${_escHtml(cat)}"><h2 class="faq-category-title">${_escHtml(catLabel)}</h2><div class="faq-accordion">`;
       catFaqs.forEach((f, i) => { html += _buildFaqItemHTML(f, lang, cat + '_' + i); });
-      html += '</div></div>';
+      html += '</div></section>';
     });
     pageContainer.innerHTML = html;
     // Attach accordion to all new items

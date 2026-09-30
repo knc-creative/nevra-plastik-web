@@ -1477,59 +1477,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSiteData();
 
   // ------------------------------------------------------------------------
-  // FAQ Dynamic Rendering
+  // FAQ Dynamic Rendering — reference design + CMS data
   // ------------------------------------------------------------------------
-
-  // SVG chevron icon for accordion buttons
-  const _faqChevronSVG = '<span class="faq-icon-box" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>';
-
-  function _buildFaqItemHTML(faq, lang, idx) {
-    const qText = (lang === 'en' && faq.question_en) ? faq.question_en : faq.question_tr;
-    const aText = (lang === 'en' && faq.answer_en) ? faq.answer_en : faq.answer_tr;
-    const btnId = 'faq-dyn-' + (faq.id || idx);
-    return `<div class="faq-teaser-item" data-faq-id="${faq.id || ''}"><button class="faq-teaser-question" aria-expanded="false" id="${btnId}">${_escHtml(qText)}${_faqChevronSVG}</button><div class="faq-teaser-answer" role="region" aria-labelledby="${btnId}"><div class="faq-answer-content">${_escHtml(aText)}</div></div></div>`;
-  }
-
-  function _escHtml(str) {
-    if (!str) return '';
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  function _attachFaqAccordion(container) {
-    const items = container.querySelectorAll('.faq-teaser-item');
-    items.forEach(item => {
-      const btn = item.querySelector('.faq-teaser-question');
-      if (!btn) return;
-      btn.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        items.forEach(other => {
-          other.classList.remove('active');
-          const ob = other.querySelector('.faq-teaser-question');
-          if (ob) ob.setAttribute('aria-expanded', 'false');
-        });
-        if (!isActive) {
-          item.classList.add('active');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-  }
-
-  // Render FAQ teaser on index.html (show_home=true, active, max 3)
-  function renderFaqTeaser(lang) {
-    const container = document.getElementById('faq-teaser-accordion');
-    if (!container) return;
-    const faqs = (window.siteData && window.siteData.faqs) ? window.siteData.faqs : (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []);
-    const visible = faqs
-      .filter(f => f.status === 'active' && f.show_home === true)
-      .sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99))
-      .slice(0, 3);
-    if (visible.length === 0) return;
-    container.innerHTML = visible.map((f, i) => _buildFaqItemHTML(f, lang, i)).join('');
-    _attachFaqAccordion(container);
-  }
-
-  // Render full FAQ page on sss.html (active only, grouped by category, sorted)
   const _faqCatOrder = ['products', 'quality', 'production', 'sustainability', 'order'];
   const _faqCatNamesTR = {
     products: 'Ürünler ve Hammaddeler',
@@ -1546,75 +1495,146 @@ document.addEventListener('DOMContentLoaded', () => {
     order: 'Order, Sample & Contact'
   };
 
-  function renderFaqPage(lang) {
-    const pageContainer = document.getElementById('faq-page-container');
-    if (!pageContainer) return;
-    const faqs = (window.siteData && window.siteData.faqs) ? window.siteData.faqs : (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []);
-    const active = faqs.filter(f => f.status === 'active').sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99));
-    if (active.length === 0) {
-      pageContainer.innerHTML = '<p style="color:var(--gray);text-align:center;padding:2rem;">Henüz soru eklenmemiş.</p>';
-      return;
-    }
-    // Group by category preserving order
-    const groups = {};
-    active.forEach(f => {
-      if (!groups[f.category]) groups[f.category] = [];
-      groups[f.category].push(f);
-    });
-    // Build HTML for each category
-    const catOrder = _faqCatOrder.filter(c => groups[c]);
-    // Also include any unknown categories at end
-    Object.keys(groups).forEach(c => { if (!catOrder.includes(c)) catOrder.push(c); });
-    const catNames = lang === 'en' ? _faqCatNamesEN : _faqCatNamesTR;
-    let html = '';
-    catOrder.forEach(cat => {
-      const catFaqs = groups[cat];
-      const catLabel = catNames[cat] || cat;
-      html += `<section class="faq-category-card scroll-reveal" data-faq-category="${_escHtml(cat)}"><h2 class="faq-category-title">${_escHtml(catLabel)}</h2><div class="faq-accordion">`;
-      catFaqs.forEach((f, i) => { html += _buildFaqItemHTML(f, lang, cat + '_' + i); });
-      html += '</div></section>';
-    });
-    pageContainer.innerHTML = html;
-    // Attach accordion to all new items
-    pageContainer.querySelectorAll('.faq-accordion').forEach(acc => _attachFaqAccordion(acc));
-    // Trigger scroll-reveal for newly added elements
-    pageContainer.querySelectorAll('.scroll-reveal').forEach(el => {
-      el.classList.add('active');
-    });
-    // Update JSON-LD
-    _updateFaqSchema(active, lang);
+  function _escFaq(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
-  function _updateFaqSchema(activeFaqs, lang) {
-    const existing = document.getElementById('faq-jsonld-dynamic');
-    if (existing) existing.remove();
-    if (!activeFaqs || activeFaqs.length === 0) return;
-    const entities = activeFaqs.map(f => ({
-      '@type': 'Question',
-      name: (lang === 'en' && f.question_en) ? f.question_en : f.question_tr,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: (lang === 'en' && f.answer_en) ? f.answer_en : f.answer_tr
-      }
-    }));
-    const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: entities };
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'faq-jsonld-dynamic';
-    script.textContent = JSON.stringify(schema);
+  function _getFaqs() {
+    const list = (window.siteData && Array.isArray(window.siteData.faqs))
+      ? window.siteData.faqs
+      : (typeof fallbackFaqs !== 'undefined' && Array.isArray(fallbackFaqs) ? fallbackFaqs : []);
+    return list.filter(f => f.status === 'active')
+      .sort((a,b) => Number(a.sort_order || 999) - Number(b.sort_order || 999));
+  }
+
+  function _faqText(f, key, lang) {
+    const tr = f[key + '_tr'] || '';
+    const en = f[key + '_en'] || '';
+    return lang === 'en' && en ? en : tr;
+  }
+
+  function _buildRefFaqItem(f, lang, prefix, idx) {
+    const q=_escFaq(_faqText(f,'question',lang));
+    const a=_escFaq(_faqText(f,'answer',lang));
+    const id=(prefix || 'faq') + '-' + (f.id || idx);
+    return `<article class="ref-faq-item scroll-reveal" data-faq-id="${_escFaq(f.id || '')}">
+      <button aria-controls="${id}-answer" aria-expanded="false" class="ref-faq-question" id="${id}-q" type="button">
+        <span>${q}</span><span aria-hidden="true" class="ref-faq-icon">+</span>
+      </button>
+      <div aria-labelledby="${id}-q" class="ref-faq-answer" id="${id}-answer" role="region">
+        <div class="ref-faq-answer-inner"><p>${a}</p></div>
+      </div>
+    </article>`;
+  }
+
+  function _bindRefFaqAccordions(scope) {
+    (scope || document).querySelectorAll('.ref-faq-item').forEach(item => {
+      if (item.dataset.bound === '1') return;
+      const trigger=item.querySelector('.ref-faq-question');
+      if (!trigger) return;
+      item.dataset.bound='1';
+      trigger.addEventListener('click', () => {
+        const open=item.classList.contains('is-open');
+        item.classList.toggle('is-open', !open);
+        trigger.setAttribute('aria-expanded', String(!open));
+      });
+    });
+  }
+
+  function renderFaqTeaser(lang) {
+    const list=document.getElementById('faq-teaser-list');
+    if (!list) return;
+    const visible=_getFaqs().filter(f => f.show_home === true).slice(0,3);
+    list.innerHTML=visible.map((f,i)=>_buildRefFaqItem(f,lang,'home-faq',i)).join('');
+    _bindRefFaqAccordions(list);
+    if (window.initializeScrollReveal) window.initializeScrollReveal();
+  }
+
+  function renderFaqPage(lang) {
+    const catGrid=document.getElementById('faq-category-grid');
+    const groupsHost=document.getElementById('faq-groups-container');
+    if (!catGrid || !groupsHost) return;
+
+    const active=_getFaqs();
+    const grouped={};
+    active.forEach(f => {
+      const cat=f.category || 'products';
+      if (!grouped[cat]) grouped[cat]=[];
+      grouped[cat].push(f);
+    });
+
+    const order=_faqCatOrder.filter(c => grouped[c] && grouped[c].length);
+    Object.keys(grouped).forEach(c => { if (!order.includes(c)) order.push(c); });
+    const names=lang === 'en' ? _faqCatNamesEN : _faqCatNamesTR;
+
+    catGrid.innerHTML=order.map((cat,i) => {
+      const num=String(i+1).padStart(2,'0');
+      const label=_escFaq(names[cat] || cat);
+      const count=grouped[cat].length;
+      const qLabel=lang === 'en' ? (count===1?'question':'questions') : 'soru';
+      return `<a class="ref-faq-category-card scroll-reveal" href="#faq-cat-${i+1}">
+        <span class="ref-faq-category-index">${num}</span>
+        <span>${label}</span>
+        <small>${count} ${qLabel}</small>
+      </a>`;
+    }).join('');
+
+    groupsHost.innerHTML=order.map((cat,i) => {
+      const num=String(i+1).padStart(2,'0');
+      const label=_escFaq(names[cat] || cat);
+      const items=grouped[cat].map((f,j)=>_buildRefFaqItem(f,lang,'faq-'+(i+1),j)).join('');
+      const helper=lang === 'en'
+        ? 'Open the details to review short, direct answers.'
+        : 'Detayları açarak kısa ve doğrudan yanıtları inceleyebilirsiniz.';
+      return `<section class="ref-faq-group-section ${i%2===1?'ref-alt':''}" id="faq-cat-${i+1}">
+        <div class="container ref-faq-group-grid">
+          <div class="ref-faq-group-heading scroll-reveal">
+            <span class="ref-faq-group-number">${num}</span>
+            <h2>${label}</h2>
+            <p>${helper}</p>
+          </div>
+          <div class="ref-faq-list">${items}</div>
+        </div>
+      </section>`;
+    }).join('');
+
+    _bindRefFaqAccordions(groupsHost);
+    _updateFaqSchema(active,lang);
+    if (window.initializeScrollReveal) window.initializeScrollReveal();
+  }
+
+  function _updateFaqSchema(activeFaqs,lang) {
+    const old=document.getElementById('faq-jsonld-dynamic');
+    if (old) old.remove();
+    if (!activeFaqs || !activeFaqs.length || !document.getElementById('faq-groups-container')) return;
+    const schema={
+      '@context':'https://schema.org',
+      '@type':'FAQPage',
+      mainEntity:activeFaqs.map(f=>({
+        '@type':'Question',
+        name:_faqText(f,'question',lang),
+        acceptedAnswer:{'@type':'Answer',text:_faqText(f,'answer',lang)}
+      }))
+    };
+    const script=document.createElement('script');
+    script.type='application/ld+json';
+    script.id='faq-jsonld-dynamic';
+    script.textContent=JSON.stringify(schema);
     document.head.appendChild(script);
   }
 
-  // Listen for siteDataLoaded and render FAQ sections
-  window.addEventListener('siteDataLoaded', function(e) {
-    const lang = localStorage.getItem('nevra_lang') || 'tr';
+  window.addEventListener('siteDataLoaded', () => {
+    const lang=localStorage.getItem('nevra_lang') || 'tr';
     renderFaqTeaser(lang);
     renderFaqPage(lang);
   });
 
-  // Re-render on language switch
-  window.addEventListener('languageChanged', function(e) {
-    const lang = (e.detail && e.detail.lang) ? e.detail.lang : (localStorage.getItem('nevra_lang') || 'tr');
+  window.addEventListener('languageChanged', e => {
+    const lang=(e.detail && e.detail.lang) || localStorage.getItem('nevra_lang') || 'tr';
     renderFaqTeaser(lang);
     renderFaqPage(lang);
   });

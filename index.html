@@ -541,23 +541,18 @@
       </div>
     </section>
 
-    <!-- SSS Teaser Section -->
-    <section class="faq-teaser-section" id="sss-teaser" style="background-color: var(--white); padding: 6rem 0;">
+    <!-- SSS Teaser Section — reference layout -->
+    <section class="ref-faq-teaser-section" id="sss-teaser">
       <div class="container">
-        <div class="section-header text-center scroll-reveal" style="margin-bottom: 3.5rem;">
-          <span class="section-tag" data-translate-key="faq_tag">Sıkça Sorulanlar</span>
-          <h2 class="section-title" data-translate-key="faq_title">Sık Sorulan Sorular</h2>
-          <p class="section-subtitle" data-translate-key="faq_subtitle">Ürünler, kalite, üretim ve sipariş süreçleri hakkında en çok merak edilen konular.</p>
+        <div class="ref-faq-teaser-head scroll-reveal">
+          <div>
+            <span class="section-tag">Bilgi Merkezi</span>
+            <h2 class="section-title" data-translate-key="faq_title">Sık Sorulan Sorular</h2>
+            <p class="section-subtitle" data-translate-key="faq_subtitle">Ürün, kalite ve sipariş süreçleri hakkında en çok merak edilen konulara hızlıca göz atın.</p>
+          </div>
+          <a class="ref-faq-teaser-link" href="sss.html">Tüm Soruları Gör <span aria-hidden="true">↗</span></a>
         </div>
-
-        <div id="faq-teaser-accordion" class="faq-accordion scroll-reveal" style="max-width: 820px; margin: 0 auto;">
-          <!-- Dynamic FAQ items injected by app.js renderFaqTeaser() -->
-        </div>
-
-        <!-- CTA Button -->
-        <div class="text-center scroll-reveal" style="margin-top: 3rem;">
-          <a href="sss.html" class="btn btn-outline" data-translate-key="faq_cta_btn" style="padding: 0.9rem 2.5rem; font-size: 1rem;">Tüm Soruları Gör</a>
-        </div>
+        <div class="ref-faq-teaser-list" id="faq-teaser-list"></div>
       </div>
     </section>
 

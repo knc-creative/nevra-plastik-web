@@ -82,39 +82,40 @@
   </header>
 
   <main>
-
-    <!-- Subpage Hero -->
-    <section class="hero-section" style="padding-top: 12rem; padding-bottom: 4rem; background: var(--light-gray);">
-      <div class="container text-center scroll-reveal">
-        <span class="section-tag" data-translate-key="faq_tag">Sıkça Sorulanlar</span>
-        <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;" data-translate-key="faq_title">Sık Sorulan Sorular</h1>
-        <p class="section-subtitle" style="margin-bottom: 0; max-width: 640px; margin-inline: auto;" data-translate-key="faq_subtitle">
-          Ürünler, kalite, üretim ve sipariş süreçleri hakkında en çok merak edilen konular.
-        </p>
+    <section class="ref-faq-hero">
+      <div class="container ref-faq-hero-grid">
+        <div class="ref-faq-hero-copy scroll-reveal">
+          <span class="section-tag" data-translate-key="faq_tag">Sıkça Sorulanlar</span>
+          <h1 data-translate-key="faq_title">Sık Sorulan Sorular</h1>
+          <p data-translate-key="faq_subtitle">Ürünler, kalite, üretim ve sipariş süreçleri hakkında en çok merak edilen konular.</p>
+        </div>
+        <div class="ref-faq-hero-panel scroll-reveal">
+          <span class="ref-faq-hero-kicker">Hızlı erişim</span>
+          <strong>Teknik bir sorunuz mu var?</strong>
+          <p>Ürün seçimi, numune veya teklif süreciyle ilgili doğrudan ekibimizle iletişime geçebilirsiniz.</p>
+          <a class="ref-faq-mini-link" href="iletisim">Teknik ekibe ulaş <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </section>
 
-    <!-- FAQ Full Page Content -->
-    <section class="faq-teaser-section" style="background-color: var(--white); padding: 5rem 0 6rem;">
-      <div class="container" style="max-width: 860px;">
+    <section class="ref-faq-category-section">
+      <div class="container">
+        <div class="ref-faq-category-grid" id="faq-category-grid"></div>
+      </div>
+    </section>
 
-        <!-- Dynamic FAQ content injected by app.js renderFaqPage() -->
-        <div id="faq-page-container">
-          <!-- Loading state: will be replaced when siteData loads -->
-          <p style="color:var(--gray);text-align:center;padding:4rem 2rem;">Sorular yükleniyor…</p>
-        </div>
+    <div id="faq-groups-container"></div>
 
-        <!-- CTA Block -->
-        <div class="faq-help-card scroll-reveal">
-          <span class="section-tag">Sorunuz mu var?</span>
-          <h3>Cevabını birlikte bulalım.</h3>
-          <p>Teknik ihtiyaçlarınız, ürün seçimi veya teklif süreciyle ilgili farklı bir sorunuz varsa ekibimiz doğrudan yardımcı olabilir.</p>
-          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-            <a href="iletisim" class="btn btn-primary">Bize Ulaşın</a>
-            <a href="tel:+903323559656" class="btn btn-outline">+90 332 355 96 56</a>
+    <section class="ref-faq-cta-section">
+      <div class="container">
+        <div class="ref-faq-cta-card scroll-reveal">
+          <div>
+            <span class="section-tag">Doğrudan Destek</span>
+            <h2>Aradığınız cevabı bulamadınız mı?</h2>
+            <p>Uygulamanızı, hedef ürün özelliklerini veya sipariş ihtiyacınızı paylaşın; teknik ve ticari ekibimiz size dönüş yapsın.</p>
           </div>
+          <a class="btn btn-primary" href="iletisim">İletişime Geç</a>
         </div>
-
       </div>
     </section>
   </main>

@@ -3,21 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" id="meta-desc" content="Nevra Plastik hammadde ürün detayları, MFI ve yoğunluk analiz tablosu.">
-  <meta name="keywords" content="Nevra Plastik, hammadde ürün detayları, TDS, MFI, polimer, geri dönüşüm">
-  <meta name="author" content="Nevra Plastik">
-  <meta name="robots" content="index, follow">
+  <title>Ürün Detayı | Nevra Plastik</title>
+  <meta name="description" content="Nevra Plastik teknik ürün detayları ve teknik özellikleri.">
+  <meta name="robots" content="noindex, follow">
   
+  
+  
+  
+  
+  
+
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" id="og-url" content="https://www.nevraplastik.com/urun-detay"">
-  <meta property="og:title" id="og-title" content="Ürün Detayı | Nevra Plastik">
-  <meta property="og:description" id="og-desc" content="Nevra Plastik hammadde ürün detayları, MFI ve yoğunluk analiz tablosu.">
-  <meta property="og:image" content="uploads/1782162829_2949_a685cf01-90a2-4c1a-b70b-37d38e13cce4.png">
+  
+  
+  
+  
+  
+  
 
-  <title id="page-title">Ürün Detayı | Nevra Plastik Geri Dönüşüm Teknolojileri</title>
+  <!-- Twitter Card -->
+  
+  
+  
+  
 
-  <!-- Google Fonts -->
+  <!-- Structured Data / JSON-LD -->
+  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +42,6 @@
 
   <!-- Fallback local database -->
   <script src="js/fallback-data.js?v=9.4"></script>
-  <link rel="canonical" href="https://nevraplastik.com/urun-detay"">
 </head>
 <body>
   <!-- Preloader Screen -->
@@ -163,6 +174,7 @@
           <li><a href="kalite" class="nav-link" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
           <li><a href="surdurulebilirlik" class="nav-link" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
           <li><a href="iletisim" class="nav-link" data-translate-key="nav_contact">İletişim</a></li>
+          <li><a href="/sss" class="nav-link" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </nav>
 
@@ -184,7 +196,7 @@
     <section class="hero-section" style="padding-top: 12rem; padding-bottom: 4rem; background: var(--light-gray);">
       <div class="container text-center scroll-reveal">
         <span class="section-tag" id="category-tag">YÜKLENİYOR...</span>
-        <h1 class="hero-title" id="detail-hero-title" style="font-size: 3rem; margin-bottom: 1rem;">Nevra Ürün</h1>
+        <h1 class="hero-title" id="detail-hero-title" style="font-size: 3rem; margin-bottom: 1rem;">Nevra Plastik Granül Hammadde Detayı</h1>
         <p class="section-subtitle" id="detail-hero-sub" style="margin-bottom: 0;">Teknik Detaylar</p>
       </div>
     </section>
@@ -208,7 +220,7 @@
             <div class="image-wrapper decorative-border" style="background-color: var(--light-gray); border-radius: 16px; position: relative; overflow: hidden; height: 450px; width: 100%;">
               <!-- Main Image Slider -->
               <div id="detail-slider-container" style="width: 100%; height: 100%; cursor: pointer;">
-                <img id="detail-img" src="assets/product-pp.png" alt="Nevra Ürün" class="about-img" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease, transform 0.4s ease; opacity: 1; transform: scale(1);">
+                <img id="detail-img" src="assets/product-pp.webp" alt="Nevra Ürün" class="about-img" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease, transform 0.4s ease; opacity: 1; transform: scale(1);" loading="lazy" decoding="async" width="1024" height="1024">
               </div>
               
               <!-- Indicator Dots -->
@@ -290,6 +302,7 @@
           <li><a href="kalite" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
           <li><a href="surdurulebilirlik" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
           <li><a href="iletisim" data-translate-key="nav_contact">İletişim</a></li>
+          <li><a href="/sss" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </div>
 
@@ -299,7 +312,7 @@
         <ul class="footer-contact-info">
           <li>
             <strong data-translate-key="info_phone">Telefon:</strong>
-            <a href="tel:+903323550000">+90 (332) 355 00 00</a>
+            <a href="tel:+903323559656">+90 332 355 96 56</a>
           </li>
           <li>
             <strong>E-posta:</strong>
@@ -368,15 +381,15 @@
         
         // Category Backlink Mapping
         const backMap = {
-          pp: "urun-pp-moblen.html",
-          pe: "urun-elteks.html",
-          pprc: "urun-pprc.html",
-          other: "urun-diger.html"
+          pp: "urun-pp-moblen",
+          pe: "urun-elteks",
+          pprc: "urun-pprc",
+          other: "urun-diger"
         };
 
         // Render fields
         document.getElementById("category-tag").textContent = catMap[prod.category_id] || "ÜRÜNLER";
-        document.getElementById("back-link").href = backMap[prod.category_id] || "urunler.html";
+        document.getElementById("back-link").href = backMap[prod.category_id] || "/urunler";
         
         const displayName = prod.code ? `${prod.code} ${isEn ? prod.name_en : prod.name_tr}` : (isEn ? prod.name_en : prod.name_tr);
         document.getElementById("detail-hero-title").textContent = prod.code || (isEn ? prod.name_en : prod.name_tr);
@@ -403,9 +416,9 @@
           imgList = [prod.image];
         } else {
           // Fallback image based on category
-          let fallback = "assets/product-pp.png";
-          if (prod.category_id === "pe") fallback = "assets/product-pe.png";
-          else if (prod.category_id === "pprc" || prod.category_id === "other") fallback = "assets/product-compound.png";
+          let fallback = "assets/product-pp.webp";
+          if (prod.category_id === "pe") fallback = "assets/product-pe.webp";
+          else if (prod.category_id === "pprc" || prod.category_id === "other") fallback = "assets/product-compound.webp";
           imgList = [fallback];
         }
 
@@ -415,7 +428,7 @@
 
         // Render dot indicators
         const dotsContainer = document.getElementById("slider-indicators");
-        dotsContainer.innerHTML = "";
+        dotsContainer.innerHTML = ";
         
         if (imgList.length > 1) {
           imgList.forEach((_, idx) => {
@@ -459,7 +472,7 @@
 
         // B2B Quote Prefill Link
         const quoteBtn = document.getElementById("detail-quote-btn");
-        quoteBtn.href = `iletisim.html?purpose=quote&product=${prod.category_id}&spec=${encodeURIComponent(displayName)}`;
+        quoteBtn.href = `/iletisim?purpose=quote&product=${prod.category_id}&spec=${encodeURIComponent(displayName)}`;
 
         // Page title & metadata update for SEO
         document.title = `${displayName} | Nevra Plastik Geri Dönüşüm`;
@@ -508,7 +521,7 @@
           setTimeout(() => {
             lb.style.opacity = "0";
             lb.style.pointerEvents = "none";
-            document.body.style.overflow = "";
+            document.body.style.overflow = ";
           }, 150);
         }
       };
@@ -568,7 +581,7 @@
             
             <!-- Image & Caption Wrapper -->
             <div id="lb-wrapper" style="position: relative; max-width: 80%; max-height: 80%; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; transform: scale(0.9) translate3d(0, 30px, 0); opacity: 0; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; z-index: 2;">
-              <img id="lb-img" src="" style="max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.25);">
+              <img id="lb-img" src="" alt="Görsel Detayı" style="max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.25);" loading="lazy" decoding="async">
               
               <!-- Slide Counter -->
               <div id="lb-counter" style="color: rgba(255,255,255,0.7); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 500; background: rgba(255,255,255,0.08); padding: 0.4rem 1rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px);"></div>

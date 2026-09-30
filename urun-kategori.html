@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nevra Plastik geri dönüştürülmüş hammadde ürün kataloğu ve teknik değerleri.">
-  <meta name="keywords" content="Nevra Plastik, hammadde kataloğu, geri dönüşüm granül, PP, PE, PPRC">
-  <meta name="author" content="Nevra Plastik">
-  <meta name="robots" content="index, follow">
+  <title>Ürün Kategorisi | Nevra Plastik</title>
+  <meta name="description" content="Nevra Plastik ürün kategorileri ve geri dönüştürülmüş plastik hammadde çözümleri.">
+  <meta name="robots" content="noindex, follow">
+  
+  
+  
+  
   
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.nevraplastik.com/urun-kategori"">
-  <meta property="og:title" content="Ürün Kategorisi | Nevra Plastik">
-  <meta property="og:description" content="Geri dönüştürülmüş plastik hammadde çözümlerimiz ve teknik özellikleri.">
-  <meta property="og:image" content="assets/product-pp.png">
+  
+  
+  
+  
+  
 
-  <title>Ürün Kataloğu | Nevra Plastik Geri Dönüşüm Teknolojileri</title>
+  
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +33,6 @@
 
   <!-- Fallback local database -->
   <script src="js/fallback-data.js?v=9.4"></script>
-  <link rel="canonical" href="https://nevraplastik.com/urun-kategori"">
 </head>
 <body>
   <!-- Preloader Screen -->
@@ -163,6 +165,7 @@
           <li><a href="kalite" class="nav-link" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
           <li><a href="surdurulebilirlik" class="nav-link" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
           <li><a href="iletisim" class="nav-link" data-translate-key="nav_contact">İletişim</a></li>
+          <li><a href="/sss" class="nav-link" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </nav>
  
@@ -243,6 +246,7 @@
           <li><a href="urunler" data-translate-key="nav_products">Ürünler</a></li>
           <li><a href="uretim-sureci" data-translate-key="nav_process">Üretim Süreci</a></li>
           <li><a href="kalite" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
+          <li><a href="/sss" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </div>
 
@@ -314,7 +318,7 @@
         const currentLang = localStorage.getItem("nevra_lang") || localStorage.getItem("selectedLang") || "tr";
         const isEn = currentLang === "en";
 
-        productsGrid.innerHTML = "";
+        productsGrid.innerHTML = ";
         
         if (products.length === 0) {
           productsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--gray);" data-translate-key="no_products">${isEn ? "No products found in this category." : "Bu kategoride ürün bulunamadı."}</div>`;
@@ -328,12 +332,12 @@
           card.className = "product-card scroll-reveal";
           card.style.transitionDelay = `${index * 0.15}s`;
 
-          const filterStyle = prod.filter ? `filter: ${prod.filter};` : "";
-          const codeTag = prod.code ? `<span class="section-tag" style="font-size: 0.75rem; margin-bottom: 0.5rem;">${prod.code}</span>` : "";
+          const filterStyle = prod.filter ? `filter: ${prod.filter};` : ";
+          const codeTag = prod.code ? `<span class="section-tag" style="font-size: 0.75rem; margin-bottom: 0.5rem;">${prod.code}</span>` : ";
 
           card.innerHTML = `
             <div class="product-img-wrapper" style="background-color: var(--light-gray); border-radius: 12px 12px 0 0;">
-              <img src="${prod.image || 'assets/product-pp.png'}" alt="${name}" class="product-img" style="${filterStyle}" loading="lazy">
+              <img src="${prod.image || 'assets/product-pp.webp'}" alt="${name}" class="product-img" style="${filterStyle}" loading="lazy" decoding="async">
             </div>
             <div class="product-card-content">
               ${codeTag}
@@ -343,7 +347,7 @@
                 <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><span style="font-weight: 600;">MFI:</span><span style="color: var(--gray);">${prod.mfi || "-"}</span></div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><span style="font-weight: 600;">${isEn ? 'Density:' : 'Yoğunluk:'}</span><span style="color: var(--gray);">${prod.density || "-"}</span></div>
               </div>
-              <a href="urun-detay?id=${prod.id}" class="btn btn-outline btn-sm btn-full" data-translate-key="prod_view_details">${isEn ? 'View Details' : 'Detayları İncele'}</a>
+              <a href="urun-detail-${prod.id}" class="btn btn-outline btn-sm btn-full" data-translate-key="prod_view_details">${isEn ? 'View Details' : 'Detayları İncele'}</a>
             </div>
           `;
           productsGrid.appendChild(card);

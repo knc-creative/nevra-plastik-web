@@ -1,13 +1,14 @@
 <?php
 /**
- * Nevra Plastik B2B Contact & Quote Form Handler
+ * Nevra Plastik B2B Contact & Quote Form Handler (Secure Production)
  * PHP Version: 8.2 / 8.3
  */
 
-// Set header for JSON response
+require_once __DIR__ . '/helpers.php';
+
+set_secure_cors_headers();
 header('Content-Type: application/json; charset=utf-8');
 
-// Ensure it is a POST request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode([
@@ -28,18 +29,22 @@ $messages = [
         'err_email' => 'Lütfen geçerli bir e-posta adresi giriniz.',
         'err_phone' => 'Lütfen geçerli bir telefon numarası giriniz.',
         'err_kvkk' => 'KVKK onay kutusunu işaretlemeniz gerekmektedir.',
+        'err_length' => 'Girdiğiniz veri izin verilen maksimum uzunluğu aşıyor.',
+        'err_write' => 'Talebiniz şu anda kaydedilemedi. Lütfen daha sonra tekrar deneyiniz.',
         'success_contact' => 'Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.',
         'success_quote' => 'Teklif talebiniz başarıyla alındı. Satış departmanımız sizinle irtibata geçecektir.',
-        'mail_failed' => 'E-posta gönderimi başarısız oldu ancak talebiniz sistemimize kaydedildi. Sizinle iletişime geçeceğiz.'
+        'mail_failed' => 'E-posta gönderimi tamamlanamadı ancak talebiniz sistemimize güvenle kaydedildi. Sizinle iletişime geçeceğiz.'
     ],
     'en' => [
         'err_empty' => 'Please fill in all required fields.',
         'err_email' => 'Please enter a valid email address.',
         'err_phone' => 'Please enter a valid phone number.',
         'err_kvkk' => 'You must accept the Privacy Policy/KVKK consent.',
+        'err_length' => 'Input data exceeds maximum allowed length.',
+        'err_write' => 'Your request could not be saved at this time. Please try again later.',
         'success_contact' => 'Your message has been sent successfully. We will get back to you shortly.',
         'success_quote' => 'Your price quote request has been received. Our sales team will contact you shortly.',
-        'mail_failed' => 'Email dispatch failed, but your request has been logged successfully. We will contact you.'
+        'mail_failed' => 'Email dispatch could not complete, but your request has been logged successfully. We will contact you.'
     ]
 ];
 
@@ -59,13 +64,52 @@ $capacity = isset($_POST['capacity']) ? htmlspecialchars(strip_tags(trim($_POST[
 $message = isset($_POST['message']) ? htmlspecialchars(strip_tags(trim($_POST['message'])), ENT_QUOTES, 'UTF-8') : '';
 $kvkk = isset($_POST['kvkk']) ? true : false;
 
-// Honeypot spam check: Discard silently if filled
+// Honeypot spam check: Discard silently if filled (NO storage, NO rate limiting)
 if (!empty($honeypot)) {
     http_response_code(200);
     echo json_encode([
         'success' => true,
         'message' => ($purpose === 'quote') ? $activeMsgs['success_quote'] : $activeMsgs['success_contact']
     ]);
+    exit;
+}
+
+// 1. IP-based Rate Limiting (Max 5 submissions per IP in 10 minutes)
+$clientIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+$rateLimitFile = __DIR__ . '/data/rate_limit.json';
+
+$rateData = file_exists($rateLimitFile) ? json_decode(file_get_contents($rateLimitFile), true) : [];
+if (!is_array($rateData)) $rateData = [];
+
+$now = time();
+$windowSeconds = 600; // 10 minutes
+$maxSubmissions = 5;
+
+// Clean up old entries
+foreach ($rateData as $ip => $timestamps) {
+    $rateData[$ip] = array_values(array_filter($timestamps, function($ts) use ($now, $windowSeconds) {
+        return ($now - $ts) < $windowSeconds;
+    }));
+    if (empty($rateData[$ip])) {
+        unset($rateData[$ip]);
+    }
+}
+
+$userTimestamps = $rateData[$clientIp] ?? [];
+
+if (count($userTimestamps) >= $maxSubmissions) {
+    http_response_code(429);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Çok fazla istek gönderdiniz. Lütfen 10 dakika sonra tekrar deneyin. / Too many requests. Please try again in 10 minutes.'
+    ]);
+    exit;
+}
+
+// Maximum Server-Side Length Controls (Fail-safe safe_strlen)
+if (safe_strlen($name) > 100 || safe_strlen($company) > 150 || safe_strlen($email) > 254 || safe_strlen($phone) > 30 || safe_strlen($capacity) > 100 || safe_strlen($message) > 3000) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_length']]);
     exit;
 }
 
@@ -82,10 +126,24 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+// Phone Number Regex & Minimum Digit Validation (International friendly)
+$digitsOnly = preg_replace('/\D/', '', $phone);
+if (!preg_match('/^[+\d\s\(\)\-]{7,30}$/', $phone) || strlen($digitsOnly) < 7) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_phone']]);
+    exit;
+}
+
 if (!$kvkk) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => $activeMsgs['err_kvkk']]);
     exit;
+}
+
+// Record submission timestamp for Rate Limiting
+$rateData[$clientIp][] = $now;
+if (!safe_json_write($rateLimitFile, $rateData)) {
+    error_log("Nevra Contact API Error: Failed to write rate_limit.json");
 }
 
 // Map product codes to names
@@ -106,34 +164,7 @@ $machineNames = [
 ];
 $selectedMachine = isset($machineNames[$machine]) ? $machineNames[$machine] : $machine;
 
-// 1. Log submission locally as backup (Very safe B2B practice)
-$logFile = __DIR__ . '/submissions_backup.log';
-$logTime = date('Y-m-d H:i:s');
-
-if ($purpose === 'quote') {
-    $detailLog = sprintf("Product: %s | Qty: %d Ton", $selectedProduct, $quantity);
-} elseif ($purpose === 'quote_machine') {
-    $detailLog = sprintf("Machine: %s | Capacity/Qty: %s", $selectedMachine, $capacity);
-} else {
-    $detailLog = "N/A";
-}
-
-$logData = sprintf(
-    "[%s] [%s] Name: %s | Company: %s | Email: %s | Phone: %s | Details: %s | Message: %s\n",
-    $logTime,
-    strtoupper($purpose),
-    $name,
-    $company,
-    $email,
-    $phone,
-    $detailLog,
-    str_replace(["\r", "\n"], " ", $message)
-);
-
-// Write to backup log file securely
-@file_put_contents($logFile, $logData, FILE_APPEND | LOCK_EX);
-
-// 1.5. Save submission to api/data/contacts.json
+// 1. Save submission to api/data/contacts.json atomically
 $contactsFile = __DIR__ . '/data/contacts.json';
 $contacts = [];
 if (file_exists($contactsFile)) {
@@ -160,10 +191,19 @@ $submission = [
 ];
 
 $contacts[] = $submission;
-@file_put_contents($contactsFile, json_encode($contacts, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+if (!safe_json_write($contactsFile, $contacts)) {
+    error_log("Nevra Contact API Error: Failed to write contacts.json");
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => $activeMsgs['err_write']
+    ]);
+    exit;
+}
 
 // 2. Prepare and Send E-mail Notification
-$to = 'info@nevraplastik.com'; // Corporate email target
+$to = 'info@nevraplastik.com';
 
 if ($purpose === 'quote') {
     $subject = 'Nevra Plastik Web - Yeni Hammadde Fiyat Teklifi Talebi';
@@ -176,7 +216,7 @@ if ($purpose === 'quote') {
     $titleHeading = 'İletişim Formu Gönderimi';
 }
 
-// Custom Elegant HTML email body
+$logTime = date('Y-m-d H:i:s');
 $emailBody = "
 <html>
 <head>
@@ -226,14 +266,13 @@ $emailBody .= "
     </div>
     <div class='footer'>
       Bu e-posta Nevra Plastik web sitesi form modülünden otomatik olarak gönderilmiştir.<br>
-      Tarih: {$logTime} | Gönderen IP: " . htmlspecialchars($_SERVER['REMOTE_ADDR']) . "
+      Tarih: {$logTime} | Gönderen IP: " . htmlspecialchars($clientIp) . "
     </div>
   </div>
 </body>
 </html>
 ";
 
-// Headers
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-Type: text/html; charset=UTF-8';
@@ -241,18 +280,14 @@ $headers[] = 'From: Nevra Plastik Web Form <no-reply@nevraplastik.com>';
 $headers[] = 'Reply-To: ' . $email;
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 
-// Send E-mail
-$mailSent = @mail($to, $subject, $emailBody, implode("\r\n", $headers));
+$mailSent = mail($to, $subject, $emailBody, implode("\r\n", $headers));
 
-// Response
 if ($mailSent) {
     echo json_encode([
         'success' => true,
         'message' => ($purpose === 'quote') ? $activeMsgs['success_quote'] : $activeMsgs['success_contact']
     ]);
 } else {
-    // If mail fails, return success because we safely logged it in files, but inform as warning
-    // In B2B environments, we want to look highly professional
     echo json_encode([
         'success' => true,
         'message' => $activeMsgs['mail_failed']

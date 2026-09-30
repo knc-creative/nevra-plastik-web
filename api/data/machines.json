@@ -9,7 +9,7 @@
     "detail_en": "Our Nevra Plastik Horizontal Bale Presses are designed for industrial waste management processes with high efficiency hydraulic power units and wear-resistant steel body design. Thanks to the automatic wire binding system and PLC control panel, it ensures maximum compression ratio with minimum operator intervention.",
     "features_tr": "Sürekli konveyör besleme, otomatik tel bağlama, dokunmatik PLC ekran, enerji tasarruflu hidrolik motor",
     "features_en": "Continuous conveyor feeding, automatic wire binding, touch PLC screen, energy-saving hydraulic motor",
-    "image": "uploads/yatay_balya_press.png",
+    "image": "uploads/yatay_balya_press.webp",
     "status": "active"
   },
   {
@@ -22,7 +22,7 @@
     "detail_en": "Horizontal Flake Washing Tank uses water density to separate floating plastics like PP/PE from sinking foreign materials (stones, glass, metal, heavy plastics). Thanks to its mechanical paddles and discharge screws, it continuously washes flakes forward and transfers them cleanly to the drying stage. Made entirely of stainless steel.",
     "features_tr": "AISI 304 paslanmaz çelik gövde, yüksek debili devridaim pompaları, ağır atık tahliye helezonu, hız ayarlı paletler",
     "features_en": "AISI 304 stainless steel body, high flow recirculation pumps, heavy waste discharge screw, speed adjustable paddles",
-    "image": "uploads/yatay_yikama_havuzu.png",
+    "image": "uploads/yatay_yikama_havuzu.webp",
     "status": "active"
   },
   {
@@ -35,7 +35,7 @@
     "detail_en": "Nevra Vertical Granule Mixers are designed to blend high tonnage raw material batches homogenously before packaging. The central vertical screw system inside carries granules from the bottom chamber upward and sprays them circularly from the top point to achieve a perfect mix.",
     "features_tr": "Kolay temizlenebilir iç hacim, aşırı yük korumalı motor, pnömatik dolum/boşaltma vanaları, yüksek karıştırma kapasitesi",
     "features_en": "Easy-to-clean internal volume, overload protected motor, pneumatic fill/discharge valves, high mixing capacity",
-    "image": "uploads/granul_karistirme_mixeri.png",
+    "image": "uploads/granul_karistirme_mixeri.webp",
     "status": "passive"
   },
   {

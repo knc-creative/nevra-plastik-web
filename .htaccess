@@ -1,24 +1,76 @@
-# Prevent direct access to JSON database files
-<FilesMatch "\.(json)$">
+# Prevent direct access to sensitive data files and configs
+<FilesMatch "\.(json|log|env|tmp)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
 
-# Prevent directory listing
+# Prevent direct access to hidden files
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Custom Error 404 Page
+ErrorDocument 404 /404.html
+
+# Disable directory indexing
 Options -Indexes
 
 # Enable Rewrite Engine
 RewriteEngine On
 
-# Force HTTPS (SSL)
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Remove X-Powered-By header
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+    Header unset Server
+    
+    # Security Response Headers
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src 'self' https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+    
+    # HSTS header (Active when HTTPS is on)
+    Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
+</IfModule>
 
-# Redirect direct browser requests ending in .html to clean URLs (e.g. /hakkimizda.html -> /hakkimizda)
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
+# Browser Caching rules
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
 
-# Clean URL Rewriting: Map extensionless requests internally to .html if file exists (e.g. /hakkimizda -> hakkimizda.html)
+# Gzip Compression rules
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# 1. Single-step Canonical Redirect for index and index.html (HTTP, www, or direct access)
+# Redirects any request for /index, /index.html to canonical root https://nevraplastik.com/ in a single 301 redirect
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ https://nevraplastik.com/ [R=301,L,QSA]
+
+# 2. Single-step Canonical Redirect for non-index .html pages
+# Normalizes Scheme (HTTPS), Host (non-www), and strips .html in a SINGLE external 301 redirect
+RewriteCond %{THE_REQUEST} \s/+(?!nevracms\.html|404\.html)(.+?)\.html[\s?] [NC]
+RewriteRule ^(.*)\.html$ https://nevraplastik.com/$1 [R=301,L,QSA]
+
+# 3. Canonical Redirect for HTTP or www requests without .html to https://nevraplastik.com/
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://nevraplastik.com/$1 [R=301,L]
+
+# 4. Internal Clean URL Rewriting: Map extensionless requests to .html file if it exists
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f

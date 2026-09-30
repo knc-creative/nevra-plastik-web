@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yönetim Paneli | Nevra Plastik</title>
+  <meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -453,7 +456,7 @@
 
     .switch-slider:before {
       position: absolute;
-      content: "";
+      content: ";
       height: 18px;
       width: 18px;
       left: 3px;
@@ -782,7 +785,7 @@
     }
     .status-slider:before {
       position: absolute;
-      content: "";
+      content: ";
       height: 14px;
       width: 14px;
       left: 3px;
@@ -825,6 +828,38 @@
   </script>
 
   <!-- 2. LOGIN SECTION -->
+    <!-- FIRST-RUN SETUP SECTION -->
+  <div id="setup-section" class="login-container" style="display: none;">
+    <div class="card">
+      <div class="login-logo">
+        <img id="setup-logo-img" src="uploads/1783198954_3487_nevra_gu_ncel_logo.svg" alt="Nevra Plastik">
+      </div>
+      <h2 style="text-align: center; margin-bottom: 0.5rem; font-family: 'Plus Jakarta Sans'; font-weight: 700;">İlk Yönetici Şifresini Belirleyin</h2>
+      <p style="text-align: center; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem;">Sistem henüz kurulmadı. Lütfen en az 12 karakterden oluşan güvenli ilk yönetici şifrenizi oluşturun.</p>
+      <div id="setup-error" class="alert-banner alert-error" style="display: none; padding: 0.5rem 1rem;"></div>
+      <form id="setup-form">
+        <div class="form-group">
+          <label for="setup-token">Kurulum Tokeni (NEVRA_SETUP_TOKEN)</label>
+          <input type="password" id="setup-token" class="form-control" placeholder="Sunucu kurulum tokenini girin" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="setup-username">Kullanıcı Adı</label>
+          <input type="text" id="setup-username" class="form-control" value="admin" readonly disabled>
+        </div>
+        <div class="form-group">
+          <label for="setup-password">Yeni Şifre (En Az 12 Karakter)</label>
+          <input type="password" id="setup-password" class="form-control" placeholder="Minimum 12 karakter şifre girin" required minlength="12">
+        </div>
+        <div class="form-group" style="margin-bottom: 2rem;">
+          <label for="setup-password-confirm">Şifre Tekrar</label>
+          <input type="password" id="setup-password-confirm" class="form-control" placeholder="Şifreyi tekrar girin" required minlength="12">
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <button type="submit" id="setup-submit-btn" class="btn btn-primary" style="width: 100%;">Yönetici Şifresini Kaydet & Giriş Yap</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <div id="login-section" class="login-container" style="display: none;">
     <div class="card">
       <div class="login-logo">
@@ -901,7 +936,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>Güvenlik Ayarları</span>
           </button>
-          <a href="index" target="_blank" class="sidebar-btn" style="text-decoration: none; margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.5rem;">
+          <a href="index" target="_blank" rel="noopener noreferrer" class="sidebar-btn" style="text-decoration: none; margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.5rem;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: #2fb14d;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <span style="color: #2fb14d;">Siteye Git</span>
           </a>
@@ -1074,12 +1109,12 @@
                     <input type="password" id="current-password" class="form-control" placeholder="Mevcut şifrenizi girin" required>
                   </div>
                   <div class="form-group" style="margin-bottom: 1.25rem;">
-                    <label for="new-password" style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem;">Yeni Şifre (En az 4 karakter)</label>
-                    <input type="password" id="new-password" class="form-control" placeholder="Yeni şifrenizi girin" required>
+                    <label for="new-password" style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem;">Yeni Şifre (En az 12 karakter)</label>
+                    <input type="password" id="new-password" class="form-control" placeholder="Yeni şifrenizi girin (min 12 karakter)" required minlength="12">
                   </div>
                   <div class="form-group" style="margin-bottom: 1.5rem;">
                     <label for="new-password-confirm" style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem;">Yeni Şifre (Tekrar)</label>
-                    <input type="password" id="new-password-confirm" class="form-control" placeholder="Yeni şifrenizi tekrar girin" required>
+                    <input type="password" id="new-password-confirm" class="form-control" placeholder="Yeni şifrenizi tekrar girin" required minlength="12">
                   </div>
                   <button type="submit" class="btn btn-primary" style="display: flex; align-items: center; gap: 0.5rem;">
                     <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1383,7 +1418,7 @@
             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: var(--light-gray); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
               <span style="font-size: 0.8rem; font-weight: 600; color: var(--primary);">Ana Görsel</span>
               <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; background: var(--white); border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color);">
-                <img id="modal-img-preview-1" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.png">
+                <img id="modal-img-preview-1" alt="Görsel Önizleme 1" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.webp">
               </div>
               <input type="file" accept="image/*" style="display: none;" id="prod-file-1" onchange="uploadProductImageAtIndex(1)">
               <input type="hidden" id="prod-img-src-1">
@@ -1397,7 +1432,7 @@
             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: var(--light-gray); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
               <span style="font-size: 0.8rem; font-weight: 600;">Görsel 2</span>
               <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; background: var(--white); border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color);">
-                <img id="modal-img-preview-2" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.png">
+                <img id="modal-img-preview-2" alt="Görsel Önizleme 2" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.webp">
               </div>
               <input type="file" accept="image/*" style="display: none;" id="prod-file-2" onchange="uploadProductImageAtIndex(2)">
               <input type="hidden" id="prod-img-src-2">
@@ -1411,7 +1446,7 @@
             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: var(--light-gray); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
               <span style="font-size: 0.8rem; font-weight: 600;">Görsel 3</span>
               <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; background: var(--white); border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color);">
-                <img id="modal-img-preview-3" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.png">
+                <img id="modal-img-preview-3" alt="Görsel Önizleme 3" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.webp">
               </div>
               <input type="file" accept="image/*" style="display: none;" id="prod-file-3" onchange="uploadProductImageAtIndex(3)">
               <input type="hidden" id="prod-img-src-3">
@@ -1425,7 +1460,7 @@
             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: var(--light-gray); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
               <span style="font-size: 0.8rem; font-weight: 600;">Görsel 4</span>
               <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; background: var(--white); border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color);">
-                <img id="modal-img-preview-4" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.png">
+                <img id="modal-img-preview-4" alt="Görsel Önizleme 4" style="max-width: 100%; max-height: 100%; object-fit: contain;" src="assets/product-pp.webp">
               </div>
               <input type="file" accept="image/*" style="display: none;" id="prod-file-4" onchange="uploadProductImageAtIndex(4)">
               <input type="hidden" id="prod-img-src-4">
@@ -1478,7 +1513,7 @@
         <div class="form-group" style="margin-bottom: 2rem;">
           <label>Kategori Görseli</label>
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <input type="text" id="cat-image" class="form-control" placeholder="Görsel yolu (örn: assets/product-pp.png)">
+            <input type="text" id="cat-image" class="form-control" placeholder="Görsel yolu (örn: assets/product-pp.webp)">
             <input type="file" accept="image/*" style="display: none;" id="cat-file-upload" onchange="uploadCategoryModalImage()">
             <button type="button" class="btn btn-outline" onclick="document.getElementById('cat-file-upload').click()" style="padding: 0.5rem 1rem; white-space: nowrap; border-radius: 6px;">Yükle</button>
           </div>
@@ -1571,7 +1606,7 @@
             <input type="file" id="mach-image-file" style="display: none;" onchange="handleMachineImageUpload(this)">
           </div>
           <div style="margin-top: 1rem; text-align: center;">
-            <img id="modal-mach-img-preview" class="thumb-preview" src="assets/product-pp.png" alt="Preview" style="max-height: 120px; object-fit: contain; border-radius: 8px;">
+            <img id="modal-mach-img-preview" class="thumb-preview" src="assets/product-pp.webp" alt="Preview" style="max-height: 120px; object-fit: contain; border-radius: 8px;">
           </div>
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 1rem;">
@@ -1695,16 +1730,30 @@
     };
 
     // Intercept fetch calls to append local_session query parameter for localhost/cookie compatibility
+    window.csrfToken = null;
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
-      if (typeof input === 'string' && input.includes('api/cms.php')) {
-        const isLocalLogged = sessionStorage.getItem('admin_logged_in') === 'true';
-        if (isLocalLogged) {
-          const separator = input.includes('?') ? '&' : '?';
-          input = input + separator + 'local_session=1';
+      init = init || {};
+      if (window.csrfToken) {
+        if (!init.headers) {
+          init.headers = {};
+        }
+        if (init.headers instanceof Headers) {
+          init.headers.set('X-CSRF-Token', window.csrfToken);
+        } else {
+          init.headers['X-CSRF-Token'] = window.csrfToken;
         }
       }
-      return originalFetch(input, init);
+      return originalFetch(input, init).then(async response => {
+        try {
+          const clone = response.clone();
+          const data = await clone.json();
+          if (data && data.csrf_token) {
+            window.csrfToken = data.csrf_token;
+          }
+        } catch(e) {}
+        return response;
+      });
     };
 
     // Inactivity and Auto-Logout Handler Disabled (User Session Persists Indefinitely)
@@ -1722,15 +1771,33 @@
     let certificatesList = [];
     let selectedImageFile = null;
 
-    // Unified PHP CMS Session Check
+    // Unified PHP CMS Session & Setup Check
     async function checkSession() {
       try {
-        const response = await fetch('api/cms.php?action=check_session');
+        const response = await fetch('api/cms.php?action=check_setup');
         if (!response.ok) throw new Error("HTTP error " + response.status);
         const data = await response.json();
         
-        if (data.logged_in) {
+        if (data.setup_required) {
+          document.getElementById("setup-section").style.display = "flex";
+          document.getElementById("login-section").style.display = "none";
+          document.getElementById("dashboard-section").style.display = "none";
+          const setupErr = document.getElementById("setup-error");
+          const setupBtn = document.getElementById("setup-submit-btn");
+          if (data.setup_configured === false) {
+            if (setupErr) {
+              setupErr.textContent = "Yönetici kurulumu sunucu tarafında henüz etkinleştirilmemiş (NEVRA_SETUP_TOKEN eksik).";
+              setupErr.style.display = "block";
+            }
+            if (setupBtn) setupBtn.disabled = true;
+          } else {
+            if (setupErr) setupErr.style.display = "none";
+            if (setupBtn) setupBtn.disabled = false;
+          }
+          clearInactivityTimers();
+        } else if (data.logged_in) {
           sessionStorage.setItem('admin_logged_in', 'true');
+          document.getElementById("setup-section").style.display = "none";
           document.getElementById("login-section").style.display = "none";
           document.getElementById("dashboard-section").style.display = "block";
           document.getElementById("user-display").textContent = data.username || "Yönetici";
@@ -1738,6 +1805,7 @@
           resetInactivityTimer();
         } else {
           sessionStorage.removeItem('admin_logged_in');
+          document.getElementById("setup-section").style.display = "none";
           document.getElementById("login-section").style.display = "flex";
           document.getElementById("dashboard-section").style.display = "none";
           clearInactivityTimers();
@@ -1745,10 +1813,67 @@
       } catch (err) {
         console.error("Session check failed:", err);
         sessionStorage.removeItem('admin_logged_in');
+        if (document.getElementById("setup-section")) document.getElementById("setup-section").style.display = "none";
         document.getElementById("login-section").style.display = "flex";
         document.getElementById("dashboard-section").style.display = "none";
         clearInactivityTimers();
       }
+    }
+
+    
+    // First-Run Setup Form Handler
+    const setupForm = document.getElementById("setup-form");
+    if (setupForm) {
+      setupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const setupToken = document.getElementById("setup-token").value.trim();
+        const newPass = document.getElementById("setup-password").value;
+        const confirmPass = document.getElementById("setup-password-confirm").value;
+        const errorDiv = document.getElementById("setup-error");
+
+        if (!setupToken) {
+          errorDiv.textContent = "Lütfen sunucu kurulum tokenini girin.";
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        if (newPass.length < 12) {
+          errorDiv.textContent = "Şifre en az 12 karakter olmalıdır.";
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        if (newPass !== confirmPass) {
+          errorDiv.textContent = "Şifreler birbiriyle uyuşmuyor.";
+          errorDiv.style.display = "block";
+          return;
+        }
+
+        try {
+          const response = await fetch('api/cms.php?action=setup_admin', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Setup-Token': setupToken
+            },
+            body: JSON.stringify({ setup_token: setupToken, new_password: newPass, new_password_confirm: confirmPass })
+          });
+          const res = await response.json();
+          if (response.ok && res.status === 'success') {
+            document.getElementById("setup-token").value = "";
+            document.getElementById("setup-password").value = "";
+            document.getElementById("setup-password-confirm").value = "";
+            errorDiv.style.display = "none";
+            checkSession();
+          } else {
+            errorDiv.textContent = res.message || "Kurulum hatası.";
+            errorDiv.style.display = "block";
+          }
+        } catch (err) {
+          errorDiv.textContent = "Bağlantı hatası: " + err.message;
+          errorDiv.style.display = "block";
+        }
+      });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -1945,7 +2070,7 @@
     // Render Products Table
     function renderProductsTable() {
       const container = document.getElementById("products-sections-container");
-      container.innerHTML = "";
+      container.innerHTML = ";
       
       categoriesList.forEach(cat => {
         const catProds = productsList.filter(p => p.category_id === cat.id);
@@ -1999,7 +2124,7 @@
 
             tr.innerHTML = `
               <td style="text-align: center; cursor: grab; font-size: 1.1rem; color: #94a3b8; user-select: none; vertical-align: middle;" class="drag-handle" title="Kategori içi sıralamak için sürükleyin">☰</td>
-              <td><img src="${prod.image || 'assets/product-pp.png'}" class="thumb-preview" style="${prod.filter || ''}; width: 50px; height: 50px; object-fit: contain; padding: 4px; background: white; border-radius: 6px; border: 1px solid var(--border-color);"></td>
+              <td><img src="${prod.image || 'assets/product-pp.webp'}" alt="${prod.name_tr || 'Ürün Görseli'}" class="thumb-preview" style="${prod.filter || ''}; width: 50px; height: 50px; object-fit: contain; padding: 4px; background: white; border-radius: 6px; border: 1px solid var(--border-color);"></td>
               <td>
                 <strong>${prod.code || ''}</strong>${statusBadge}<br>
                 <span style="font-size: 0.82rem; color: var(--gray); display: block; margin-top: 0.15rem;">TR: ${prod.name_tr}</span>
@@ -2008,7 +2133,7 @@
               <td><code>${prod.mfi}</code></td>
               <td><code>${prod.density}</code></td>
               <td>
-                <a href="urun-detay?id=${prod.id}" target="_blank" class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+                <a href="urun-detail-${prod.id}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
                   <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   Sitede Gör
                 </a>
@@ -2081,7 +2206,7 @@
 
           tr.innerHTML = `
             <td style="text-align: center; cursor: grab; font-size: 1.1rem; color: #94a3b8; user-select: none; vertical-align: middle;" class="drag-handle" title="Sürükleyin">☰</td>
-            <td><img src="${prod.image || 'assets/product-pp.png'}" class="thumb-preview" style="${prod.filter || ''}; width: 50px; height: 50px; object-fit: contain; padding: 4px; background: white; border-radius: 6px; border: 1px solid var(--border-color);"></td>
+            <td><img src="${prod.image || 'assets/product-pp.webp'}" alt="${prod.name_tr || 'Ürün Görseli'}" class="thumb-preview" style="${prod.filter || ''}; width: 50px; height: 50px; object-fit: contain; padding: 4px; background: white; border-radius: 6px; border: 1px solid var(--border-color);"></td>
             <td>
               <strong>${prod.code || ''}</strong>${statusBadge}<br>
               <span style="font-size: 0.82rem; color: var(--gray); display: block; margin-top: 0.15rem;">TR: ${prod.name_tr}</span>
@@ -2090,7 +2215,7 @@
             <td><code>${prod.mfi}</code></td>
             <td><code>${prod.density}</code></td>
             <td>
-              <a href="urun-detay?id=${prod.id}" target="_blank" class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+              <a href="urun-detail-${prod.id}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
                 <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Sitede Gör
               </a>
@@ -2206,12 +2331,12 @@
     // Render Categories Table
     function renderCategoriesTable() {
       const tbody = document.querySelector("#categories-table tbody");
-      tbody.innerHTML = "";
+      tbody.innerHTML = ";
       
       categoriesList.forEach(cat => {
         const tr = document.createElement("tr");
         const productCount = productsList.filter(p => p.category_id === cat.id).length;
-        const frontendUrl = cat.url || (cat.id === 'pp' ? 'urun-pp-moblen.html' : cat.id === 'pe' ? 'urun-elteks.html' : cat.id === 'pprc' ? 'urun-pprc.html' : cat.id === 'other' ? 'urun-diger.html' : `urun-kategori.html?id=${cat.id}`);
+        const frontendUrl = cat.url || (cat.id === 'pp' ? 'urun-pp-moblen' : cat.id === 'pe' ? 'urun-elteks' : cat.id === 'pprc' ? 'urun-pprc' : cat.id === 'other' ? 'urun-diger' : `/urun-kategori?id=${cat.id}`);
         
         tr.innerHTML = `
           <td><code>${cat.id}</code></td>
@@ -2222,7 +2347,7 @@
           <td><span class="badge" style="background: #f1f5f9; color: #475569; border: 1px solid var(--border-color); font-weight: 700;">${productCount} Hammadde</span></td>
           <td style="font-size: 0.85rem; color: var(--gray); max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${cat.desc_tr}</td>
           <td>
-            <a href="${frontendUrl}" target="_blank" class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+            <a href="${frontendUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.35rem 0.7rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
               <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Sitede Gör
             </a>
@@ -2247,7 +2372,7 @@
     function renderBulkCategoriesEditor() {
       const container = document.getElementById("bulk-categories-editor");
       if (!container) return;
-      container.innerHTML = "";
+      container.innerHTML = ";
 
       categoriesList.forEach(cat => {
         const card = document.createElement("div");
@@ -2259,11 +2384,11 @@
         card.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
             <span class="badge" style="background: #e2e8f0; color: #1f2937; font-weight: 700; font-family: monospace;">Kategori: ${displayId}</span>
-            <a href="${cat.url || '#'}" target="_blank" style="font-size: 0.75rem; color: var(--primary); text-decoration: none; font-weight: 600;">Sitede Gör &rarr;</a>
+            <a href="${cat.url || '#'}" target="_blank" rel="noopener noreferrer" style="font-size: 0.75rem; color: var(--primary); text-decoration: none; font-weight: 600;">Sitede Gör &rarr;</a>
           </div>
           
           <div style="position: relative; border-radius: 8px; overflow: hidden; height: 120px; border: 1px solid var(--border-color); background: #e2e8f0; display: flex; justify-content: center; align-items: center;">
-            <img id="bulk-cat-img-preview-${cat.id}" src="${cat.image || 'assets/facility.png'}" style="width: 100%; height: 100%; object-fit: cover;">
+            <img id="bulk-cat-img-preview-${cat.id}" src="${cat.image || 'assets/facility.webp'}" alt="${cat.title_tr || 'Kategori Görseli'}" style="width: 100%; height: 100%; object-fit: cover;">
             <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); padding: 0.25rem; text-align: center;">
               <input type="file" id="bulk-cat-file-${cat.id}" accept="image/*" style="display: none;" onchange="uploadBulkCategoryImage('${cat.id}')">
               <button type="button" class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #ffffff; color: #000000; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;" onclick="document.getElementById('bulk-cat-file-${cat.id}').click()">Resmi Değiştir</button>
@@ -2395,7 +2520,7 @@
     function updateProductCategoryDropdown() {
       const select = document.getElementById("prod-category");
       if (!select) return;
-      select.innerHTML = "";
+      select.innerHTML = ";
       categoriesList.forEach(cat => {
         const option = document.createElement("option");
         option.value = cat.id;
@@ -2411,13 +2536,13 @@
 
     function openProductModal() {
       document.getElementById("product-form").reset();
-      document.getElementById("edit-product-id").value = "";
+      document.getElementById("edit-product-id").value = ";
       document.getElementById("prod-status").value = "active";
       document.getElementById("product-modal-title").textContent = "Yeni Ürün Ekle";
       
       for (let i = 1; i <= 4; i++) {
-        document.getElementById(`modal-img-preview-${i}`).src = "assets/product-pp.png";
-        document.getElementById(`prod-img-src-${i}`).value = "";
+        document.getElementById(`modal-img-preview-${i}`).src = "assets/product-pp.webp";
+        document.getElementById(`prod-img-src-${i}`).value = ";
       }
       
       selectedImageFile = null;
@@ -2463,8 +2588,8 @@
     };
 
     window.clearProductImageAtIndex = function(idx) {
-      document.getElementById(`prod-img-src-${idx}`).value = "";
-      document.getElementById(`modal-img-preview-${idx}`).src = "assets/product-pp.png";
+      document.getElementById(`prod-img-src-${idx}`).value = ";
+      document.getElementById(`modal-img-preview-${idx}`).src = "assets/product-pp.webp";
     };
 
     // Edit Product
@@ -2473,14 +2598,14 @@
       if (!prod) return;
 
       document.getElementById("edit-product-id").value = prod.id;
-      document.getElementById("prod-code").value = prod.code || "";
+      document.getElementById("prod-code").value = prod.code || ";
       document.getElementById("prod-category").value = prod.category_id;
       document.getElementById("prod-name-tr").value = prod.name_tr;
       document.getElementById("prod-name-en").value = prod.name_en;
       document.getElementById("prod-desc-tr").value = prod.desc_tr;
       document.getElementById("prod-desc-en").value = prod.desc_en;
-      document.getElementById("prod-detail-tr").value = prod.detail_tr || "";
-      document.getElementById("prod-detail-en").value = prod.detail_en || "";
+      document.getElementById("prod-detail-tr").value = prod.detail_tr || ";
+      document.getElementById("prod-detail-en").value = prod.detail_en || ";
       document.getElementById("prod-mfi").value = prod.mfi;
       document.getElementById("prod-density").value = prod.density;
       document.getElementById("prod-color-tr").value = prod.color_tr;
@@ -2488,8 +2613,8 @@
       document.getElementById("prod-status").value = prod.status || "active";
       
       // Convert arrays back to comma separated list if applicable
-      document.getElementById("prod-usage-tr").value = Array.isArray(prod.usage_tr) ? prod.usage_tr.join(", ") : (prod.usage_tr || "");
-      document.getElementById("prod-usage-en").value = Array.isArray(prod.usage_en) ? prod.usage_en.join(", ") : (prod.usage_en || "");
+      document.getElementById("prod-usage-tr").value = Array.isArray(prod.usage_tr) ? prod.usage_tr.join(", ") : (prod.usage_tr || ");
+      document.getElementById("prod-usage-en").value = Array.isArray(prod.usage_en) ? prod.usage_en.join(", ") : (prod.usage_en || ");
 
       // Load up to 4 images
       const images = Array.isArray(prod.images) ? prod.images : [];
@@ -2499,9 +2624,9 @@
       }
       
       for (let i = 1; i <= 4; i++) {
-        const imgUrl = imageList[i - 1] || "";
+        const imgUrl = imageList[i - 1] || ";
         document.getElementById(`prod-img-src-${i}`).value = imgUrl;
-        document.getElementById(`modal-img-preview-${i}`).src = imgUrl || "assets/product-pp.png";
+        document.getElementById(`modal-img-preview-${i}`).src = imgUrl || "assets/product-pp.webp";
       }
 
       selectedImageFile = null;
@@ -2542,11 +2667,11 @@
         }
       }
       
-      let mainImg = imagesArr[0] || "assets/product-pp.png";
-      if (mainImg.includes("assets/product-pp.png") && categoryId === "pe") {
-        mainImg = "assets/product-pe.png";
-      } else if (mainImg.includes("assets/product-pp.png") && (categoryId === "pprc" || categoryId === "other")) {
-        mainImg = "assets/product-compound.png";
+      let mainImg = imagesArr[0] || "assets/product-pp.webp";
+      if (mainImg.includes("assets/product-pp.webp") && categoryId === "pe") {
+        mainImg = "assets/product-pe.webp";
+      } else if (mainImg.includes("assets/product-pp.webp") && (categoryId === "pprc" || categoryId === "other")) {
+        mainImg = "assets/product-compound.webp";
       }
 
       const productData = {
@@ -2721,8 +2846,8 @@
       } else {
         idGroup.style.display = "block";
         document.getElementById("cat-id").required = true;
-        document.getElementById("edit-cat-id").value = "";
-        document.getElementById("cat-image").value = "";
+        document.getElementById("edit-cat-id").value = ";
+        document.getElementById("cat-image").value = ";
         title.textContent = "Yeni Kategori Ekle";
       }
       document.getElementById("category-modal").classList.add("show");
@@ -2738,7 +2863,7 @@
       document.getElementById("cat-title-en").value = cat.title_en;
       document.getElementById("cat-desc-tr").value = cat.desc_tr;
       document.getElementById("cat-desc-en").value = cat.desc_en;
-      document.getElementById("cat-image").value = cat.image || "";
+      document.getElementById("cat-image").value = cat.image || ";
     }
 
     window.closeCategoryModal = function() {
@@ -2762,7 +2887,7 @@
         })
         .catch(err => {
           input.disabled = false;
-          input.value = "";
+          input.value = ";
           alert("Görsel yüklenemedi: " + err.message);
         });
     };
@@ -2797,7 +2922,7 @@
       const isEdit = !!document.getElementById("edit-cat-id").value;
       const id = isEdit 
         ? document.getElementById("edit-cat-id").value 
-        : document.getElementById("cat-id").value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, "");
+        : document.getElementById("cat-id").value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, ");
       
       if (!id) {
         alert("Lütfen geçerli bir kategori kodu girin.");
@@ -2808,12 +2933,12 @@
       const titleEn = document.getElementById("cat-title-en").value.trim() || "-";
       const descTr = document.getElementById("cat-desc-tr").value.trim() || "-";
       const descEn = document.getElementById("cat-desc-en").value.trim() || "-";
-      const image = document.getElementById("cat-image").value.trim() || "assets/product-pp.png";
+      const image = document.getElementById("cat-image").value.trim() || "assets/product-pp.webp";
 
-      // New categories map to urun-kategori.html?id=[id]
+      // New categories map to /urun-kategori?id=[id]
       const url = isEdit 
-        ? (categoriesList.find(c => c.id === id)?.url || `urun-kategori.html?id=${id}`)
-        : `urun-kategori.html?id=${id}`;
+        ? (categoriesList.find(c => c.id === id)?.url || `/urun-kategori?id=${id}`)
+        : `/urun-kategori?id=${id}`;
 
       const catData = {
         title_tr: titleTr,
@@ -2934,7 +3059,7 @@
           statusText.style.color = "#f59e0b";
         } else {
           statusText.textContent = "Devre Dışı (Site Açık)";
-          statusText.style.color = "";
+          statusText.style.color = ";
         }
       }
       // Populate JSON database editor
@@ -2979,7 +3104,7 @@
     window.checkInputDirty = function(input, lang) {
       const key = input.getAttribute("data-key");
       const currentVal = input.value;
-      const originalVal = (originalTranslationsData && originalTranslationsData[lang]) ? (originalTranslationsData[lang][key] || "") : "";
+      const originalVal = (originalTranslationsData && originalTranslationsData[lang]) ? (originalTranslationsData[lang][key] || ") : ";
 
       const isDifferent = currentVal !== originalVal;
       
@@ -2995,7 +3120,7 @@
         
         const otherLang = lang === "tr" ? "en" : "tr";
         const otherInput = document.querySelector(`.db-${otherLang}-input[data-key="${key}"]`);
-        const otherOriginalVal = (originalTranslationsData && originalTranslationsData[otherLang]) ? (originalTranslationsData[otherLang][key] || "") : "";
+        const otherOriginalVal = (originalTranslationsData && originalTranslationsData[otherLang]) ? (originalTranslationsData[otherLang][key] || ") : ";
         const otherIsDifferent = otherInput ? (otherInput.value !== otherOriginalVal) : false;
         
         if (!otherIsDifferent) {
@@ -3010,7 +3135,7 @@
       const tbody = document.getElementById("db-editor-table-body");
       if (!tbody || !translationsData) return;
 
-      tbody.innerHTML = "";
+      tbody.innerHTML = ";
       
       originalTranslationsData = JSON.parse(JSON.stringify(translationsData));
       changedKeys.clear();
@@ -3022,8 +3147,8 @@
       const allKeys = Array.from(new Set([...trKeys, ...enKeys])).sort();
 
       allKeys.forEach(key => {
-        const trVal = translationsData.tr[key] || "";
-        const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : "";
+        const trVal = translationsData.tr[key] || ";
+        const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : ";
 
         const isPreviewable = typeof trVal === "string" && (
           trVal.startsWith("uploads/") || 
@@ -3048,7 +3173,7 @@
             <input type="text" class="form-control db-en-input" data-key="${key}" value="${enVal.replace(/"/g, '&quot;')}" oninput="checkInputDirty(this, 'en')" style="font-size: 0.85rem; padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #f1f5f9; width: 100%;">
           </td>
           <td style="text-align: center; vertical-align: middle; padding: 0.5rem 1rem; border-bottom: 1px solid #334155;">
-            ${isPreviewable ? `<img src="${trVal}" style="max-height: 32px; max-width: 60px; object-fit: contain; border: 1px solid #334155; border-radius: 4px; padding: 2px; background: #1e293b;">` : '<span style="color: #64748b; font-size: 0.75rem;">-</span>'}
+            ${isPreviewable ? `<img src="${trVal}" alt="Görsel Önizleme" style="max-height: 32px; max-width: 60px; object-fit: contain; border: 1px solid #334155; border-radius: 4px; padding: 2px; background: #1e293b;">` : '<span style="color: #64748b; font-size: 0.75rem;">-</span>'}
           </td>
           <td style="text-align: center; vertical-align: middle; padding: 0.5rem 1rem; border-bottom: 1px solid #334155;">
             <button type="button" class="btn btn-danger btn-sm" onclick="deleteDbKey('${key}')" style="padding: 0.25rem 0.4rem; font-size: 0.75rem; border-radius: 4px; background: #ef4444; border-color: #ef4444; color: #fff;">Sil</button>
@@ -3079,7 +3204,7 @@
     window.addDbEditorRow = function() {
       const key = prompt("Lütfen yeni anahtar adını girin (Örn: img_banner):");
       if (!key) return;
-      const sanitizedKey = key.trim().replace(/[^a-zA-Z0-9_-]/g, "");
+      const sanitizedKey = key.trim().replace(/[^a-zA-Z0-9_-]/g, '');
       if (!sanitizedKey) {
         alert("Geçersiz anahtar adı.");
         return;
@@ -3143,8 +3268,8 @@
         const trInput = row.querySelector(".db-tr-input");
         const enInput = row.querySelector(".db-en-input");
         
-        parsed.tr[key] = trInput ? trInput.value : "";
-        parsed.en[key] = enInput ? enInput.value : "";
+        parsed.tr[key] = trInput ? trInput.value : ";
+        parsed.en[key] = enInput ? enInput.value : ";
       });
       
       try {
@@ -3194,7 +3319,7 @@
         statusText.style.color = "#f59e0b";
       } else {
         statusText.textContent = "Devre Dışı (Site Açık)";
-        statusText.style.color = "";
+        statusText.style.color = ";
       }
       
       try {
@@ -3236,7 +3361,7 @@
         // Revert toggle state
         toggle.checked = !isActive;
         statusText.textContent = !isActive ? "Etkin (Site Bakımda)" : "Devre Dışı (Site Açık)";
-        statusText.style.color = !isActive ? "#f59e0b" : "";
+        statusText.style.color = !isActive ? "#f59e0b" : ";
       }
     };
 
@@ -3504,7 +3629,7 @@
       const container = document.getElementById("translations-container");
       if (!container) return;
 
-      container.innerHTML = "";
+      container.innerHTML = ";
 
       const keys = Object.keys(translationsData.tr || {});
       
@@ -3694,8 +3819,8 @@
         fieldsGrid.style.gap = "1rem";
 
         groupKeys.forEach(key => {
-          const trVal = translationsData.tr[key] || "";
-          const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : "";
+          const trVal = translationsData.tr[key] || ";
+          const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : ";
           const desc = keyDescriptions[key] || "Genel Metin";
           
           const fieldDiv = document.createElement("div");
@@ -3804,8 +3929,8 @@
           
           const trInput = field.querySelector(".tr-input");
           const enInput = field.querySelector(".en-input");
-          const trVal = trInput ? trInput.value.toLowerCase() : "";
-          const enVal = enInput ? enInput.value.toLowerCase() : "";
+          const trVal = trInput ? trInput.value.toLowerCase() : ";
+          const enVal = enInput ? enInput.value.toLowerCase() : ";
           
           const matchesQuery = !query || 
             key.toLowerCase().includes(query) || 
@@ -3960,7 +4085,7 @@
     function renderCertificatesTable() {
       const tbody = document.querySelector("#certificates-table tbody");
       if (!tbody) return;
-      tbody.innerHTML = "";
+      tbody.innerHTML = ";
 
       if (certificatesList.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--gray); padding: 2rem;">Kayıtlı belge bulunamadı.</td></tr>`;
@@ -4031,7 +4156,7 @@
       const form = document.getElementById("certificate-form");
       
       form.reset();
-      document.getElementById("cert-id").value = "";
+      document.getElementById("cert-id").value = ";
 
       if (id) {
         titleEl.textContent = "Belgeyi Düzenle";
@@ -4039,18 +4164,18 @@
         if (cert) {
           document.getElementById("cert-id").value = cert.id;
           document.getElementById("cert-icon").value = cert.icon || "📄";
-          document.getElementById("cert-title-tr").value = cert.title_tr || "";
-          document.getElementById("cert-title-en").value = cert.title_en || "";
-          document.getElementById("cert-sub-tr").value = cert.sub_tr || "";
-          document.getElementById("cert-sub-en").value = cert.sub_en || "";
+          document.getElementById("cert-title-tr").value = cert.title_tr || ";
+          document.getElementById("cert-title-en").value = cert.title_en || ";
+          document.getElementById("cert-sub-tr").value = cert.sub_tr || ";
+          document.getElementById("cert-sub-en").value = cert.sub_en || ";
           document.getElementById("cert-status").value = cert.status || "active";
-          document.getElementById("cert-image").value = cert.document_image || "";
+          document.getElementById("cert-image").value = cert.document_image || ";
         }
       } else {
         titleEl.textContent = "Yeni Belge Ekle";
         document.getElementById("cert-icon").value = "📄";
         document.getElementById("cert-status").value = "active";
-        document.getElementById("cert-image").value = "";
+        document.getElementById("cert-image").value = ";
       }
 
       modal.classList.add("show");
@@ -4174,7 +4299,7 @@
       const container = document.getElementById("site-images-container");
       if (!container) return;
 
-      container.innerHTML = "";
+      container.innerHTML = ";
 
       // 1. Static Site Images
       Object.keys(siteImageKeys).forEach(key => {
@@ -4201,7 +4326,7 @@
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Türkçe (TR) Görsel</span>
               <div style="height: 120px; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px;">
-                <img id="preview-tr-${key}" src="${trVal}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                <img id="preview-tr-${key}" src="${trVal}" alt="Türkçe Görsel" style="max-height: 100%; max-width: 100%; object-fit: contain;">
               </div>
               <div style="display: flex; gap: 0.5rem;">
                 <input type="text" class="form-control" id="url-tr-${key}" value="${trVal}" style="font-size: 0.8rem; height: 32px;" onchange="updateImagePreview('${key}', 'tr')">
@@ -4214,7 +4339,7 @@
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">İngilizce (EN) Görsel</span>
               <div style="height: 120px; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px;">
-                <img id="preview-en-${key}" src="${enVal}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                <img id="preview-en-${key}" src="${enVal}" alt="İngilizce Görsel" style="max-height: 100%; max-width: 100%; object-fit: contain;">
               </div>
               <div style="display: flex; gap: 0.5rem;">
                 <input type="text" class="form-control" id="url-en-${key}" value="${enVal}" style="font-size: 0.8rem; height: 32px;" onchange="updateImagePreview('${key}', 'en')">
@@ -4236,7 +4361,7 @@
       // 2. Category Cover Images (Dynamic)
       categoriesList.forEach(cat => {
         const catId = cat.id;
-        const trVal = cat.image || "assets/product-pp.png";
+        const trVal = cat.image || "assets/product-pp.webp";
 
         const card = document.createElement("div");
         card.className = "card";
@@ -4256,7 +4381,7 @@
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               <span style="font-size: 0.85rem; font-weight: 700; color: #f68a35;">Kategori Kapak Görseli</span>
               <div style="height: 140px; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px; max-width: 300px;">
-                <img id="preview-cat-${catId}" src="${trVal}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                <img id="preview-cat-${catId}" src="${trVal}" alt="Kategori Görseli" style="max-height: 100%; max-width: 100%; object-fit: contain;">
               </div>
               <div style="display: flex; gap: 0.5rem; max-width: 500px;">
                 <input type="text" class="form-control" id="url-cat-${catId}" value="${trVal}" style="font-size: 0.8rem; height: 32px;" onchange="updateCatImagePreview('${catId}')">
@@ -4339,7 +4464,7 @@
         if (lang === 'tr') {
           const enUrlInput = document.getElementById(`url-en-${key}`);
           const enPreview = document.getElementById(`preview-en-${key}`);
-          if (enUrlInput && enPreview && (!enUrlInput.value || enUrlInput.value.includes('logo.svg') || enUrlInput.value === 'assets/facility.png')) {
+          if (enUrlInput && enPreview && (!enUrlInput.value || enUrlInput.value.includes('logo.svg') || enUrlInput.value === 'assets/facility.webp')) {
             enUrlInput.value = fileUrl;
             enPreview.src = fileUrl;
           }
@@ -4477,7 +4602,7 @@
     function renderMachinesTable() {
       const tbody = document.querySelector("#machines-table tbody");
       if (!tbody) return;
-      tbody.innerHTML = "";
+      tbody.innerHTML = ";
       
       machinesList.forEach(mach => {
         const tr = document.createElement("tr");
@@ -4486,7 +4611,7 @@
           : '<span class="badge status-badge-animate" style="background: #dcfce7; color: #22c55e; border: 1px solid #86efac; font-size: 0.72rem; margin-left: 0.5rem; padding: 2px 6px;">Aktif</span>';
 
         tr.innerHTML = `
-          <td><img src="${mach.image || 'assets/product-pp.png'}" class="thumb-preview" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color);"></td>
+          <td><img src="${mach.image || 'assets/product-pp.webp'}" alt="${mach.title_tr || 'Makine Görseli'}" class="thumb-preview" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color);"></td>
           <td>
             <strong>${mach.name_tr}</strong>${statusBadge}<br>
             <span style="font-size: 0.8rem; color: var(--gray);">EN: ${mach.name_en}</span>
@@ -4513,10 +4638,10 @@
 
     window.openMachineModal = function() {
       document.getElementById("machine-form").reset();
-      document.getElementById("mach-id").value = "";
+      document.getElementById("mach-id").value = ";
       document.getElementById("mach-status").value = "active";
       document.getElementById("machine-modal-title").textContent = "Yeni Makine Ekle";
-      document.getElementById("modal-mach-img-preview").src = "assets/product-pp.png";
+      document.getElementById("modal-mach-img-preview").src = "assets/product-pp.webp";
       document.getElementById("machine-modal").classList.add("show");
     }        ;
 
@@ -4567,12 +4692,12 @@
       document.getElementById("mach-name-en").value = mach.name_en;
       document.getElementById("mach-desc-tr").value = mach.desc_tr;
       document.getElementById("mach-desc-en").value = mach.desc_en;
-      document.getElementById("mach-detail-tr").value = mach.detail_tr || "";
-      document.getElementById("mach-detail-en").value = mach.detail_en || "";
-      document.getElementById("mach-features-tr").value = mach.features_tr || "";
-      document.getElementById("mach-features-en").value = mach.features_en || "";
-      document.getElementById("mach-image").value = mach.image || "";
-      document.getElementById("modal-mach-img-preview").src = mach.image || "assets/product-pp.png";
+      document.getElementById("mach-detail-tr").value = mach.detail_tr || ";
+      document.getElementById("mach-detail-en").value = mach.detail_en || ";
+      document.getElementById("mach-features-tr").value = mach.features_tr || ";
+      document.getElementById("mach-features-en").value = mach.features_en || ";
+      document.getElementById("mach-image").value = mach.image || ";
+      document.getElementById("modal-mach-img-preview").src = mach.image || "assets/product-pp.webp";
       document.getElementById("mach-status").value = mach.status || "active";
       
       document.getElementById("machine-modal-title").textContent = "Makine Düzenle";
@@ -4616,7 +4741,7 @@
         detail_en: document.getElementById("mach-detail-en").value.trim() || "-",
         features_tr: document.getElementById("mach-features-tr").value.trim() || "-",
         features_en: document.getElementById("mach-features-en").value.trim() || "-",
-        image: document.getElementById("mach-image").value.trim() || "assets/product-pp.png",
+        image: document.getElementById("mach-image").value.trim() || "assets/product-pp.webp",
         status: document.getElementById("mach-status").value
       };
 
@@ -4644,7 +4769,7 @@
     function renderContactsTable() {
       const tbody = document.querySelector("#contacts-table tbody");
       if (!tbody) return;
-      tbody.innerHTML = "";
+      tbody.innerHTML = ";
       
       const sortedContacts = [...contactsList].sort((a, b) => {
         return new Date(b.date || 0) - new Date(a.date || 0);

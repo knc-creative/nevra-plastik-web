@@ -182,6 +182,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // FAQ Teaser Accordion Handler
+  const faqTeaserItems = document.querySelectorAll('.faq-teaser-item');
+  faqTeaserItems.forEach(item => {
+    const btn = item.querySelector('.faq-teaser-question');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      faqTeaserItems.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('active');
+          const otherBtn = other.querySelector('.faq-teaser-question');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      if (isActive) {
+        item.classList.remove('active');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
   // ------------------------------------------------------------------------
   // 2. Scroll Reveal Animations (Intersection Observer)
   // ------------------------------------------------------------------------
@@ -487,7 +511,12 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_process: 'Üretim Süreci',
       nav_quality: 'Kalite & Sertifikalar',
       nav_sustain: 'Sürdürülebilirlik',
+      nav_faq: 'SSS',
       nav_contact: 'İletişim',
+      faq_tag: 'Sıkça Sorulanlar',
+      faq_title: 'Sık Sorulan Sorular',
+      faq_subtitle: 'Ürünler, kalite, üretim ve sipariş süreçleri hakkında en çok merak edilen konular.',
+      faq_cta_btn: 'Tüm Soruları Gör',
       cta_quote: 'Teklif Talep Et',
       back_to_catalog: 'Ürün Kataloğuna Dön',
       cta_quote_long: 'Teklif Talep Et',
@@ -737,9 +766,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ,
       img_logo: 'assets/logo.svg',
       img_hero: 'assets/hero-bg.png',
-      img_about: 'assets/facility.png',
-      img_sustain: 'assets/facility.png',
-      img_quality: 'assets/facility.png'
+      img_about: 'assets/facility.webp',
+      img_sustain: 'assets/facility.webp',
+      img_quality: 'assets/facility.webp'
     },
     en: {
       nav_home: 'Home',
@@ -749,7 +778,12 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_process: 'Production Process',
       nav_quality: 'Quality & Certificates',
       nav_sustain: 'Sustainability',
+      nav_faq: 'FAQ',
       nav_contact: 'Contact',
+      faq_tag: 'Frequently Asked Questions',
+      faq_title: 'Frequently Asked Questions',
+      faq_subtitle: 'Most asked questions about products, quality, production, and ordering processes.',
+      faq_cta_btn: 'View All Questions',
       cta_quote: 'Request Quote',
       back_to_catalog: 'Back to Product Catalog',
       cta_quote_long: 'Request Quote',
@@ -999,9 +1033,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ,
       img_logo: 'assets/logo.svg',
       img_hero: 'assets/hero-bg.png',
-      img_about: 'assets/facility.png',
-      img_sustain: 'assets/facility.png',
-      img_quality: 'assets/facility.png'
+      img_about: 'assets/facility.webp',
+      img_sustain: 'assets/facility.webp',
+      img_quality: 'assets/facility.webp'
     }
   };
 

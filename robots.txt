@@ -5,5 +5,8 @@ Disallow: /nevracms.html
 Disallow: /api/data/
 Disallow: /api/cms.php
 Disallow: /api/upload.php
+Disallow: /deploy/
+Disallow: /deploy_v2/
+Disallow: /scratch/
 
 Sitemap: https://nevraplastik.com/sitemap.xml

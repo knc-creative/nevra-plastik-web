@@ -4,7 +4,7 @@
     "title_en": "PP MOBLEN GRANULE",
     "desc_tr": "Polipropilen bazlı, enjeksiyonluk ve ekstrüzyonluk sınıflarda, yüksek mukavemetli granül hammaddeler.",
     "desc_en": "Polypropylene-based granule raw materials with high strength, available in injection molding and extrusion grades.",
-    "url": "urun-pp-moblen.html",
+    "url": "urun-pp-moblen",
     "image": "uploads/1784064090_9036_pp_moblen_granu_l.jpeg",
     "id": "pp"
   },
@@ -13,7 +13,7 @@
     "title_en": "ELTEKS GRANULES",
     "desc_tr": "Alçak Yoğunluk (AYPE) ve Yüksek Yoğunluk (YYPE) polietilen granüller, şişirmelik ve film üretimlerine uygun.",
     "desc_en": "Low-Density (LDPE) and High-Density (HDPE) polyethylene granules suitable for blow molding and film production.",
-    "url": "urun-elteks.html",
+    "url": "urun-elteks",
     "image": "uploads/1784064094_7388_elteks_granu_l.jpeg",
     "id": "pe"
   },
@@ -22,7 +22,7 @@
     "title_en": "ELASTOMER GRANULE",
     "desc_tr": "Sıcak-soğuk su boruları, sıhhi tesisat ek parçaları ve altyapı boru grupları için random kopolimer granüller.",
     "desc_en": "Random copolymer granules for hot-cold water pipes, sanitary fittings, and infrastructure piping groups.",
-    "url": "urun-pprc.html",
+    "url": "urun-pprc",
     "image": "uploads/1784064105_6215_kategori-elastomer.jpeg",
     "id": "pprc"
   },
@@ -31,7 +31,7 @@
     "title_en": "Other",
     "desc_tr": "Kalsiyum karbonat, cam elyafı veya mineral dolgularla mekanik özellikleri güçlendirilmiş mühendislik polimerleri.",
     "desc_en": "Engineering polymers reinforced with calcium carbonate, glass fiber, or custom mineral additives.",
-    "url": "urun-diger.html",
+    "url": "urun-diger",
     "image": "uploads/1784067113_1220_dig_er_kategori_nevra.png",
     "id": "other"
   }

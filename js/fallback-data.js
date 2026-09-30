@@ -8,7 +8,7 @@ const fallbackCategories = [
     "title_en": "PP MOBLEN GRANULE",
     "desc_tr": "Polipropilen bazlı, enjeksiyonluk ve ekstrüzyonluk sınıflarda, yüksek mukavemetli granül hammaddeler.",
     "desc_en": "Polypropylene-based granule raw materials with high strength, available in injection molding and extrusion grades.",
-    "url": "urun-pp-moblen.html",
+    "url": "urun-pp-moblen",
     "image": "uploads/1784064090_9036_pp_moblen_granu_l.jpeg",
     "id": "pp"
   },
@@ -17,7 +17,7 @@ const fallbackCategories = [
     "title_en": "ELTEKS GRANULES",
     "desc_tr": "Alçak Yoğunluk (AYPE) ve Yüksek Yoğunluk (YYPE) polietilen granüller, şişirmelik ve film üretimlerine uygun.",
     "desc_en": "Low-Density (LDPE) and High-Density (HDPE) polyethylene granules suitable for blow molding and film production.",
-    "url": "urun-elteks.html",
+    "url": "urun-elteks",
     "image": "uploads/1784064094_7388_elteks_granu_l.jpeg",
     "id": "pe"
   },
@@ -26,7 +26,7 @@ const fallbackCategories = [
     "title_en": "ELASTOMER GRANULE",
     "desc_tr": "Sıcak-soğuk su boruları, sıhhi tesisat ek parçaları ve altyapı boru grupları için random kopolimer granüller.",
     "desc_en": "Random copolymer granules for hot-cold water pipes, sanitary fittings, and infrastructure piping groups.",
-    "url": "urun-pprc.html",
+    "url": "urun-pprc",
     "image": "uploads/1784064105_6215_kategori-elastomer.jpeg",
     "id": "pprc"
   },
@@ -35,7 +35,7 @@ const fallbackCategories = [
     "title_en": "Other",
     "desc_tr": "Kalsiyum karbonat, cam elyafı veya mineral dolgularla mekanik özellikleri güçlendirilmiş mühendislik polimerleri.",
     "desc_en": "Engineering polymers reinforced with calcium carbonate, glass fiber, or custom mineral additives.",
-    "url": "urun-diger.html",
+    "url": "urun-diger",
     "image": "uploads/1784067113_1220_dig_er_kategori_nevra.png",
     "id": "other"
   }
@@ -73,7 +73,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "pp-gray"
+    "id": "pp-gray",
+    "detail_url": "urun-detail-pp-gray"
   },
   {
     "code": "NVR-NY",
@@ -110,7 +111,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "pp-color"
+    "id": "pp-color",
+    "detail_url": "urun-detail-pp-color"
   },
   {
     "code": "AK-100",
@@ -147,7 +149,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "pp-black"
+    "id": "pp-black",
+    "detail_url": "urun-detail-pp-black"
   },
   {
     "code": "NVR-NS",
@@ -180,7 +183,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "pe-hd"
+    "id": "pe-hd",
+    "detail_url": "urun-detail-pe-hd"
   },
   {
     "code": "NVR-KHV",
@@ -207,7 +211,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784663610536"
+    "id": "prod_1784663610536",
+    "detail_url": "urunler"
   },
   {
     "code": "NVR-KRM",
@@ -234,7 +239,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784664413651"
+    "id": "prod_1784664413651",
+    "detail_url": "urunler"
   },
   {
     "code": "NVR-BYZ",
@@ -261,7 +267,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784664895037"
+    "id": "prod_1784664895037",
+    "detail_url": "urunler"
   },
   {
     "code": "NVR-MV",
@@ -288,7 +295,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784665018669"
+    "id": "prod_1784665018669",
+    "detail_url": "urunler"
   },
   {
     "code": "NVR-PMB",
@@ -315,7 +323,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784666016161"
+    "id": "prod_1784666016161",
+    "detail_url": "urunler"
   },
   {
     "code": "NVR-YSL",
@@ -342,7 +351,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784666613038"
+    "id": "prod_1784666613038",
+    "detail_url": "urunler"
   },
   {
     "id": "pe-ld-trans",
@@ -360,9 +370,9 @@ const fallbackProducts = [
     "color_en": "Translucent / Natural",
     "usage_tr": "Ambalaj filmleri, shrink rulolar, sera örtüleri, poşet ve torba imalatı.",
     "usage_en": "Packaging films, shrink rolls, greenhouse covers, plastic bags.",
-    "image": "assets/product-pe.png",
+    "image": "assets/product-pe.webp",
     "filter": "opacity(0.8) brightness(1.2)",
-    "detail_url": ""
+    "detail_url": "urun-detail-pe-ld-trans"
   },
   {
     "id": "pe-ld-black",
@@ -380,9 +390,9 @@ const fallbackProducts = [
     "color_en": "Black",
     "usage_tr": "Damla sulama boruları, kablo kaplama kılıfları, esnek boru ekstrüzyonu, çöp torbası hammaddesi.",
     "usage_en": "Drip irrigation pipes, cable sheathing, flexible pipe extrusion, garbage bag raw material.",
-    "image": "assets/product-pe.png",
+    "image": "assets/product-pe.webp",
     "filter": "brightness(0.35)",
-    "detail_url": ""
+    "detail_url": "urun-detail-pe-ld-black"
   },
   {
     "id": "pprc-gray",
@@ -400,9 +410,9 @@ const fallbackProducts = [
     "color_en": "Gray",
     "usage_tr": "Sıhhi tesisat fittings ek parçaları, dirsekler, manşonlar, boru hatları.",
     "usage_en": "Sanitary plumbing fittings, elbows, couplers, pipe networks.",
-    "image": "assets/product-compound.png",
+    "image": "assets/product-compound.webp",
     "filter": "grayscale(1) brightness(0.9)",
-    "detail_url": ""
+    "detail_url": "urun-detail-pprc"
   },
   {
     "id": "pprc-white",
@@ -420,9 +430,9 @@ const fallbackProducts = [
     "color_en": "White",
     "usage_tr": "Bina içi temiz su tesisatları, beyaz sıhhi tesisat fittings malzemeleri, içme suyu hatları.",
     "usage_en": "Domestic clean water plumbing, white sanitary fittings, drinking water networks.",
-    "image": "assets/product-compound.png",
+    "image": "assets/product-compound.webp",
     "filter": "brightness(1.3)",
-    "detail_url": ""
+    "detail_url": "urun-detail-pprc"
   },
   {
     "code": "NVR-LTK",
@@ -449,7 +459,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784664675419"
+    "id": "prod_1784664675419",
+    "detail_url": "urunler"
   },
   {
     "code": "NVR-LTKS",
@@ -476,7 +487,8 @@ const fallbackProducts = [
     ],
     "filter": "none",
     "status": "active",
-    "id": "prod_1784665332536"
+    "id": "prod_1784665332536",
+    "detail_url": "urunler"
   },
   {
     "id": "comp-calcite",
@@ -494,9 +506,9 @@ const fallbackProducts = [
     "color_en": "Black, Dark Gray",
     "usage_tr": "Otomotiv trim aksamı, beyaz eşya plastik parçaları, mobilya iskeletleri, yüksek mukavemetli endüstriyel gövdeler.",
     "usage_en": "Automotive trim, home appliance parts, furniture frames, high strength industrial housings.",
-    "image": "assets/product-compound.png",
+    "image": "assets/product-compound.webp",
     "filter": "grayscale(1) brightness(1.2)",
-    "detail_url": ""
+    "detail_url": "urun-detail-calcite"
   },
   {
     "id": "comp-gf30",
@@ -514,9 +526,9 @@ const fallbackProducts = [
     "color_en": "Black, Gray",
     "usage_tr": "Otomotiv motor içi aksamlar, fan davlumbazları, yüksek mekanik mukavemet ve rijitlik gerektiren beyaz eşya parçaları.",
     "usage_en": "Automotive under-the-hood parts, fan shrouds, household appliance parts requiring high mechanical strength and rigidity.",
-    "image": "assets/product-compound.png",
+    "image": "assets/product-compound.webp",
     "filter": "hue-rotate(45deg) brightness(0.9)",
-    "detail_url": ""
+    "detail_url": "urun-detail-custom"
   },
   {
     "id": "comp-custom",
@@ -536,9 +548,9 @@ const fallbackProducts = [
     "color_en": "On Demand",
     "usage_tr": "B2B iş ortaklarımızın makine, kalıp ve spesifikasyon gereksinimlerine özel terzi usulü formüle edilen mühendislik plastikleri.",
     "usage_en": "Engineering plastics custom-formulated for B2B partners' machinery, molds, and mechanical specifications.",
-    "image": "assets/product-compound.png",
+    "image": "assets/product-compound.webp",
     "filter": "hue-rotate(270deg) brightness(1.0)",
-    "detail_url": ""
+    "detail_url": "urun-detail-custom"
   }
 ];
 
@@ -553,7 +565,7 @@ const fallbackMachines = [
     "detail_en": "Our Nevra Plastik Horizontal Bale Presses are designed for industrial waste management processes with high efficiency hydraulic power units and wear-resistant steel body design. Thanks to the automatic wire binding system and PLC control panel, it ensures maximum compression ratio with minimum operator intervention.",
     "features_tr": "Sürekli konveyör besleme, otomatik tel bağlama, dokunmatik PLC ekran, enerji tasarruflu hidrolik motor",
     "features_en": "Continuous conveyor feeding, automatic wire binding, touch PLC screen, energy-saving hydraulic motor",
-    "image": "uploads/yatay_balya_press.png",
+    "image": "uploads/yatay_balya_press.webp",
     "status": "active"
   },
   {
@@ -566,7 +578,7 @@ const fallbackMachines = [
     "detail_en": "Horizontal Flake Washing Tank uses water density to separate floating plastics like PP/PE from sinking foreign materials (stones, glass, metal, heavy plastics). Thanks to its mechanical paddles and discharge screws, it continuously washes flakes forward and transfers them cleanly to the drying stage. Made entirely of stainless steel.",
     "features_tr": "AISI 304 paslanmaz çelik gövde, yüksek debili devridaim pompaları, ağır atık tahliye helezonu, hız ayarlı paletler",
     "features_en": "AISI 304 stainless steel body, high flow recirculation pumps, heavy waste discharge screw, speed adjustable paddles",
-    "image": "uploads/yatay_yikama_havuzu.png",
+    "image": "uploads/yatay_yikama_havuzu.webp",
     "status": "active"
   },
   {
@@ -579,7 +591,7 @@ const fallbackMachines = [
     "detail_en": "Nevra Vertical Granule Mixers are designed to blend high tonnage raw material batches homogenously before packaging. The central vertical screw system inside carries granules from the bottom chamber upward and sprays them circularly from the top point to achieve a perfect mix.",
     "features_tr": "Kolay temizlenebilir iç hacim, aşırı yük korumalı motor, pnömatik dolum/boşaltma vanaları, yüksek karıştırma kapasitesi",
     "features_en": "Easy-to-clean internal volume, overload protected motor, pneumatic fill/discharge valves, high mixing capacity",
-    "image": "uploads/granul_karistirme_mixeri.png",
+    "image": "uploads/granul_karistirme_mixeri.webp",
     "status": "passive"
   },
   {
@@ -657,6 +669,7 @@ const fallbackTranslations = {
     "nav_process": "Üretim Süreci",
     "nav_quality": "Kalite & Sertifikalar",
     "nav_sustain": "Sürdürülebilirlik",
+    "nav_faq": "SSS",
     "nav_contact": "İletişim",
     "social_linkedin": "https://linkedin.com/company/nevraplastik",
     "social_twitter": "https://x.com/nevraplastik",
@@ -869,9 +882,9 @@ const fallbackTranslations = {
     "img_logo": "uploads/1783198954_3487_nevra_gu_ncel_logo.svg",
     "img_preloader_logo": "uploads/1783198649_5040_nevra_logo_eski.svg",
     "img_hero": "uploads/1782162829_2949_a685cf01-90a2-4c1a-b70b-37d38e13cce4.png",
-    "img_about": "uploads/1784066104_1444_hakk_m_zda-nevra.png",
-    "img_sustain": "assets/facility.png",
-    "img_quality": "assets/facility.png",
+    "img_about": "uploads/1784066104_1444_hakk_m_zda-nevra.webp",
+    "img_sustain": "assets/facility.webp",
+    "img_quality": "assets/facility.webp",
     "img_machinery": "uploads/1784068122_1770_WhatsApp_Image_2026-07-15_at_01.14.10__1_.jpeg",
     "img_favicon": "uploads/1783198649_5040_nevra_logo_eski.svg",
     "maintenance_mode": "inactive",
@@ -891,6 +904,7 @@ const fallbackTranslations = {
     "nav_process": "Production Process",
     "nav_quality": "Quality & Certificates",
     "nav_sustain": "Sustainability",
+    "nav_faq": "FAQ",
     "nav_contact": "Contact",
     "social_linkedin": "https://linkedin.com/company/nevraplastik",
     "social_twitter": "https://x.com/nevraplastik",
@@ -1103,9 +1117,9 @@ const fallbackTranslations = {
     "img_logo": "uploads/1783198954_3487_nevra_gu_ncel_logo.svg",
     "img_preloader_logo": "uploads/1783198649_5040_nevra_logo_eski.svg",
     "img_hero": "uploads/1782162829_2949_a685cf01-90a2-4c1a-b70b-37d38e13cce4.png",
-    "img_about": "uploads/1784065960_6893_hakk_m_zda-nevra.png",
-    "img_sustain": "assets/facility.png",
-    "img_quality": "assets/facility.png",
+    "img_about": "uploads/1784065960_6893_hakk_m_zda-nevra.webp",
+    "img_sustain": "assets/facility.webp",
+    "img_quality": "assets/facility.webp",
     "img_machinery": "uploads/1784068016_9963_WhatsApp_Image_2026-07-15_at_01.14.10__1_.jpeg",
     "img_favicon": "uploads/1783198649_5040_nevra_logo_eski.svg",
     "maintenance_mode": "inactive",

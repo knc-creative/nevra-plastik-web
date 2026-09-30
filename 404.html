@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayfa Bulunamadı | Nevra Plastik</title>
+  <meta name="description" content="Aradığınız sayfa bulunamadı veya taşınmış olabilir.">
+  <meta name="robots" content="noindex, follow">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .error-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      position: relative;
+    }
+    .error-card {
+      max-width: 600px;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .error-code {
+      font-size: 6rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #38ef7d, #11998e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .error-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .error-desc {
+      font-size: 1rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .error-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-404-primary {
+      background: linear-gradient(135deg, #2fb14d, #25933f);
+      color: #ffffff;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-404-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(47, 177, 77, 0.4);
+    }
+    .btn-404-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      padding: 0.85rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-404-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="brand">
+        <img src="assets/logo.svg" alt="Nevra Plastik Logo" class="brand-logo" width="180" height="50">
+      </a>
+      <nav class="nav-menu">
+        <a href="/" class="nav-link">Anasayfa</a>
+        <a href="/hakkimizda" class="nav-link">Hakkımızda</a>
+        <a href="/urunler" class="nav-link">Ürünlerimiz</a>
+        <a href="/makineler" class="nav-link">Makine Parkuru</a>
+        <a href="/iletisim" class="nav-link btn-nav-cta">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Error Section -->
+  <main class="error-hero">
+    <div class="error-card">
+      <div class="error-code">404</div>
+      <h1 class="error-title">Sayfa Bulunamadı</h1>
+      <p class="error-desc">
+        Aradığınız sayfa silinmiş, ismi değiştirilmiş veya geçici olarak kullanım dışı kalmış olabilir. 
+        Lütfen bağlantıyı kontrol edin veya aşağıdaki butonları kullanarak ana sayfaya dönün.
+      </p>
+      <div class="error-buttons">
+        <a href="/" class="btn-404-primary">Ana Sayfaya Dön</a>
+        <a href="/urunler" class="btn-404-secondary">Ürünlerimizi İnceleyin</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: #090d16; padding: 2rem 0; text-align: center; color: #64748b; font-size: 0.9rem;">
+    <div class="container">
+      <p>&copy; 2026 Nevra Plastik San. ve Tic. Ltd. Şti. Tüm Hakları Saklıdır.</p>
+    </div>
+  </footer>
+</body>
+</html>

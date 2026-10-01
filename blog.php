@@ -34,7 +34,7 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
   <title><?= h($title) ?></title>
   <meta name="description" content="<?= h($description) ?>">
     <meta name="author" content="Nevra Plastik">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="<?= h($canonical) ?>">
 
   <!-- Open Graph / Facebook -->

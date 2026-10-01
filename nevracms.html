@@ -3315,7 +3315,7 @@
     window.checkInputDirty = function(input, lang) {
       const key = input.getAttribute("data-key");
       const currentVal = input.value;
-      const originalVal = (originalTranslationsData && originalTranslationsData[lang]) ? (originalTranslationsData[lang][key] || ") : "";
+      const originalVal = (originalTranslationsData && originalTranslationsData[lang]) ? (originalTranslationsData[lang][key] || "") : "";
 
       const isDifferent = currentVal !== originalVal;
       
@@ -3331,7 +3331,7 @@
         
         const otherLang = lang === "tr" ? "en" : "tr";
         const otherInput = document.querySelector(`.db-${otherLang}-input[data-key="${key}"]`);
-        const otherOriginalVal = (originalTranslationsData && originalTranslationsData[otherLang]) ? (originalTranslationsData[otherLang][key] || ") : "";
+        const otherOriginalVal = (originalTranslationsData && originalTranslationsData[otherLang]) ? (originalTranslationsData[otherLang][key] || "") : "";
         const otherIsDifferent = otherInput ? (otherInput.value !== otherOriginalVal) : false;
         
         if (!otherIsDifferent) {

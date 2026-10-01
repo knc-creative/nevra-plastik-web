@@ -89,6 +89,17 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
       "about" => array_map('blog_topic_entity', $blog["tags"] ?? [])
   ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
   </script>
+  <script type="application/ld+json">
+  <?= json_encode([
+      "@context" => "https://schema.org",
+      "@type" => "BreadcrumbList",
+      "itemListElement" => [
+          ["@type" => "ListItem", "position" => 1, "name" => "Anasayfa", "item" => "https://nevraplastik.com/"],
+          ["@type" => "ListItem", "position" => 2, "name" => "Blog", "item" => "https://nevraplastik.com/blog"],
+          ["@type" => "ListItem", "position" => 3, "name" => $blog["title_tr"] ?? "", "item" => $canonical]
+      ]
+  ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
+  </script>
   <?php endif; ?>
 
 

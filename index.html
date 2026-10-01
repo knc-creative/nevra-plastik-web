@@ -70,7 +70,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=9.5">
+  <link rel="stylesheet" href="css/style.css?v=9.6">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
@@ -453,6 +453,22 @@
       </div>
     </section>
 
+    <!-- SSS Teaser Section — reference layout -->
+    <section class="ref-faq-teaser-section" id="sss-teaser">
+      <div class="container">
+        <div class="ref-faq-teaser-head scroll-reveal">
+          <div>
+            <span class="section-tag">Bilgi Merkezi</span>
+            <h2 class="section-title" data-translate-key="faq_title">Sık Sorulan Sorular</h2>
+            <p class="section-subtitle" data-translate-key="faq_subtitle">Ürün, kalite ve sipariş süreçleri hakkında en çok merak edilen konulara hızlıca göz atın.</p>
+          </div>
+          <a class="ref-faq-teaser-link" href="sss.html">Tüm Soruları Gör <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="ref-faq-teaser-list" id="faq-teaser-list"></div>
+      </div>
+    </section>
+
+
     <!-- İletişim & Harita Bölümü -->
     <section class="contact-section text-center" id="iletisim-ozet" style="background-color: var(--light-gray); padding: 6rem 0;">
       <div class="container">
@@ -473,7 +489,7 @@
                     <span style="font-size: 1.25rem;">📍</span>
                     <div>
                       <strong style="display: block; font-size: 0.95rem;" data-translate-key="info_address">Adres</strong>
-                      <span style="color: var(--gray); font-size: 0.9rem;">Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk.<br>No:30/32, Karatay / KONYA</span>
+                      <span style="color: var(--gray); font-size: 0.9rem;">Fevzi Çakmak Mah. 10636 Sk. No: 12<br>Karatay / KONYA</span>
                     </div>
                   </li>
                   <li style="display: flex; gap: 0.75rem; align-items: start;">
@@ -513,22 +529,6 @@
         </div>
       </div>
     </section>
-
-    <!-- SSS Teaser Section — reference layout -->
-    <section class="ref-faq-teaser-section" id="sss-teaser">
-      <div class="container">
-        <div class="ref-faq-teaser-head scroll-reveal">
-          <div>
-            <span class="section-tag">Bilgi Merkezi</span>
-            <h2 class="section-title" data-translate-key="faq_title">Sık Sorulan Sorular</h2>
-            <p class="section-subtitle" data-translate-key="faq_subtitle">Ürün, kalite ve sipariş süreçleri hakkında en çok merak edilen konulara hızlıca göz atın.</p>
-          </div>
-          <a class="ref-faq-teaser-link" href="sss.html">Tüm Soruları Gör <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="ref-faq-teaser-list" id="faq-teaser-list"></div>
-      </div>
-    </section>
-
   </main>
 
   <!-- Footer Section -->
@@ -622,7 +622,7 @@
         const currentLang = localStorage.getItem("nevra_lang") || localStorage.getItem("selectedLang") || "tr";
         const isEn = currentLang === "en";
 
-        categoriesGrid.innerHTML = ";
+        categoriesGrid.innerHTML = "";
         cats.forEach((cat, index) => {
           const title = isEn ? cat.title_en : cat.title_tr;
           const desc = isEn ? cat.desc_en : cat.desc_tr;
@@ -631,7 +631,7 @@
           card.style.transitionDelay = `${index * 0.15}s`;
 
           // Apply styling
-          const filterStyle = cat.filter ? `filter: ${cat.filter};` : ";
+          const filterStyle = cat.filter ? `filter: ${cat.filter};` : "";
           const imgWrapperStyle = cat.id === 'pprc' ? 'background-color: var(--light-gray); display: flex; align-items: center; justify-content: center; height: 220px; border-radius: 12px 12px 0 0;' : '';
           const imgStyle = cat.id === 'pprc' ? 'max-height: 180px; object-fit: contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));' : '';
 

@@ -27,18 +27,43 @@
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "PP Moblen Granül Hammadde",
-    "description": "Polipropilen bazlı, enjeksiyonluk ve ekstrüzyonluk sınıflarda, yüksek mukavemetli granül hammaddeler.",
-    "brand": {
-        "@type": "Brand",
-        "name": "Nevra Plastik"
-    },
-    "image": "https://nevraplastik.com/uploads/1784064090_9036_pp_moblen_granu_l.jpeg",
-    "category": "Plastik Geri Dönüşüm Hammadde"
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://nevraplastik.com/urun-pp-moblen#collection",
+  "name": "PP Moblen Granül Ürünleri",
+  "description": "Nevra Plastik polipropilen bazlı geri dönüştürülmüş PP granül ürün grubu.",
+  "url": "https://nevraplastik.com/urun-pp-moblen",
+  "isPartOf": {
+    "@id": "https://nevraplastik.com/#website"
+  },
+  "about": {
+    "@id": "https://nevraplastik.com/#organization"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Nevra PP-100 Siyah",
+        "url": "https://nevraplastik.com/urun-detail-pp-black"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Nevra PP-200 Gri",
+        "url": "https://nevraplastik.com/urun-detail-pp-gray"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Nevra PP-300 Renkli",
+        "url": "https://nevraplastik.com/urun-detail-pp-color"
+      }
+    ]
+  }
 }
-  </script>
+</script>
   <script type="application/ld+json">
 {
     "@context": "https://schema.org",

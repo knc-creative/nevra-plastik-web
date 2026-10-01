@@ -78,6 +78,9 @@ RewriteRule ^(.*)$ https://nevraplastik.com/$1 [R=301,L]
 # Server-rendered FAQ page for search engines and non-JS clients
 RewriteRule ^sss/?$ sss.php [L,QSA]
 
+# Server-rendered blog index for search engines and non-JS clients
+RewriteRule ^blog/?$ blog-index.php [L,QSA]
+
 # Dynamic clean blog article URLs
 RewriteRule ^blog/([A-Za-z0-9-]+)/?$ blog.php?slug=$1 [L,QSA]
 

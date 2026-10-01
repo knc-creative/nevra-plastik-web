@@ -313,13 +313,20 @@ switch ($action) {
 
     case 'load':
         $products = file_exists($productsFile) ? json_decode(file_get_contents($productsFile), true) : [];
+        if (!is_array($products)) $products = [];
         $categories = file_exists($categoriesFile) ? json_decode(file_get_contents($categoriesFile), true) : [];
+        if (!is_array($categories)) $categories = [];
         $translations = file_exists($translationsFile) ? json_decode(file_get_contents($translationsFile), true) : [];
+        if (!is_array($translations)) $translations = [];
 
         $machines = file_exists($machinesFile) ? json_decode(file_get_contents($machinesFile), true) : [];
+        if (!is_array($machines)) $machines = [];
         $certificates = file_exists($certificatesFile) ? json_decode(file_get_contents($certificatesFile), true) : [];
+        if (!is_array($certificates)) $certificates = [];
         $faqs = file_exists($faqsFile) ? json_decode(file_get_contents($faqsFile), true) : [];
+        if (!is_array($faqs)) $faqs = [];
         $blogs = file_exists($blogsFile) ? json_decode(file_get_contents($blogsFile), true) : [];
+        if (!is_array($blogs)) $blogs = [];
 
         $contacts = [];
         if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && file_exists($contactsFile)) {
@@ -392,13 +399,20 @@ switch ($action) {
         check_csrf_token();
         $rawPost = file_get_contents('php://input');
         $item = json_decode($rawPost, true);
-        if (!$item || !isset($item['id'])) {
+        if (!is_array($item)) {
+            $item = [];
+        }
+        if (!isset($item['id']) && isset($_GET['id'])) {
+            $item['id'] = trim($_GET['id']);
+        }
+        if (empty($item['id'])) {
             http_response_code(400);
             echo json_encode(["status" => "error", "message" => "Geçersiz kategori verisi."]);
             exit();
         }
 
         $categories = file_exists($categoriesFile) ? json_decode(file_get_contents($categoriesFile), true) : [];
+        if (!is_array($categories)) $categories = [];
         $updated = false;
         for ($i = 0; $i < count($categories); $i++) {
             if ($categories[$i]['id'] === $item['id']) {
@@ -439,13 +453,17 @@ switch ($action) {
         check_csrf_token();
         $rawPost = file_get_contents('php://input');
         $item = json_decode($rawPost, true);
-        if (!$item) {
+        if (!is_array($item) || !isset($item['tr']) || !is_array($item['tr']) || !isset($item['en']) || !is_array($item['en'])) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Geçersiz çeviri verisi."]);
+            echo json_encode(["status" => "error", "message" => "Geçersiz çeviri verisi. TR ve EN veri kümeleri zorunludur."]);
             exit();
         }
 
-        safe_json_write($translationsFile, $item);
+        if (!safe_json_write($translationsFile, $item)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Çeviri verisi güvenli şekilde kaydedilemedi; mevcut dosya korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Çeviriler kaydedildi."]);
         break;
 

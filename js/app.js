@@ -1786,7 +1786,9 @@ document.addEventListener('DOMContentLoaded', () => {
       </header>
       <div class="container blog-detail-layout">
         <div class="blog-detail-cover"><img src="${_blogEsc(image)}" alt="${_blogEsc(title)}" width="1200" height="675" decoding="async" fetchpriority="high"></div>
-        <div class="blog-article-content">${paragraphs.map(p=>`<p>${_blogEsc(p)}</p>`).join('')}</div>
+        <div class="blog-article-content">${paragraphs.map(p=>`<p>${_blogEsc(p)}</p>`).join('')}
+          ${blog.related_url ? `<p class="blog-related-link"><a href="${_blogEsc(blog.related_url)}">${_blogEsc(lang==='en' ? (blog.related_label_en || 'Explore related content') : (blog.related_label_tr || 'İlgili içeriği inceleyin'))} <span aria-hidden="true">↗</span></a></p>` : ''}
+        </div>
         <div class="blog-detail-cta">
           <div><span class="section-tag">Nevra Plastik</span><h2>${lang==='en'?'Need technical information?':'Teknik bilgiye mi ihtiyacınız var?'}</h2><p>${lang==='en'?'Contact our team for product and raw material requirements.':'Ürün ve hammadde ihtiyaçlarınız için ekibimizle iletişime geçin.'}</p></div>
           <a class="btn btn-primary" href="iletisim.html">${lang==='en'?'Contact Us':'İletişime Geç'}</a>

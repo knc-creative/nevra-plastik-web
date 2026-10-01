@@ -127,6 +127,58 @@ function getExpectedSetupToken($dataDir) {
     return null;
 }
 
+
+function getLoginRateLimitState($dataDir, $clientIp) {
+    $file = $dataDir . '/login_attempts.json';
+    $now = time();
+    $window = 600; // 10 minutes
+    $maxAttempts = 5;
+
+    $all = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
+    if (!is_array($all)) $all = [];
+
+    foreach ($all as $ip => $entry) {
+        $attempts = isset($entry['attempts']) && is_array($entry['attempts']) ? $entry['attempts'] : [];
+        $attempts = array_values(array_filter($attempts, function($ts) use ($now, $window) {
+            return is_numeric($ts) && ($now - (int)$ts) < $window;
+        }));
+        if (empty($attempts)) {
+            unset($all[$ip]);
+        } else {
+            $all[$ip] = ['attempts' => $attempts];
+        }
+    }
+
+    $attempts = isset($all[$clientIp]['attempts']) ? $all[$clientIp]['attempts'] : [];
+    return [
+        'file' => $file,
+        'all' => $all,
+        'attempts' => $attempts,
+        'blocked' => count($attempts) >= $maxAttempts,
+        'max' => $maxAttempts
+    ];
+}
+
+function recordFailedLoginAttempt($state, $clientIp) {
+    $all = $state['all'];
+    if (!isset($all[$clientIp]) || !is_array($all[$clientIp])) {
+        $all[$clientIp] = ['attempts' => []];
+    }
+    if (!isset($all[$clientIp]['attempts']) || !is_array($all[$clientIp]['attempts'])) {
+        $all[$clientIp]['attempts'] = [];
+    }
+    $all[$clientIp]['attempts'][] = time();
+    safe_json_write($state['file'], $all);
+}
+
+function clearLoginAttempts($state, $clientIp) {
+    $all = $state['all'];
+    if (isset($all[$clientIp])) {
+        unset($all[$clientIp]);
+        safe_json_write($state['file'], $all);
+    }
+}
+
 switch ($action) {
     case 'check_setup':
         $isLoggedIn = (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true);
@@ -225,6 +277,15 @@ switch ($action) {
             exit();
         }
 
+        $clientIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+        $loginRate = getLoginRateLimitState($dataDir, $clientIp);
+        if ($loginRate['blocked']) {
+            http_response_code(429);
+            header('Retry-After: 600');
+            echo json_encode(["status" => "error", "message" => "Çok fazla başarısız giriş denemesi. Lütfen 10 dakika sonra tekrar deneyin."]);
+            exit();
+        }
+
         $rawPost = file_get_contents('php://input');
         $postData = json_decode($rawPost, true);
         if (!$postData) $postData = $_POST;
@@ -233,6 +294,7 @@ switch ($action) {
         $pass = isset($postData['password']) ? $postData['password'] : '';
 
         if ($user === $adminUser && password_verify($pass, $adminHash)) {
+            clearLoginAttempts($loginRate, $clientIp);
             session_regenerate_id(true);
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_user'] = $user;
@@ -243,6 +305,8 @@ switch ($action) {
                 "csrf_token" => $csrfToken
             ]);
         } else {
+            recordFailedLoginAttempt($loginRate, $clientIp);
+            usleep(random_int(150000, 350000));
             http_response_code(400);
             echo json_encode(["status" => "error", "message" => "Geçersiz kullanıcı adı veya şifre."]);
         }
@@ -312,13 +376,14 @@ switch ($action) {
         break;
 
     case 'load':
+        $isAdmin = (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true);
+
         $products = file_exists($productsFile) ? json_decode(file_get_contents($productsFile), true) : [];
         if (!is_array($products)) $products = [];
         $categories = file_exists($categoriesFile) ? json_decode(file_get_contents($categoriesFile), true) : [];
         if (!is_array($categories)) $categories = [];
         $translations = file_exists($translationsFile) ? json_decode(file_get_contents($translationsFile), true) : [];
         if (!is_array($translations)) $translations = [];
-
         $machines = file_exists($machinesFile) ? json_decode(file_get_contents($machinesFile), true) : [];
         if (!is_array($machines)) $machines = [];
         $certificates = file_exists($certificatesFile) ? json_decode(file_get_contents($certificatesFile), true) : [];
@@ -328,9 +393,28 @@ switch ($action) {
         $blogs = file_exists($blogsFile) ? json_decode(file_get_contents($blogsFile), true) : [];
         if (!is_array($blogs)) $blogs = [];
 
+        if (!$isAdmin) {
+            $products = array_values(array_filter($products, function($item) {
+                return !isset($item['status']) || $item['status'] !== 'passive';
+            }));
+            $machines = array_values(array_filter($machines, function($item) {
+                return !isset($item['status']) || $item['status'] !== 'passive';
+            }));
+            $certificates = array_values(array_filter($certificates, function($item) {
+                return !isset($item['status']) || $item['status'] === 'active';
+            }));
+            $faqs = array_values(array_filter($faqs, function($item) {
+                return isset($item['status']) && $item['status'] === 'active';
+            }));
+            $blogs = array_values(array_filter($blogs, function($item) {
+                return isset($item['status']) && $item['status'] === 'active';
+            }));
+        }
+
         $contacts = [];
-        if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && file_exists($contactsFile)) {
+        if ($isAdmin && file_exists($contactsFile)) {
             $contacts = json_decode(file_get_contents($contactsFile), true);
+            if (!is_array($contacts)) $contacts = [];
         }
 
         echo json_encode([
@@ -343,7 +427,7 @@ switch ($action) {
             "certificates" => $certificates,
             "faqs" => $faqs,
             "blogs" => $blogs,
-            "csrf_token" => (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) ? get_csrf_token() : null
+            "csrf_token" => $isAdmin ? get_csrf_token() : null
         ]);
         break;
 

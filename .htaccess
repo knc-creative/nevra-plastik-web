@@ -50,6 +50,11 @@ RewriteEngine On
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
+# Brotli Compression rules (used when mod_brotli is available)
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
 # Gzip Compression rules
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml

@@ -19,6 +19,22 @@ if (!$blog) {
 function h($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
 }
+function blog_topic_entity($tag) {
+    $key = mb_strtolower(trim((string)$tag), 'UTF-8');
+    $map = [
+        'pp' => 'https://nevraplastik.com/urun-pp-moblen',
+        'pe' => 'https://nevraplastik.com/urun-elteks',
+        'plastik granül' => 'https://nevraplastik.com/urunler',
+        'plastik hammadde' => 'https://nevraplastik.com/urunler',
+        'hammadde' => 'https://nevraplastik.com/urunler',
+        'geri dönüşüm' => 'https://nevraplastik.com/surdurulebilirlik',
+        'kalite' => 'https://nevraplastik.com/kalite',
+        'mfi' => 'https://nevraplastik.com/kalite'
+    ];
+    $entity = ["@type" => "Thing", "name" => $tag];
+    if (isset($map[$key])) $entity["url"] = $map[$key];
+    return $entity;
+}
 $title = $blog['meta_title_tr'] ?? ($blog['title_tr'] ?? 'Blog Yazısı Bulunamadı | Nevra Plastik');
 $description = $blog['meta_description_tr'] ?? ($blog['excerpt_tr'] ?? 'Nevra Plastik teknik blog içeriği.');
 $canonical = $blog ? 'https://nevraplastik.com/blog/' . rawurlencode($blog['slug']) : 'https://nevraplastik.com/blog';
@@ -68,9 +84,7 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
       "inLanguage" => "tr-TR",
       "articleSection" => "Plastik Hammadde ve Geri Dönüşüm",
       "keywords" => implode(", ", $blog["tags"] ?? []),
-      "about" => array_map(function($tag) {
-          return ["@type" => "Thing", "name" => $tag];
-      }, $blog["tags"] ?? [])
+      "about" => array_map('blog_topic_entity', $blog["tags"] ?? [])
   ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
   </script>
   <?php endif; ?>

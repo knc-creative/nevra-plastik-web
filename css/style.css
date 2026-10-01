@@ -2725,3 +2725,43 @@ table {
     transition: none !important;
   }
 }
+
+
+/* ==========================================================================
+   CORE WEB VITALS MEDIA STABILITY
+   ========================================================================== */
+.product-img-wrapper {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.product-img-wrapper .product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.machine-img-container {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.machine-img-container .machine-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blog-card-media {
+  aspect-ratio: 16 / 9;
+}
+.blog-card-media img {
+  aspect-ratio: 16 / 9;
+}
+.blog-detail-cover {
+  aspect-ratio: 16 / 9;
+}
+.blog-detail-cover img {
+  width: 100%;
+  height: 100%;
+}
+.logo-img,
+.footer-logo {
+  object-fit: contain;
+}

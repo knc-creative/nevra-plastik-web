@@ -27,18 +27,31 @@
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "PPR-C Kopolimer Granül Hammadde",
-    "description": "Sıcak-soğuk su boruları, sıhhi tesisat ek parçaları ve altyapı boru grupları için random kopolimer granüller.",
-    "brand": {
-        "@type": "Brand",
-        "name": "Nevra Plastik"
-    },
-    "image": "https://nevraplastik.com/uploads/1784064105_6215_kategori-elastomer.jpeg",
-    "category": "Plastik Geri Dönüşüm Hammadde"
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://nevraplastik.com/urun-pprc#collection",
+  "name": "PPR-C Granül Ürünleri",
+  "description": "Nevra Plastik PPR-C random kopolimer granül ürün grubu.",
+  "url": "https://nevraplastik.com/urun-pprc",
+  "isPartOf": {
+    "@id": "https://nevraplastik.com/#website"
+  },
+  "about": {
+    "@id": "https://nevraplastik.com/#organization"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Nevra PPR-C",
+        "url": "https://nevraplastik.com/urun-detail-pprc"
+      }
+    ]
+  }
 }
-  </script>
+</script>
   <script type="application/ld+json">
 {
     "@context": "https://schema.org",

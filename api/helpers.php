@@ -18,10 +18,10 @@ function init_secure_session() {
     if (session_status() === PHP_SESSION_NONE) {
         ini_set('session.use_strict_mode', '1');
         ini_set('session.use_only_cookies', '1');
-        
-        $isSecure = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === '1')) 
+
+        $isSecure = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === '1'))
                  || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
-                 
+
         session_set_cookie_params([
             'lifetime' => 0,
             'path' => '/',
@@ -31,6 +31,37 @@ function init_secure_session() {
             'samesite' => 'Strict'
         ]);
         session_start();
+
+        if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+            $now = time();
+            $idleLimit = 1800;      // 30 minutes of inactivity
+            $absoluteLimit = 28800; // 8 hours maximum session lifetime
+
+            if (!isset($_SESSION['admin_started_at'])) {
+                $_SESSION['admin_started_at'] = $now;
+            }
+            if (!isset($_SESSION['admin_last_activity'])) {
+                $_SESSION['admin_last_activity'] = $now;
+            }
+
+            $idleExpired = ($now - (int)$_SESSION['admin_last_activity']) > $idleLimit;
+            $absoluteExpired = ($now - (int)$_SESSION['admin_started_at']) > $absoluteLimit;
+
+            if ($idleExpired || $absoluteExpired) {
+                $_SESSION = [];
+                if (ini_get('session.use_cookies')) {
+                    $params = session_get_cookie_params();
+                    setcookie(session_name(), '', time() - 42000,
+                        $params['path'], $params['domain'],
+                        $params['secure'], $params['httponly']
+                    );
+                }
+                session_destroy();
+                return;
+            }
+
+            $_SESSION['admin_last_activity'] = $now;
+        }
     }
 }
 
@@ -110,6 +141,46 @@ function safe_json_write($filepath, $data) {
     }
 
     return true;
+}
+
+
+function safe_json_mutate($filepath, $callback, $default = []) {
+    $dir = dirname($filepath);
+    if (!is_dir($dir) && !mkdir($dir, 0755, true) && !is_dir($dir)) {
+        return false;
+    }
+
+    $lockFile = $filepath . '.lock';
+    $lockHandle = @fopen($lockFile, 'c');
+    if (!$lockHandle) {
+        return false;
+    }
+
+    if (!flock($lockHandle, LOCK_EX)) {
+        fclose($lockHandle);
+        return false;
+    }
+
+    try {
+        $current = $default;
+        if (is_file($filepath)) {
+            $decoded = json_decode(file_get_contents($filepath), true);
+            if (is_array($decoded)) {
+                $current = $decoded;
+            }
+        }
+
+        $updated = $callback($current);
+        if ($updated === null) {
+            $updated = $current;
+        }
+
+        return safe_json_write($filepath, $updated);
+    } finally {
+        flock($lockHandle, LOCK_UN);
+        fclose($lockHandle);
+        @unlink($lockFile);
+    }
 }
 
 function set_secure_cors_headers() {

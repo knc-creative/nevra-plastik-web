@@ -55,19 +55,22 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
   <script type="application/ld+json">
   <?= json_encode([
       "@context" => "https://schema.org",
-      "@type" => "Article",
+      "@type" => "BlogPosting",
       "headline" => $blog["title_tr"] ?? "",
       "description" => $description,
       "datePublished" => $blog["publish_date"] ?? "",
       "dateModified" => $blog["publish_date"] ?? "",
       "mainEntityOfPage" => $canonical,
       "image" => [$coverAbs],
-      "author" => ["@type" => "Organization", "name" => "Nevra Plastik"],
-      "publisher" => [
-          "@type" => "Organization",
-          "name" => "Nevra Plastik",
-          "logo" => ["@type" => "ImageObject", "url" => "https://nevraplastik.com/uploads/1783198954_3487_nevra_gu_ncel_logo.svg"]
-      ]
+      "author" => ["@id" => "https://nevraplastik.com/#organization"],
+      "publisher" => ["@id" => "https://nevraplastik.com/#organization"],
+      "isPartOf" => ["@id" => "https://nevraplastik.com/#website"],
+      "inLanguage" => "tr-TR",
+      "articleSection" => "Plastik Hammadde ve Geri Dönüşüm",
+      "keywords" => implode(", ", $blog["tags"] ?? []),
+      "about" => array_map(function($tag) {
+          return ["@type" => "Thing", "name" => $tag];
+      }, $blog["tags"] ?? [])
   ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
   </script>
   <?php endif; ?>

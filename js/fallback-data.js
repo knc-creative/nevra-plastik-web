@@ -1379,3 +1379,79 @@ const fallbackFaqs = [
   }
 ];
 
+
+
+const fallbackBlogs = [
+  {
+    "id": "blog_001",
+    "slug": "geri-donusturulmus-plastik-granul-nedir",
+    "title_tr": "Geri Dönüştürülmüş Plastik Granül Nedir?",
+    "title_en": "What Is Recycled Plastic Granule?",
+    "excerpt_tr": "Geri dönüştürülmüş plastik granülün üretim mantığını, kullanım alanlarını ve hammadde seçiminde dikkat edilmesi gereken temel noktaları özetliyoruz.",
+    "excerpt_en": "An overview of how recycled plastic granules are produced, where they are used, and the key points to consider when selecting raw materials.",
+    "content_tr": "Geri dönüştürülmüş plastik granül; uygun plastik atıkların ayrıştırılması, temizlenmesi, hazırlanması, ekstrüzyon ve granülleme aşamalarından geçirilmesiyle yeniden üretimde kullanılabilir hammadde formuna dönüştürülmesidir.\n\nDoğru uygulama için polimer türü, MFI aralığı, yoğunluk, renk, dolgu oranı ve hedef üretim prosesi birlikte değerlendirilmelidir. Bu nedenle granül seçimi yalnızca ürün adına göre değil, üretilecek parçanın teknik beklentilerine göre yapılmalıdır.\n\nGeri dönüştürülmüş hammaddenin avantajı, uygun kalite kontrol süreçleriyle kaynak verimliliğini artırırken üretim ihtiyaçlarına göre farklı teknik sınıflarda sunulabilmesidir.",
+    "content_en": "Recycled plastic granule is produced by sorting, cleaning and preparing suitable plastic waste before extrusion and pelletizing it into a reusable raw material.\n\nFor the right application, polymer type, MFI range, density, color, filler ratio and the target manufacturing process should be evaluated together. Granule selection should therefore be based on the technical requirements of the final part rather than the product name alone.\n\nWith appropriate quality control, recycled raw materials can improve resource efficiency while being supplied in different technical grades for specific production needs.",
+    "cover_image": "assets/product-pp.webp",
+    "tags": [
+      "geri dönüşüm",
+      "plastik granül",
+      "hammadde"
+    ],
+    "meta_title_tr": "Geri Dönüştürülmüş Plastik Granül Nedir? | Nevra Plastik",
+    "meta_title_en": "What Is Recycled Plastic Granule? | Nevra Plastik",
+    "meta_description_tr": "Geri dönüştürülmüş plastik granülün üretimi, kullanım alanları ve doğru hammadde seçiminde dikkat edilmesi gereken temel kriterler.",
+    "meta_description_en": "Learn how recycled plastic granules are produced, where they are used and what to consider when selecting the right raw material.",
+    "publish_date": "2026-10-01",
+    "status": "active",
+    "featured": true,
+    "sort_order": 1
+  },
+  {
+    "id": "blog_002",
+    "slug": "pp-ve-pe-granul-arasindaki-farklar",
+    "title_tr": "PP ve PE Granül Arasındaki Temel Farklar",
+    "title_en": "Key Differences Between PP and PE Granules",
+    "excerpt_tr": "PP ve PE hammaddeleri arasındaki temel teknik farkları ve hangi üretim ihtiyaçlarında öne çıktıklarını genel hatlarıyla karşılaştırıyoruz.",
+    "excerpt_en": "A practical comparison of the core technical differences between PP and PE raw materials and the production needs they commonly serve.",
+    "content_tr": "Polipropilen (PP) ve polietilen (PE), plastik üretiminde en yaygın kullanılan termoplastikler arasındadır. Ancak yoğunluk, rijitlik, darbe davranışı, kimyasal dayanım ve işleme karakterleri açısından farklılık gösterirler.\n\nPP genellikle daha yüksek rijitlik ve sıcaklık dayanımının beklendiği uygulamalarda tercih edilirken PE; esneklik, darbe dayanımı ve farklı yoğunluk sınıfları sayesinde geniş bir uygulama alanına sahiptir.\n\nDoğru seçim; ürün geometrisi, üretim yöntemi, mekanik beklentiler, yüzey kalitesi ve maliyet hedefleri birlikte değerlendirilerek yapılmalıdır.",
+    "content_en": "Polypropylene (PP) and polyethylene (PE) are among the most widely used thermoplastics, but they differ in density, stiffness, impact behavior, chemical resistance and processing characteristics.\n\nPP is commonly selected where higher stiffness and temperature resistance are required, while PE offers a broad application range thanks to its flexibility, impact resistance and multiple density grades.\n\nThe right choice depends on part geometry, manufacturing method, mechanical expectations, surface requirements and cost targets.",
+    "cover_image": "assets/product-pe.webp",
+    "tags": [
+      "PP",
+      "PE",
+      "plastik hammadde"
+    ],
+    "meta_title_tr": "PP ve PE Granül Arasındaki Farklar | Nevra Plastik",
+    "meta_title_en": "PP vs PE Granules: Key Differences | Nevra Plastik",
+    "meta_description_tr": "PP ve PE granül arasındaki temel farkları; rijitlik, yoğunluk, işleme ve kullanım alanları açısından inceleyin.",
+    "meta_description_en": "Compare PP and PE granules across stiffness, density, processing behavior and common application areas.",
+    "publish_date": "2026-10-01",
+    "status": "active",
+    "featured": false,
+    "sort_order": 2
+  },
+  {
+    "id": "blog_003",
+    "slug": "geri-donusturulmus-hammaddede-kaliteyi-belirleyen-unsurlar",
+    "title_tr": "Geri Dönüştürülmüş Hammaddede Kaliteyi Belirleyen Unsurlar",
+    "title_en": "What Determines Quality in Recycled Raw Materials?",
+    "excerpt_tr": "Parti tutarlılığı, saflık, MFI, yoğunluk ve renk gibi parametrelerin geri dönüştürülmüş hammaddede neden önemli olduğunu ele alıyoruz.",
+    "excerpt_en": "Why consistency, purity, MFI, density and color matter when evaluating recycled polymer raw materials.",
+    "content_tr": "Geri dönüştürülmüş plastik hammaddede kalite tek bir değerden ibaret değildir. Hammaddenin kaynağı, ayrıştırma doğruluğu, temizleme seviyesi, proses kontrolü ve son ürün testleri birlikte değerlendirilmelidir.\n\nMFI, yoğunluk ve renk gibi ölçülebilir parametreler üretim tekrarlanabilirliği açısından önemlidir. Bunun yanında yabancı madde oranı, nem ve lotlar arası değişkenlik de üretim kalitesini doğrudan etkileyebilir.\n\nBu nedenle B2B hammadde seçiminde yalnızca fiyat değil, teknik veri sürekliliği ve tedarikçiden alınabilen proses desteği de değerlendirilmelidir.",
+    "content_en": "Quality in recycled plastic raw materials cannot be reduced to a single value. Feedstock source, sorting accuracy, cleaning level, process control and final material testing all matter.\n\nMeasurable parameters such as MFI, density and color are important for production repeatability. Contamination, moisture and batch-to-batch variation can also directly affect manufacturing quality.\n\nFor B2B sourcing, decisions should therefore consider not only price, but also technical data consistency and the process support available from the supplier.",
+    "cover_image": "assets/facility.webp",
+    "tags": [
+      "kalite",
+      "MFI",
+      "geri dönüşüm"
+    ],
+    "meta_title_tr": "Geri Dönüştürülmüş Hammaddede Kalite | Nevra Plastik",
+    "meta_title_en": "Quality in Recycled Raw Materials | Nevra Plastik",
+    "meta_description_tr": "Geri dönüştürülmüş plastik hammaddede kaliteyi etkileyen MFI, yoğunluk, renk, saflık ve parti tutarlılığı gibi temel kriterler.",
+    "meta_description_en": "Key criteria that influence recycled plastic quality, including MFI, density, color, purity and batch consistency.",
+    "publish_date": "2026-10-01",
+    "status": "active",
+    "featured": false,
+    "sort_order": 3
+  }
+];

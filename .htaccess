@@ -1,5 +1,5 @@
 # Prevent direct access to sensitive data files and configs
-<FilesMatch "\.(json|log|env|tmp)$">
+<FilesMatch "\.(json|log|env|tmp|bak|sql|ini|conf|ya?ml)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
@@ -29,7 +29,7 @@ RewriteEngine On
     Header set Referrer-Policy "strict-origin-when-cross-origin"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src 'self' https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; frame-src 'self' https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
     
     # HSTS header (Active when HTTPS is on)
     Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"

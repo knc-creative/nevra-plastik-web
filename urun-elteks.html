@@ -93,13 +93,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=9.7">
+  <link rel="stylesheet" href="css/style.css?v=9.8">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 
   <!-- Fallback local database -->
-  <script src="js/fallback-data.js?v=9.7"></script>
+  <script src="js/fallback-data.js?v=9.8" defer></script>
 </head>
 <body>
   <!-- Preloader Screen -->
@@ -359,8 +359,8 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
-  <script src="js/app.js?v=9.7"></script>
+  <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js" defer></script>
+  <script src="js/app.js?v=9.8" defer></script>
   <script>
     // Dynamic Product Category Page Loader
     document.addEventListener("DOMContentLoaded", () => {
@@ -402,7 +402,7 @@
 
           card.innerHTML = `
             <div class="product-img-wrapper" style="background-color: var(--light-gray); border-radius: 12px 12px 0 0;">
-              <img src="${prod.image || 'assets/product-pp.webp'}" alt="${name}" class="product-img" style="${filterStyle}" loading="lazy" decoding="async">
+              <img src="${prod.image || 'assets/product-pp.webp'}" alt="${name}" class="product-img" style="${filterStyle}" loading="lazy" decoding="async" width="800" height="600">
             </div>
             <div class="product-card-content">
               ${codeTag}

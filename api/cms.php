@@ -371,7 +371,11 @@ switch ($action) {
             $products[] = $item;
         }
 
-        safe_json_write($productsFile, $products);
+        if (!safe_json_write($productsFile, $products)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Ürün verisi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Ürün başarıyla kaydedildi."]);
         break;
 
@@ -390,8 +394,53 @@ switch ($action) {
             return $p['id'] !== $id;
         }));
 
-        safe_json_write($productsFile, $products);
+        if (!safe_json_write($productsFile, $products)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Ürün silme işlemi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Ürün silindi."]);
+        break;
+
+    case 'reorder_products':
+        check_admin_auth();
+        check_csrf_token();
+        $rawPost = file_get_contents('php://input');
+        $orderIds = json_decode($rawPost, true);
+        if (!is_array($orderIds)) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Geçersiz ürün sıralama verisi."]);
+            exit();
+        }
+
+        $products = file_exists($productsFile) ? json_decode(file_get_contents($productsFile), true) : [];
+        if (!is_array($products)) $products = [];
+
+        $byId = [];
+        foreach ($products as $product) {
+            if (isset($product['id'])) $byId[(string)$product['id']] = $product;
+        }
+
+        $reordered = [];
+        $seen = [];
+        foreach ($orderIds as $id) {
+            $key = (string)$id;
+            if (isset($byId[$key]) && !isset($seen[$key])) {
+                $reordered[] = $byId[$key];
+                $seen[$key] = true;
+            }
+        }
+        foreach ($products as $product) {
+            $key = isset($product['id']) ? (string)$product['id'] : '';
+            if ($key === '' || !isset($seen[$key])) $reordered[] = $product;
+        }
+
+        if (!safe_json_write($productsFile, $reordered)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Ürün sıralaması kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
+        echo json_encode(["status" => "success", "message" => "Ürün sıralaması kaydedildi."]);
         break;
 
     case 'save_category':
@@ -425,7 +474,11 @@ switch ($action) {
             $categories[] = $item;
         }
 
-        safe_json_write($categoriesFile, $categories);
+        if (!safe_json_write($categoriesFile, $categories)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Kategori verisi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Kategori kaydedildi."]);
         break;
 
@@ -444,7 +497,11 @@ switch ($action) {
             return $c['id'] !== $id;
         }));
 
-        safe_json_write($categoriesFile, $categories);
+        if (!safe_json_write($categoriesFile, $categories)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Kategori silme işlemi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Kategori silindi."]);
         break;
 
@@ -491,7 +548,11 @@ switch ($action) {
             $machines[] = $item;
         }
 
-        safe_json_write($machinesFile, $machines);
+        if (!safe_json_write($machinesFile, $machines)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Makine verisi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Makine kaydedildi."]);
         break;
 
@@ -510,7 +571,11 @@ switch ($action) {
             return $m['id'] !== $id;
         }));
 
-        safe_json_write($machinesFile, $machines);
+        if (!safe_json_write($machinesFile, $machines)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Makine silme işlemi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Makine silindi."]);
         break;
 
@@ -538,7 +603,11 @@ switch ($action) {
             $certificates[] = $item;
         }
 
-        safe_json_write($certificatesFile, $certificates);
+        if (!safe_json_write($certificatesFile, $certificates)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Belge verisi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Sertifika kaydedildi."]);
         break;
 
@@ -557,7 +626,11 @@ switch ($action) {
             return $c['id'] !== $id;
         }));
 
-        safe_json_write($certificatesFile, $certificates);
+        if (!safe_json_write($certificatesFile, $certificates)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Belge silme işlemi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Sertifika silindi."]);
         break;
 
@@ -576,7 +649,11 @@ switch ($action) {
             return $c['id'] !== $id;
         }));
 
-        safe_json_write($contactsFile, $contacts);
+        if (!safe_json_write($contactsFile, $contacts)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "İletişim kaydı güncellenemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "İletişim mesajı silindi."]);
         break;
 
@@ -604,7 +681,11 @@ switch ($action) {
             $faqs[] = $item;
         }
 
-        safe_json_write($faqsFile, $faqs);
+        if (!safe_json_write($faqsFile, $faqs)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "SSS verisi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Soru başarıyla kaydedildi."]);
         break;
 
@@ -623,7 +704,11 @@ switch ($action) {
             return $f['id'] !== $id;
         }));
 
-        safe_json_write($faqsFile, $faqs);
+        if (!safe_json_write($faqsFile, $faqs)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "SSS silme işlemi kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Soru silindi."]);
         break;
 
@@ -648,7 +733,11 @@ switch ($action) {
             }
         }
 
-        safe_json_write($faqsFile, $faqs);
+        if (!safe_json_write($faqsFile, $faqs)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "SSS durumu kaydedilemedi; mevcut veri korundu."]);
+            exit();
+        }
         echo json_encode(["status" => "success", "message" => "Durum güncellendi."]);
         break;
 

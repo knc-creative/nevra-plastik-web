@@ -70,12 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sticky Header on Scroll
   window.addEventListener('scroll', () => {
+    if (!header) return;
     if (window.scrollY > 50) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
-  });
+  }, { passive: true });
 
   // Mobile Nav Toggle Drawer & Alignment
   const navList = navMenu ? navMenu.querySelector('.nav-list') : null;
@@ -1718,7 +1719,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tags=Array.isArray(b.tags) ? b.tags.slice(0,3) : [];
       return `<article class="blog-card scroll-reveal ${b.featured && i===0 ? 'blog-card-featured' : ''}">
         <a class="blog-card-media" href="${_blogUrl(b.slug)}" aria-label="${title}">
-          <img src="${image}" alt="${title}" loading="lazy">
+          <img src="${image}" alt="${title}" loading="${i===0?'eager':'lazy'}" decoding="async" width="1200" height="675" ${i===0?'fetchpriority="high"':''}>
         </a>
         <div class="blog-card-body">
           <div class="blog-card-meta"><span>${_formatBlogDate(b.publish_date,lang)}</span>${b.featured ? '<span class="blog-featured-pill">Öne Çıkan</span>' : ''}</div>
@@ -1737,7 +1738,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderBlogDetail(lang) {
     const root = document.getElementById('blog-detail-root');
     if (!root) return;
-    const slug = new URLSearchParams(window.location.search).get('slug') || '';
+    const querySlug = new URLSearchParams(window.location.search).get('slug') || '';
+    const pathMatch = window.location.pathname.match(/\/blog\/([^/?#]+)/);
+    const slug = querySlug || (pathMatch ? decodeURIComponent(pathMatch[1]) : '');
     const blog = _activeBlogs().find(b => b.slug === slug);
     if (!blog) {
       root.innerHTML = '<div class="container blog-not-found"><span class="section-tag">Blog</span><h1>Yazı bulunamadı.</h1><p>Aradığınız içerik kaldırılmış veya bağlantı hatalı olabilir.</p><a class="btn btn-primary" href="blog.html">Bloga Dön</a></div>';
@@ -1761,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </header>
       <div class="container blog-detail-layout">
-        <div class="blog-detail-cover"><img src="${_blogEsc(image)}" alt="${_blogEsc(title)}"></div>
+        <div class="blog-detail-cover"><img src="${_blogEsc(image)}" alt="${_blogEsc(title)}" width="1200" height="675" decoding="async" fetchpriority="high"></div>
         <div class="blog-article-content">${paragraphs.map(p=>`<p>${_blogEsc(p)}</p>`).join('')}</div>
         <div class="blog-detail-cta">
           <div><span class="section-tag">Nevra Plastik</span><h2>${lang==='en'?'Need technical information?':'Teknik bilgiye mi ihtiyacınız var?'}</h2><p>${lang==='en'?'Contact our team for product and raw material requirements.':'Ürün ve hammadde ihtiyaçlarınız için ekibimizle iletişime geçin.'}</p></div>

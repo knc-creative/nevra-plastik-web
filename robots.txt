@@ -11,6 +11,8 @@ Disallow: /nevracms.html
 Disallow: /api/data/
 Disallow: /api/cms.php
 Disallow: /api/upload.php
+Disallow: /blog.php
+Disallow: /sss.php
 Disallow: /deploy/
 Disallow: /deploy_v2/
 Disallow: /scratch/

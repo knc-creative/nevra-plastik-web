@@ -2747,13 +2747,13 @@
 
     function openProductModal() {
       document.getElementById("product-form").reset();
-      document.getElementById("edit-product-id").value = ";
+      document.getElementById("edit-product-id").value = "";
       document.getElementById("prod-status").value = "active";
       document.getElementById("product-modal-title").textContent = "Yeni Ürün Ekle";
       
       for (let i = 1; i <= 4; i++) {
         document.getElementById(`modal-img-preview-${i}`).src = "assets/product-pp.webp";
-        document.getElementById(`prod-img-src-${i}`).value = ";
+        document.getElementById(`prod-img-src-${i}`).value = "";
       }
       
       selectedImageFile = null;
@@ -2799,7 +2799,7 @@
     };
 
     window.clearProductImageAtIndex = function(idx) {
-      document.getElementById(`prod-img-src-${idx}`).value = ";
+      document.getElementById(`prod-img-src-${idx}`).value = "";
       document.getElementById(`modal-img-preview-${idx}`).src = "assets/product-pp.webp";
     };
 
@@ -2824,8 +2824,8 @@
       document.getElementById("prod-status").value = prod.status || "active";
       
       // Convert arrays back to comma separated list if applicable
-      document.getElementById("prod-usage-tr").value = Array.isArray(prod.usage_tr) ? prod.usage_tr.join(", ") : (prod.usage_tr || ");
-      document.getElementById("prod-usage-en").value = Array.isArray(prod.usage_en) ? prod.usage_en.join(", ") : (prod.usage_en || ");
+      document.getElementById("prod-usage-tr").value = Array.isArray(prod.usage_tr) ? prod.usage_tr.join(", ") : (prod.usage_tr || "");
+      document.getElementById("prod-usage-en").value = Array.isArray(prod.usage_en) ? prod.usage_en.join(", ") : (prod.usage_en || "");
 
       // Load up to 4 images
       const images = Array.isArray(prod.images) ? prod.images : [];
@@ -3057,8 +3057,8 @@
       } else {
         idGroup.style.display = "block";
         document.getElementById("cat-id").required = true;
-        document.getElementById("edit-cat-id").value = ";
-        document.getElementById("cat-image").value = ";
+        document.getElementById("edit-cat-id").value = "";
+        document.getElementById("cat-image").value = "";
         title.textContent = "Yeni Kategori Ekle";
       }
       document.getElementById("category-modal").classList.add("show");
@@ -3098,7 +3098,7 @@
         })
         .catch(err => {
           input.disabled = false;
-          input.value = ";
+          input.value = "";
           alert("Görsel yüklenemedi: " + err.message);
         });
     };
@@ -3133,7 +3133,7 @@
       const isEdit = !!document.getElementById("edit-cat-id").value;
       const id = isEdit 
         ? document.getElementById("edit-cat-id").value 
-        : document.getElementById("cat-id").value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, ");
+        : document.getElementById("cat-id").value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, "");
       
       if (!id) {
         alert("Lütfen geçerli bir kategori kodu girin.");
@@ -3270,7 +3270,7 @@
           statusText.style.color = "#f59e0b";
         } else {
           statusText.textContent = "Devre Dışı (Site Açık)";
-          statusText.style.color = ";
+          statusText.style.color = "";
         }
       }
       // Populate JSON database editor
@@ -3315,7 +3315,7 @@
     window.checkInputDirty = function(input, lang) {
       const key = input.getAttribute("data-key");
       const currentVal = input.value;
-      const originalVal = (originalTranslationsData && originalTranslationsData[lang]) ? (originalTranslationsData[lang][key] || ") : ";
+      const originalVal = (originalTranslationsData && originalTranslationsData[lang]) ? (originalTranslationsData[lang][key] || ") : "";
 
       const isDifferent = currentVal !== originalVal;
       
@@ -3331,7 +3331,7 @@
         
         const otherLang = lang === "tr" ? "en" : "tr";
         const otherInput = document.querySelector(`.db-${otherLang}-input[data-key="${key}"]`);
-        const otherOriginalVal = (originalTranslationsData && originalTranslationsData[otherLang]) ? (originalTranslationsData[otherLang][key] || ") : ";
+        const otherOriginalVal = (originalTranslationsData && originalTranslationsData[otherLang]) ? (originalTranslationsData[otherLang][key] || ") : "";
         const otherIsDifferent = otherInput ? (otherInput.value !== otherOriginalVal) : false;
         
         if (!otherIsDifferent) {
@@ -3359,7 +3359,7 @@
 
       allKeys.forEach(key => {
         const trVal = translationsData.tr[key] || "";
-        const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : ";
+        const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : "";
 
         const isPreviewable = typeof trVal === "string" && (
           trVal.startsWith("uploads/") || 
@@ -3479,8 +3479,8 @@
         const trInput = row.querySelector(".db-tr-input");
         const enInput = row.querySelector(".db-en-input");
         
-        parsed.tr[key] = trInput ? trInput.value : ";
-        parsed.en[key] = enInput ? enInput.value : ";
+        parsed.tr[key] = trInput ? trInput.value : "";
+        parsed.en[key] = enInput ? enInput.value : "";
       });
       
       try {
@@ -3530,7 +3530,7 @@
         statusText.style.color = "#f59e0b";
       } else {
         statusText.textContent = "Devre Dışı (Site Açık)";
-        statusText.style.color = ";
+        statusText.style.color = "";
       }
       
       try {
@@ -3572,7 +3572,7 @@
         // Revert toggle state
         toggle.checked = !isActive;
         statusText.textContent = !isActive ? "Etkin (Site Bakımda)" : "Devre Dışı (Site Açık)";
-        statusText.style.color = !isActive ? "#f59e0b" : ";
+        statusText.style.color = !isActive ? "#f59e0b" : "";
       }
     };
 
@@ -4031,7 +4031,7 @@
 
         groupKeys.forEach(key => {
           const trVal = translationsData.tr[key] || "";
-          const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : ";
+          const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : "";
           const desc = keyDescriptions[key] || "Genel Metin";
           
           const fieldDiv = document.createElement("div");
@@ -4140,8 +4140,8 @@
           
           const trInput = field.querySelector(".tr-input");
           const enInput = field.querySelector(".en-input");
-          const trVal = trInput ? trInput.value.toLowerCase() : ";
-          const enVal = enInput ? enInput.value.toLowerCase() : ";
+          const trVal = trInput ? trInput.value.toLowerCase() : "";
+          const enVal = enInput ? enInput.value.toLowerCase() : "";
           
           const matchesQuery = !query || 
             key.toLowerCase().includes(query) || 
@@ -4367,7 +4367,7 @@
       const form = document.getElementById("certificate-form");
       
       form.reset();
-      document.getElementById("cert-id").value = ";
+      document.getElementById("cert-id").value = "";
 
       if (id) {
         titleEl.textContent = "Belgeyi Düzenle";
@@ -4386,7 +4386,7 @@
         titleEl.textContent = "Yeni Belge Ekle";
         document.getElementById("cert-icon").value = "📄";
         document.getElementById("cert-status").value = "active";
-        document.getElementById("cert-image").value = ";
+        document.getElementById("cert-image").value = "";
       }
 
       modal.classList.add("show");
@@ -4849,7 +4849,7 @@
 
     window.openMachineModal = function() {
       document.getElementById("machine-form").reset();
-      document.getElementById("mach-id").value = ";
+      document.getElementById("mach-id").value = "";
       document.getElementById("mach-status").value = "active";
       document.getElementById("machine-modal-title").textContent = "Yeni Makine Ekle";
       document.getElementById("modal-mach-img-preview").src = "assets/product-pp.webp";

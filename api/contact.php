@@ -77,18 +77,26 @@ if (!empty($honeypot)) {
 // 1. IP-based Rate Limiting (Max 5 submissions per IP in 10 minutes)
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 $rateLimitFile = __DIR__ . '/data/rate_limit.json';
+$rateLockFile = $rateLimitFile . '.lock';
+$rateLock = @fopen($rateLockFile, 'c');
+
+if (!$rateLock || !flock($rateLock, LOCK_EX)) {
+    if ($rateLock) fclose($rateLock);
+    http_response_code(503);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_write']]);
+    exit;
+}
+
+$now = time();
+$windowSeconds = 600;
+$maxSubmissions = 5;
 
 $rateData = file_exists($rateLimitFile) ? json_decode(file_get_contents($rateLimitFile), true) : [];
 if (!is_array($rateData)) $rateData = [];
 
-$now = time();
-$windowSeconds = 600; // 10 minutes
-$maxSubmissions = 5;
-
-// Clean up old entries
 foreach ($rateData as $ip => $timestamps) {
-    $rateData[$ip] = array_values(array_filter($timestamps, function($ts) use ($now, $windowSeconds) {
-        return ($now - $ts) < $windowSeconds;
+    $rateData[$ip] = array_values(array_filter(is_array($timestamps) ? $timestamps : [], function($ts) use ($now, $windowSeconds) {
+        return is_numeric($ts) && ($now - (int)$ts) < $windowSeconds;
     }));
     if (empty($rateData[$ip])) {
         unset($rateData[$ip]);
@@ -96,15 +104,33 @@ foreach ($rateData as $ip => $timestamps) {
 }
 
 $userTimestamps = $rateData[$clientIp] ?? [];
-
 if (count($userTimestamps) >= $maxSubmissions) {
+    flock($rateLock, LOCK_UN);
+    fclose($rateLock);
+    @unlink($rateLockFile);
     http_response_code(429);
+    header('Retry-After: 600');
     echo json_encode([
         'success' => false,
         'message' => 'Çok fazla istek gönderdiniz. Lütfen 10 dakika sonra tekrar deneyin. / Too many requests. Please try again in 10 minutes.'
     ]);
     exit;
 }
+
+// Reserve the submission slot while the lock is held.
+$rateData[$clientIp][] = $now;
+if (!safe_json_write($rateLimitFile, $rateData)) {
+    flock($rateLock, LOCK_UN);
+    fclose($rateLock);
+    @unlink($rateLockFile);
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_write']]);
+    exit;
+}
+
+flock($rateLock, LOCK_UN);
+fclose($rateLock);
+@unlink($rateLockFile);
 
 // Maximum Server-Side Length Controls (Fail-safe safe_strlen)
 if (safe_strlen($name) > 100 || safe_strlen($company) > 150 || safe_strlen($email) > 254 || safe_strlen($phone) > 30 || safe_strlen($capacity) > 100 || safe_strlen($message) > 3000) {
@@ -140,12 +166,6 @@ if (!$kvkk) {
     exit;
 }
 
-// Record submission timestamp for Rate Limiting
-$rateData[$clientIp][] = $now;
-if (!safe_json_write($rateLimitFile, $rateData)) {
-    error_log("Nevra Contact API Error: Failed to write rate_limit.json");
-}
-
 // Map product codes to names
 $productNames = [
     'pp' => 'PP Granül (Polipropilen)',
@@ -164,14 +184,22 @@ $machineNames = [
 ];
 $selectedMachine = isset($machineNames[$machine]) ? $machineNames[$machine] : $machine;
 
-// 1. Save submission to api/data/contacts.json atomically
+// 2. Save submission to api/data/contacts.json with an exclusive lock
 $contactsFile = __DIR__ . '/data/contacts.json';
+$contactsLockFile = $contactsFile . '.lock';
+$contactsLock = @fopen($contactsLockFile, 'c');
+
+if (!$contactsLock || !flock($contactsLock, LOCK_EX)) {
+    if ($contactsLock) fclose($contactsLock);
+    http_response_code(503);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_write']]);
+    exit;
+}
+
 $contacts = [];
 if (file_exists($contactsFile)) {
     $contacts = json_decode(file_get_contents($contactsFile), true);
-    if (!is_array($contacts)) {
-        $contacts = [];
-    }
+    if (!is_array($contacts)) $contacts = [];
 }
 
 $submission = [
@@ -193,14 +221,18 @@ $submission = [
 $contacts[] = $submission;
 
 if (!safe_json_write($contactsFile, $contacts)) {
+    flock($contactsLock, LOCK_UN);
+    fclose($contactsLock);
+    @unlink($contactsLockFile);
     error_log("Nevra Contact API Error: Failed to write contacts.json");
     http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => $activeMsgs['err_write']
-    ]);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_write']]);
     exit;
 }
+
+flock($contactsLock, LOCK_UN);
+fclose($contactsLock);
+@unlink($contactsLockFile);
 
 // 2. Prepare and Send E-mail Notification
 $to = 'info@nevraplastik.com';

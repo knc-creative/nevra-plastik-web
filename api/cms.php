@@ -248,6 +248,8 @@ switch ($action) {
             session_regenerate_id(true);
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_user'] = "admin";
+            $_SESSION['admin_started_at'] = time();
+            $_SESSION['admin_last_activity'] = time();
             $csrfToken = get_csrf_token();
             echo json_encode([
                 "status" => "success",
@@ -298,6 +300,8 @@ switch ($action) {
             session_regenerate_id(true);
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_user'] = $user;
+            $_SESSION['admin_started_at'] = time();
+            $_SESSION['admin_last_activity'] = time();
             $csrfToken = get_csrf_token();
             echo json_encode([
                 "status" => "success",

@@ -105,12 +105,12 @@ $uploadsHtaccess = $uploadDir . '.htaccess';
 if (!file_exists($uploadsHtaccess)) {
     $htContent = "Options -Indexes\n"
                . "<FilesMatch \"\\.(php|php3|php4|php5|php7|phtml|pl|py|cgi|asp|js|sh)$\">\n"
-               . "    Order Allow,Deny\n"
-               . "    Deny from all\n"
+               . "<IfModule mod_authz_core.c>\n    Require all denied\n</IfModule>\n"
+               . "<IfModule !mod_authz_core.c>\n    Order Allow,Deny\n    Deny from all\n</IfModule>\n"
                . "</FilesMatch>\n"
                . "<IfModule mod_php7.c>\n    php_flag engine off\n</IfModule>\n"
                . "<IfModule mod_php.c>\n    php_flag engine off\n</IfModule>\n"
-               . "Header set X-Content-Type-Options \"nosniff\"\n";
+               . "<IfModule mod_headers.c>\n    Header set X-Content-Type-Options \"nosniff\"\n</IfModule>\n";
     file_put_contents($uploadsHtaccess, $htContent);
 }
 

@@ -81,15 +81,35 @@ function safe_json_write($filepath, $data) {
     if ($json === false) {
         return false;
     }
+
     $dir = dirname($filepath);
-    if (!is_dir($dir)) {
-        mkdir($dir, 0755, true);
+    if (!is_dir($dir) && !mkdir($dir, 0755, true) && !is_dir($dir)) {
+        return false;
     }
+
     $tmpFile = $filepath . '.' . bin2hex(random_bytes(6)) . '.tmp';
-    if (file_put_contents($tmpFile, $json, LOCK_EX) !== false) {
-        return rename($tmpFile, $filepath);
+    if (file_put_contents($tmpFile, $json, LOCK_EX) === false) {
+        return false;
     }
-    return false;
+
+    // Verify the exact bytes we are about to publish are still valid JSON.
+    $verify = json_decode(file_get_contents($tmpFile), true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        @unlink($tmpFile);
+        return false;
+    }
+
+    // Keep one last-known-good copy before replacing the active data file.
+    if (is_file($filepath)) {
+        @copy($filepath, $filepath . '.bak');
+    }
+
+    if (!rename($tmpFile, $filepath)) {
+        @unlink($tmpFile);
+        return false;
+    }
+
+    return true;
 }
 
 function set_secure_cors_headers() {

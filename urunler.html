@@ -337,7 +337,7 @@
   </footer>
 
   <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js" defer></script>
-  <script src="js/app.js?v=9.8" defer></script>
+  <script src="js/app.js?v=9.9" defer></script>
   <script>
     // Dynamic Categories Loader
     document.addEventListener("DOMContentLoaded", () => {
@@ -363,7 +363,7 @@
 
           card.innerHTML = `
             <div class="product-img-wrapper" style="${imgWrapperStyle}">
-              <img src="${cat.image || 'assets/product-pp.webp'}" alt="${title}" class="product-img" style="${filterStyle} ${imgStyle}" loading="lazy" decoding="async">
+              <img src="${cat.image || 'assets/product-pp.webp'}" alt="${title}" class="product-img" style="${filterStyle} ${imgStyle}" loading="lazy" decoding="async" width="800" height="600">
             </div>
             <div class="product-card-content">
               <h3 class="product-card-title">${title}</h3>

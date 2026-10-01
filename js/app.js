@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Keep Blog available across all legacy page headers/footers.
-  if (navList && !navList.querySelector('[data-auto-blog-link]')) {
+  if (navList && !navList.querySelector('a[href="blog.html"], a[href="blog"]')) {
     const li = document.createElement('li');
     li.innerHTML = '<a href="blog.html" class="nav-link" data-auto-blog-link="1">Blog</a>';
     const faqLink = navList.querySelector('a[href="sss.html"], a[href="/sss"], a[href="sss"]');
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   document.querySelectorAll('.footer-links').forEach(list => {
-    if (!list.querySelector('[data-auto-blog-link]')) {
+    if (!list.querySelector('a[href="blog.html"], a[href="blog"]')) {
       const li = document.createElement('li');
       li.innerHTML = '<a href="blog.html" data-auto-blog-link="1">Blog</a>';
       list.appendChild(li);
@@ -1696,7 +1696,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function _blogUrl(slug) {
-    return 'blog-detay.html?slug=' + encodeURIComponent(slug || '');
+    const safe = encodeURIComponent(slug || '');
+    const local = ['localhost','127.0.0.1'].includes(window.location.hostname);
+    return local ? ('blog-detay.html?slug=' + safe) : ('blog/' + safe);
   }
 
   function renderBlogIndex(lang) {

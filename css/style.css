@@ -2776,3 +2776,24 @@ body.nav-open-lock {
     height: 100dvh;
   }
 }
+
+
+.blog-related-link {
+  margin-top: 2.25rem !important;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--border-color);
+}
+.blog-related-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+}
+.blog-related-link a span {
+  transition: transform .2s ease;
+}
+.blog-related-link a:hover span {
+  transform: translate(3px,-3px);
+}

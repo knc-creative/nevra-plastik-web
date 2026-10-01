@@ -279,6 +279,6 @@ function faq_h($value) {
   </footer>
 
   <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js" defer></script>
-  <script src="js/app.js?v=9.8" defer></script>
+  <script src="js/app.js?v=9.9" defer></script>
 </body>
 </html>

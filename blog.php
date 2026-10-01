@@ -79,13 +79,13 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=9.8">
+  <link rel="stylesheet" href="css/style.css?v=10.0">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 
   <!-- Fallback local database -->
-  <script src="js/fallback-data.js?v=9.8" defer></script>
+  <script src="js/fallback-data.js?v=10.0" defer></script>
 </head>
 <body>
 
@@ -250,6 +250,6 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
   </footer>
 
   <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js" defer></script>
-  <script src="js/app.js?v=9.9" defer></script>
+  <script src="js/app.js?v=10.0" defer></script>
 </body>
 </html>

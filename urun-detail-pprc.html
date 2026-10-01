@@ -27,18 +27,66 @@
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Nevra PPR-C Granül Hammadde",
-    "description": "Sıhhi tesisat ekleme parçaları, vana gövdeleri ve gri/beyaz renkli boru ekstrüzyonu için ideal hammadde.",
-    "brand": {
-        "@type": "Brand",
-        "name": "Nevra Plastik"
+  "@context": "https://schema.org",
+  "@type": "ProductGroup",
+  "@id": "https://nevraplastik.com/urun-detail-pprc#product-group",
+  "name": "Nevra PPR-C Granül Hammadde",
+  "description": "Sıhhi tesisat ekleme parçaları, vana gövdeleri ve gri/beyaz renkli boru ekstrüzyonu için PPR-C random kopolimer granül çözümleri.",
+  "url": "https://nevraplastik.com/urun-detail-pprc",
+  "brand": {
+    "@type": "Brand",
+    "name": "Nevra Plastik"
+  },
+  "manufacturer": {
+    "@id": "https://nevraplastik.com/#organization"
+  },
+  "category": "PPR-C Random Kopolimer Granül",
+  "productGroupID": "nevra-pprc",
+  "variesBy": [
+    "https://schema.org/color"
+  ],
+  "hasVariant": [
+    {
+      "@type": "Product",
+      "name": "Nevra PPR-C Gri",
+      "sku": "Nevra PPR-C Gri",
+      "color": "Gri",
+      "image": "https://nevraplastik.com/assets/product-compound.webp",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "MFI",
+          "value": "0.3 - 0.6 g/10 min (230°C / 2.16 kg)"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Yoğunluk",
+          "value": "0.895 - 0.905 g/cm³"
+        }
+      ]
     },
-    "image": "https://nevraplastik.com/uploads/1784064105_6215_kategori-elastomer.jpeg",
-    "category": "Plastik Geri Dönüşüm Hammadde"
+    {
+      "@type": "Product",
+      "name": "Nevra PPR-C Beyaz",
+      "sku": "Nevra PPR-C Beyaz",
+      "color": "Beyaz",
+      "image": "https://nevraplastik.com/assets/product-compound.webp",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "MFI",
+          "value": "0.3 - 0.6 g/10 min (230°C / 2.16 kg)"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Yoğunluk",
+          "value": "0.895 - 0.905 g/cm³"
+        }
+      ]
+    }
+  ]
 }
-  </script>
+</script>
   <script type="application/ld+json">
 {
     "@context": "https://schema.org",

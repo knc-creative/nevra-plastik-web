@@ -70,7 +70,27 @@ if (!isset($mimeToExt[$detectedMime])) {
 
 $extension = $mimeToExt[$detectedMime];
 
-// 5. Specify upload directory
+// 5. Validate image dimensions before decoding to avoid decompression/pixel bombs
+$imageInfo = @getimagesize($file['tmp_name']);
+if ($imageInfo === false || !isset($imageInfo[0], $imageInfo[1])) {
+    http_response_code(400);
+    echo json_encode(["status" => "error", "message" => "Geçersiz veya bozuk görsel dosyası."]);
+    exit();
+}
+
+$width = (int)$imageInfo[0];
+$height = (int)$imageInfo[1];
+$maxDimension = 12000;
+$maxPixels = 40000000; // 40 MP
+
+if ($width < 1 || $height < 1 || $width > $maxDimension || $height > $maxDimension || ($width * $height) > $maxPixels) {
+    http_response_code(413);
+    echo json_encode(["status" => "error", "message" => "Görsel çözünürlüğü izin verilen sınırı aşıyor."]);
+    exit();
+}
+
+
+// 6. Specify upload directory
 $uploadDir = __DIR__ . '/../uploads/';
 if (!is_dir($uploadDir)) {
     if (!mkdir($uploadDir, 0755, true)) {
@@ -94,7 +114,7 @@ if (!file_exists($uploadsHtaccess)) {
     file_put_contents($uploadsHtaccess, $htContent);
 }
 
-// 6. Generate cryptographically random secure filename
+// 7. Generate cryptographically random secure filename
 $randomName = bin2hex(random_bytes(16)) . $extension;
 $targetFilePath = $uploadDir . $randomName;
 

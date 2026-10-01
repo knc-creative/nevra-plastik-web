@@ -27,18 +27,37 @@
   <!-- Structured Data / JSON-LD -->
   <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Kompaund & Özel Polimerler",
-    "description": "Kalsiyum karbonat, cam elyafı veya mineral dolgularla mekanik özellikleri güçlendirilmiş mühendislik polimerleri.",
-    "brand": {
-        "@type": "Brand",
-        "name": "Nevra Plastik"
-    },
-    "image": "https://nevraplastik.com/uploads/1784067113_1220_dig_er_kategori_nevra.png",
-    "category": "Plastik Geri Dönüşüm Hammadde"
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://nevraplastik.com/urun-diger#collection",
+  "name": "Kompaund ve Özel Polimer Ürünleri",
+  "description": "Kalsit katkılı ve özel reçeteli kompaund granül çözümleri.",
+  "url": "https://nevraplastik.com/urun-diger",
+  "isPartOf": {
+    "@id": "https://nevraplastik.com/#website"
+  },
+  "about": {
+    "@id": "https://nevraplastik.com/#organization"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Nevra PP-Calcite",
+        "url": "https://nevraplastik.com/urun-detail-calcite"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Nevra Custom-Mix",
+        "url": "https://nevraplastik.com/urun-detail-custom"
+      }
+    ]
+  }
 }
-  </script>
+</script>
   <script type="application/ld+json">
 {
     "@context": "https://schema.org",

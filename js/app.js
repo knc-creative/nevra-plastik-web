@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isExpanded = mobileNavToggle.getAttribute('aria-expanded') === 'true';
       mobileNavToggle.setAttribute('aria-expanded', !isExpanded);
       navMenu.classList.toggle('open');
+      document.body.classList.toggle('nav-open-lock', !isExpanded);
       if (header) {
         header.classList.toggle('nav-open');
       }
@@ -148,7 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize and bind events
   adjustMenuAlignment();
-  window.addEventListener('resize', adjustMenuAlignment);
+  let navResizeRaf = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(navResizeRaf);
+    navResizeRaf = requestAnimationFrame(adjustMenuAlignment);
+  });
 
   // Close Mobile Menu on Link Click
   navLinks.forEach(link => {
@@ -162,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (header) {
         header.classList.remove('nav-open');
       }
+      document.body.classList.remove('nav-open-lock');
     });
   });
 
@@ -182,7 +188,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (header) {
         header.classList.remove('nav-open');
       }
+      document.body.classList.remove('nav-open-lock');
     }
+  });
+
+  // Keyboard safety: Escape always closes the navigation drawer.
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !navMenu || !navMenu.classList.contains('open')) return;
+    navMenu.classList.remove('open');
+    if (mobileNavToggle) {
+      mobileNavToggle.setAttribute('aria-expanded', 'false');
+      mobileNavToggle.focus();
+    }
+    if (header) header.classList.remove('nav-open');
+    document.body.classList.remove('nav-open-lock');
   });
 
   // FAQ Teaser Accordion Handler

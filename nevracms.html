@@ -932,6 +932,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <span>İletişim Formları</span>
           </button>
+          <button class="sidebar-btn" onclick="switchTab('tab-blogs', this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+            <span>Blog Yönetimi</span>
+          </button>
           <button class="sidebar-btn" onclick="switchTab('tab-faqs', this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             <span>SSS Yönetimi</span>
@@ -1279,6 +1283,30 @@
               <tbody>
                 <!-- Dynamic rows -->
               </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB: BLOG MANAGEMENT -->
+        <div id="tab-blogs" class="tab-content">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;">
+            <div>
+              <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.5rem;letter-spacing:-0.02em;">Blog Yönetimi</h2>
+              <p style="font-size:.9rem;color:var(--gray);margin-top:.25rem;">Blog yazılarını, SEO alanlarını, kapak görsellerini ve yayın durumunu yönetin.</p>
+            </div>
+            <button class="btn btn-primary" onclick="openBlogModal()">Yeni Yazı Ekle</button>
+          </div>
+          <div class="card" style="padding:1.5rem;border-radius:16px;overflow:hidden;">
+            <table class="data-table" id="blogs-table">
+              <thead><tr>
+                <th style="width:70px;text-align:center;">Sıra</th>
+                <th>Başlık</th>
+                <th style="width:140px;">Tarih</th>
+                <th style="width:100px;text-align:center;">Öne Çıkan</th>
+                <th style="width:100px;text-align:center;">Durum</th>
+                <th style="width:160px;text-align:right;">Aksiyon</th>
+              </tr></thead>
+              <tbody></tbody>
             </table>
           </div>
         </div>
@@ -1733,6 +1761,56 @@
         </div>
       </form>
     </div>
+  <!-- BLOG ADD/EDIT MODAL -->
+  <div class="modal-backdrop" id="blog-modal">
+    <div class="modal-content" style="max-width:900px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="blog-modal-title">Yeni Blog Yazısı</h3>
+        <button class="close-modal-btn" onclick="closeBlogModal()">&times;</button>
+      </div>
+      <form id="blog-form" onsubmit="saveBlogForm(event)">
+        <input type="hidden" id="blog-id">
+        <div class="grid-2">
+          <div class="form-group"><label>Türkçe Başlık</label><input id="blog-title-tr" class="form-control" required></div>
+          <div class="form-group"><label>İngilizce Başlık</label><input id="blog-title-en" class="form-control"></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>Slug / Bağlantı</label><input id="blog-slug" class="form-control" placeholder="ornek-blog-basligi" required></div>
+          <div class="form-group"><label>Yayın Tarihi</label><input id="blog-date" type="date" class="form-control" required></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>Durum</label><select id="blog-status" class="form-control"><option value="active">Aktif</option><option value="passive">Pasif</option></select></div>
+          <div class="form-group"><label>Öne Çıkan</label><select id="blog-featured" class="form-control"><option value="false">Hayır</option><option value="true">Evet</option></select></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>Sıralama</label><input id="blog-sort-order" type="number" min="1" class="form-control" value="1"></div>
+          <div class="form-group"><label>Kapak Görseli</label><input id="blog-cover-image" class="form-control" placeholder="uploads/... veya assets/..."></div>
+        </div>
+        <div class="form-group"><label>Etiketler</label><input id="blog-tags" class="form-control" placeholder="geri dönüşüm, PP, kalite"></div>
+        <div class="grid-2">
+          <div class="form-group"><label>Türkçe Özet</label><textarea id="blog-excerpt-tr" class="form-control" rows="3" required></textarea></div>
+          <div class="form-group"><label>İngilizce Özet</label><textarea id="blog-excerpt-en" class="form-control" rows="3"></textarea></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>Türkçe İçerik</label><textarea id="blog-content-tr" class="form-control" rows="10" required placeholder="Paragrafları boş satırla ayırabilirsiniz."></textarea></div>
+          <div class="form-group"><label>İngilizce İçerik</label><textarea id="blog-content-en" class="form-control" rows="10"></textarea></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>Meta Başlık TR</label><input id="blog-meta-title-tr" class="form-control"></div>
+          <div class="form-group"><label>Meta Başlık EN</label><input id="blog-meta-title-en" class="form-control"></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>Meta Açıklama TR</label><textarea id="blog-meta-desc-tr" class="form-control" rows="2"></textarea></div>
+          <div class="form-group"><label>Meta Açıklama EN</label><textarea id="blog-meta-desc-en" class="form-control" rows="2"></textarea></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:.75rem;margin-top:1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="closeBlogModal()">İptal</button>
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- FAQ ADD/EDIT MODAL -->
   <div class="modal-backdrop" id="faq-modal">
     <div class="modal-content" style="max-width: 750px;">
@@ -1895,6 +1973,7 @@
     let contactsList = [];
     let certificatesList = [];
     let faqsList = typeof fallbackFaqs !== 'undefined' ? [...fallbackFaqs] : [];
+    let blogsList = typeof fallbackBlogs !== 'undefined' ? [...fallbackBlogs] : [];
     let selectedImageFile = null;
 
     // Unified PHP CMS Session & Setup Check
@@ -2152,6 +2231,7 @@
           contactsList = data.contacts || [];
           certificatesList = data.certificates || [];
           faqsList = data.faqs || [];
+          blogsList = data.blogs || [];
           
           if (data.translations) {
             translationsData = data.translations;
@@ -2184,6 +2264,7 @@
         contactsList = [];
         certificatesList = [...fallbackCertificates];
         faqsList = typeof fallbackFaqs !== 'undefined' ? [...fallbackFaqs] : [];
+        blogsList = typeof fallbackBlogs !== 'undefined' ? [...fallbackBlogs] : [];
         translationsData = fallbackTranslations;
       }
       renderCategoriesTable();
@@ -2192,6 +2273,7 @@
       renderContactsTable();
       renderCertificatesTable();
       renderFaqsTable();
+      renderBlogsTable();
       updateProductCategoryDropdown();
       loadTranslations();
     }
@@ -5158,6 +5240,95 @@
         }
       }
     }
+
+    // --- BLOG Operations ---
+    function renderBlogsTable() {
+      const tbody=document.querySelector('#blogs-table tbody');
+      if(!tbody) return;
+      tbody.innerHTML='';
+      [...blogsList].sort((a,b)=>(a.sort_order||999)-(b.sort_order||999)).forEach(blog=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+          <td style="text-align:center;font-weight:700;color:var(--gray);">${blog.sort_order||1}</td>
+          <td><strong>${blog.title_tr||'-'}</strong><br><span style="font-size:.8rem;color:var(--gray);">/${blog.slug||''}</span></td>
+          <td>${blog.publish_date||'-'}</td>
+          <td style="text-align:center;">${blog.featured?'<span class="badge" style="background:#dcfce7;color:#15803d;">Evet</span>':'-'}</td>
+          <td style="text-align:center;">${blog.status==='passive'?'<span class="badge" style="background:#fee2e2;color:#b91c1c;">Pasif</span>':'<span class="badge" style="background:#dcfce7;color:#15803d;">Aktif</span>'}</td>
+          <td style="text-align:right;"><div style="display:flex;gap:.5rem;justify-content:flex-end;">
+            <button class="btn btn-outline" style="padding:.4rem .8rem;font-size:.8rem;" onclick="editBlog('${blog.id}')">Düzenle</button>
+            <button class="btn btn-danger" style="padding:.4rem .8rem;font-size:.8rem;" onclick="deleteBlog('${blog.id}')">Sil</button>
+          </div></td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function slugifyBlog(value) {
+      return String(value||'').toLocaleLowerCase('tr-TR')
+        .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+        .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    }
+
+    window.openBlogModal=function(){
+      document.getElementById('blog-form').reset();
+      document.getElementById('blog-id').value='';
+      document.getElementById('blog-status').value='active';
+      document.getElementById('blog-featured').value='false';
+      document.getElementById('blog-sort-order').value=blogsList.length+1;
+      document.getElementById('blog-date').value=new Date().toISOString().slice(0,10);
+      document.getElementById('blog-modal-title').textContent='Yeni Blog Yazısı';
+      document.getElementById('blog-modal').classList.add('show');
+    };
+    window.closeBlogModal=function(){ document.getElementById('blog-modal').classList.remove('show'); };
+
+    window.editBlog=function(id){
+      const b=blogsList.find(x=>x.id===id); if(!b) return;
+      const map={
+        'blog-id':b.id,'blog-title-tr':b.title_tr,'blog-title-en':b.title_en,'blog-slug':b.slug,
+        'blog-date':b.publish_date,'blog-status':b.status||'active','blog-featured':String(Boolean(b.featured)),
+        'blog-sort-order':b.sort_order||1,'blog-cover-image':b.cover_image||'','blog-tags':Array.isArray(b.tags)?b.tags.join(', '):'',
+        'blog-excerpt-tr':b.excerpt_tr,'blog-excerpt-en':b.excerpt_en,'blog-content-tr':b.content_tr,'blog-content-en':b.content_en,
+        'blog-meta-title-tr':b.meta_title_tr,'blog-meta-title-en':b.meta_title_en,
+        'blog-meta-desc-tr':b.meta_description_tr,'blog-meta-desc-en':b.meta_description_en
+      };
+      Object.entries(map).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.value=val||''; });
+      document.getElementById('blog-modal-title').textContent='Blog Yazısını Düzenle';
+      document.getElementById('blog-modal').classList.add('show');
+    };
+
+    window.saveBlogForm=async function(event){
+      event.preventDefault();
+      const id=document.getElementById('blog-id').value || 'blog_'+Date.now();
+      const titleTr=document.getElementById('blog-title-tr').value.trim();
+      let slug=document.getElementById('blog-slug').value.trim();
+      if(!slug) slug=slugifyBlog(titleTr);
+      const data={
+        id,slug,title_tr:titleTr,title_en:document.getElementById('blog-title-en').value.trim(),
+        excerpt_tr:document.getElementById('blog-excerpt-tr').value.trim(),excerpt_en:document.getElementById('blog-excerpt-en').value.trim(),
+        content_tr:document.getElementById('blog-content-tr').value.trim(),content_en:document.getElementById('blog-content-en').value.trim(),
+        cover_image:document.getElementById('blog-cover-image').value.trim(),
+        tags:document.getElementById('blog-tags').value.split(',').map(x=>x.trim()).filter(Boolean),
+        meta_title_tr:document.getElementById('blog-meta-title-tr').value.trim(),meta_title_en:document.getElementById('blog-meta-title-en').value.trim(),
+        meta_description_tr:document.getElementById('blog-meta-desc-tr').value.trim(),meta_description_en:document.getElementById('blog-meta-desc-en').value.trim(),
+        publish_date:document.getElementById('blog-date').value,status:document.getElementById('blog-status').value,
+        featured:document.getElementById('blog-featured').value==='true',sort_order:parseInt(document.getElementById('blog-sort-order').value,10)||1
+      };
+      try {
+        const response=await fetch('api/cms.php?action=save_blog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        const result=await response.json();
+        if(!response.ok||result.status!=='success') throw new Error(result.message||'Kaydetme hatası');
+        closeBlogModal(); alert('Blog yazısı kaydedildi.'); loadCMSData();
+      } catch(err){ window.showDebugError('Blog Kayıt',err); alert('Blog yazısı kaydedilemedi.'); }
+    };
+
+    window.deleteBlog=async function(id){
+      if(!confirm('Bu blog yazısını silmek istediğinize emin misiniz?')) return;
+      try {
+        const response=await fetch('api/cms.php?action=delete_blog&id='+encodeURIComponent(id),{method:'POST'});
+        const result=await response.json();
+        if(!response.ok||result.status!=='success') throw new Error(result.message||'Silme hatası');
+        alert('Blog yazısı silindi.'); loadCMSData();
+      } catch(err){ window.showDebugError('Blog Silme',err); alert('Blog yazısı silinemedi.'); }
+    };
 
     // --- SSS (FAQ) Operations ---
     const faqCategoryNamesTR = {

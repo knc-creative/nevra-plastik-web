@@ -1634,6 +1634,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function _updateFaqSchema(activeFaqs,lang) {
     const old=document.getElementById('faq-jsonld-dynamic');
     if (old) old.remove();
+    const serverSchema=document.getElementById('faq-jsonld-server');
+    if (serverSchema) serverSchema.remove();
     if (!activeFaqs || !activeFaqs.length || !document.getElementById('faq-groups-container')) return;
     const schema={
       '@context':'https://schema.org',

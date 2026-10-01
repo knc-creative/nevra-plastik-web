@@ -20,7 +20,9 @@ function h($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
 }
 function blog_topic_entity($tag) {
-    $key = mb_strtolower(trim((string)$tag), 'UTF-8');
+    $key = trim((string)$tag);
+    $key = strtr($key, ['Ğ'=>'ğ','Ü'=>'ü','Ş'=>'ş','İ'=>'i','Ö'=>'ö','Ç'=>'ç']);
+    $key = strtolower($key);
     $map = [
         'pp' => 'https://nevraplastik.com/urun-pp-moblen',
         'pe' => 'https://nevraplastik.com/urun-elteks',

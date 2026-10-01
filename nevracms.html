@@ -456,7 +456,7 @@
 
     .switch-slider:before {
       position: absolute;
-      content: ";
+      content: "";
       height: 18px;
       width: 18px;
       left: 3px;
@@ -785,7 +785,7 @@
     }
     .status-slider:before {
       position: absolute;
-      content: ";
+      content: "";
       height: 14px;
       width: 14px;
       left: 3px;
@@ -2281,7 +2281,7 @@
     // Render Products Table
     function renderProductsTable() {
       const container = document.getElementById("products-sections-container");
-      container.innerHTML = ";
+      container.innerHTML = "";
       
       categoriesList.forEach(cat => {
         const catProds = productsList.filter(p => p.category_id === cat.id);
@@ -2542,7 +2542,7 @@
     // Render Categories Table
     function renderCategoriesTable() {
       const tbody = document.querySelector("#categories-table tbody");
-      tbody.innerHTML = ";
+      tbody.innerHTML = "";
       
       categoriesList.forEach(cat => {
         const tr = document.createElement("tr");
@@ -2583,7 +2583,7 @@
     function renderBulkCategoriesEditor() {
       const container = document.getElementById("bulk-categories-editor");
       if (!container) return;
-      container.innerHTML = ";
+      container.innerHTML = "";
 
       categoriesList.forEach(cat => {
         const card = document.createElement("div");
@@ -2731,7 +2731,7 @@
     function updateProductCategoryDropdown() {
       const select = document.getElementById("prod-category");
       if (!select) return;
-      select.innerHTML = ";
+      select.innerHTML = "";
       categoriesList.forEach(cat => {
         const option = document.createElement("option");
         option.value = cat.id;
@@ -2809,14 +2809,14 @@
       if (!prod) return;
 
       document.getElementById("edit-product-id").value = prod.id;
-      document.getElementById("prod-code").value = prod.code || ";
+      document.getElementById("prod-code").value = prod.code || "";
       document.getElementById("prod-category").value = prod.category_id;
       document.getElementById("prod-name-tr").value = prod.name_tr;
       document.getElementById("prod-name-en").value = prod.name_en;
       document.getElementById("prod-desc-tr").value = prod.desc_tr;
       document.getElementById("prod-desc-en").value = prod.desc_en;
-      document.getElementById("prod-detail-tr").value = prod.detail_tr || ";
-      document.getElementById("prod-detail-en").value = prod.detail_en || ";
+      document.getElementById("prod-detail-tr").value = prod.detail_tr || "";
+      document.getElementById("prod-detail-en").value = prod.detail_en || "";
       document.getElementById("prod-mfi").value = prod.mfi;
       document.getElementById("prod-density").value = prod.density;
       document.getElementById("prod-color-tr").value = prod.color_tr;
@@ -2835,7 +2835,7 @@
       }
       
       for (let i = 1; i <= 4; i++) {
-        const imgUrl = imageList[i - 1] || ";
+        const imgUrl = imageList[i - 1] || "";
         document.getElementById(`prod-img-src-${i}`).value = imgUrl;
         document.getElementById(`modal-img-preview-${i}`).src = imgUrl || "assets/product-pp.webp";
       }
@@ -3074,7 +3074,7 @@
       document.getElementById("cat-title-en").value = cat.title_en;
       document.getElementById("cat-desc-tr").value = cat.desc_tr;
       document.getElementById("cat-desc-en").value = cat.desc_en;
-      document.getElementById("cat-image").value = cat.image || ";
+      document.getElementById("cat-image").value = cat.image || "";
     }
 
     window.closeCategoryModal = function() {
@@ -3346,7 +3346,7 @@
       const tbody = document.getElementById("db-editor-table-body");
       if (!tbody || !translationsData) return;
 
-      tbody.innerHTML = ";
+      tbody.innerHTML = "";
       
       originalTranslationsData = JSON.parse(JSON.stringify(translationsData));
       changedKeys.clear();
@@ -3358,7 +3358,7 @@
       const allKeys = Array.from(new Set([...trKeys, ...enKeys])).sort();
 
       allKeys.forEach(key => {
-        const trVal = translationsData.tr[key] || ";
+        const trVal = translationsData.tr[key] || "";
         const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : ";
 
         const isPreviewable = typeof trVal === "string" && (
@@ -3840,7 +3840,7 @@
       const container = document.getElementById("translations-container");
       if (!container) return;
 
-      container.innerHTML = ";
+      container.innerHTML = "";
 
       const keys = Object.keys(translationsData.tr || {});
       
@@ -4030,7 +4030,7 @@
         fieldsGrid.style.gap = "1rem";
 
         groupKeys.forEach(key => {
-          const trVal = translationsData.tr[key] || ";
+          const trVal = translationsData.tr[key] || "";
           const enVal = (translationsData.en && translationsData.en[key]) ? translationsData.en[key] : ";
           const desc = keyDescriptions[key] || "Genel Metin";
           
@@ -4296,7 +4296,7 @@
     function renderCertificatesTable() {
       const tbody = document.querySelector("#certificates-table tbody");
       if (!tbody) return;
-      tbody.innerHTML = ";
+      tbody.innerHTML = "";
 
       if (certificatesList.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--gray); padding: 2rem;">Kayıtlı belge bulunamadı.</td></tr>`;
@@ -4375,12 +4375,12 @@
         if (cert) {
           document.getElementById("cert-id").value = cert.id;
           document.getElementById("cert-icon").value = cert.icon || "📄";
-          document.getElementById("cert-title-tr").value = cert.title_tr || ";
-          document.getElementById("cert-title-en").value = cert.title_en || ";
-          document.getElementById("cert-sub-tr").value = cert.sub_tr || ";
-          document.getElementById("cert-sub-en").value = cert.sub_en || ";
+          document.getElementById("cert-title-tr").value = cert.title_tr || "";
+          document.getElementById("cert-title-en").value = cert.title_en || "";
+          document.getElementById("cert-sub-tr").value = cert.sub_tr || "";
+          document.getElementById("cert-sub-en").value = cert.sub_en || "";
           document.getElementById("cert-status").value = cert.status || "active";
-          document.getElementById("cert-image").value = cert.document_image || ";
+          document.getElementById("cert-image").value = cert.document_image || "";
         }
       } else {
         titleEl.textContent = "Yeni Belge Ekle";
@@ -4510,7 +4510,7 @@
       const container = document.getElementById("site-images-container");
       if (!container) return;
 
-      container.innerHTML = ";
+      container.innerHTML = "";
 
       // 1. Static Site Images
       Object.keys(siteImageKeys).forEach(key => {
@@ -4813,7 +4813,7 @@
     function renderMachinesTable() {
       const tbody = document.querySelector("#machines-table tbody");
       if (!tbody) return;
-      tbody.innerHTML = ";
+      tbody.innerHTML = "";
       
       machinesList.forEach(mach => {
         const tr = document.createElement("tr");
@@ -4903,11 +4903,11 @@
       document.getElementById("mach-name-en").value = mach.name_en;
       document.getElementById("mach-desc-tr").value = mach.desc_tr;
       document.getElementById("mach-desc-en").value = mach.desc_en;
-      document.getElementById("mach-detail-tr").value = mach.detail_tr || ";
-      document.getElementById("mach-detail-en").value = mach.detail_en || ";
-      document.getElementById("mach-features-tr").value = mach.features_tr || ";
-      document.getElementById("mach-features-en").value = mach.features_en || ";
-      document.getElementById("mach-image").value = mach.image || ";
+      document.getElementById("mach-detail-tr").value = mach.detail_tr || "";
+      document.getElementById("mach-detail-en").value = mach.detail_en || "";
+      document.getElementById("mach-features-tr").value = mach.features_tr || "";
+      document.getElementById("mach-features-en").value = mach.features_en || "";
+      document.getElementById("mach-image").value = mach.image || "";
       document.getElementById("modal-mach-img-preview").src = mach.image || "assets/product-pp.webp";
       document.getElementById("mach-status").value = mach.status || "active";
       
@@ -4980,7 +4980,7 @@
     function renderContactsTable() {
       const tbody = document.querySelector("#contacts-table tbody");
       if (!tbody) return;
-      tbody.innerHTML = ";
+      tbody.innerHTML = "";
       
       const sortedContacts = [...contactsList].sort((a, b) => {
         return new Date(b.date || 0) - new Date(a.date || 0);

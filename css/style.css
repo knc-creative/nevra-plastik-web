@@ -2765,3 +2765,14 @@ table {
 .footer-logo {
   object-fit: contain;
 }
+
+
+body.nav-open-lock {
+  overflow: hidden;
+  touch-action: none;
+}
+@supports (height: 100dvh) {
+  .nav-menu {
+    height: 100dvh;
+  }
+}

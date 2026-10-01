@@ -1973,11 +1973,27 @@
     let faqsList = typeof fallbackFaqs !== 'undefined' ? [...fallbackFaqs] : [];
     let blogsList = typeof fallbackBlogs !== 'undefined' ? [...fallbackBlogs] : [];
     let selectedImageFile = null;
+    let cmsCsrfToken = null;
+
+    async function cmsFetch(url, options = {}) {
+      const opts = { ...options };
+      const method = String(opts.method || 'GET').toUpperCase();
+      const isProtectedMutation = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(method)
+        && (String(url).includes('api/cms.php') || String(url).includes('api/upload.php'));
+
+      if (isProtectedMutation && cmsCsrfToken) {
+        const headers = new Headers(opts.headers || {});
+        headers.set('X-CSRF-Token', cmsCsrfToken);
+        opts.headers = headers;
+      }
+
+      return fetch(url, opts);
+    }
 
     // Unified PHP CMS Session & Setup Check
     async function checkSession() {
       try {
-        const response = await fetch('api/cms.php?action=check_setup');
+        const response = await cmsFetch('api/cms.php?action=check_setup');
         if (!response.ok) throw new Error("HTTP error " + response.status);
         const data = await response.json();
         
@@ -2053,7 +2069,7 @@
         }
 
         try {
-          const response = await fetch('api/cms.php?action=setup_admin', {
+          const response = await cmsFetch('api/cms.php?action=setup_admin', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -2097,7 +2113,7 @@
       const errorDiv = document.getElementById("login-error");
 
       try {
-        const response = await fetch('api/cms.php?action=login', {
+        const response = await cmsFetch('api/cms.php?action=login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: user, password: pass })
@@ -2129,7 +2145,7 @@
     // Logout Action
     document.getElementById("logout-btn").addEventListener("click", async () => {
       try {
-        await fetch('api/cms.php?action=logout', { method: 'POST' });
+        await cmsFetch('api/cms.php?action=logout', { method: 'POST' });
       } catch (err) {
         console.error("Logout fetch failed:", err);
       }
@@ -2160,7 +2176,7 @@
         }
         
         try {
-          const res = await fetch("api/cms.php?action=change_password", {
+          const res = await cmsFetch("api/cms.php?action=change_password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -2218,7 +2234,7 @@
     // Load Data from PHP CMS Backend
     async function loadCMSData() {
       try {
-        const response = await fetch('api/cms.php?action=load&t=' + Date.now());
+        const response = await cmsFetch('api/cms.php?action=load&t=' + Date.now());
         if (!response.ok) throw new Error("HTTP error " + response.status);
         const data = await response.json();
         
@@ -2230,6 +2246,7 @@
           certificatesList = data.certificates || [];
           faqsList = data.faqs || [];
           blogsList = data.blogs || [];
+          cmsCsrfToken = data.csrf_token || cmsCsrfToken;
           
           if (data.translations) {
             translationsData = data.translations;
@@ -2523,7 +2540,7 @@
       productsList = reorderedList;
 
       try {
-        const response = await fetch("api/cms.php?action=reorder_products", {
+        const response = await cmsFetch("api/cms.php?action=reorder_products", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newOrderIds)
@@ -2699,7 +2716,7 @@
       };
 
       try {
-        const response = await fetch(`api/cms.php?action=save_category&id=${encodeURIComponent(id)}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_category&id=${encodeURIComponent(id)}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -2905,7 +2922,7 @@
       };
 
       try {
-        const response = await fetch(`api/cms.php?action=save_product&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_product&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(productData)
@@ -2929,7 +2946,7 @@
     window.deleteProduct = function(id) {
       if (!confirm("Bu ürünü silmek istediğinize emin misiniz?")) return;
 
-      fetch(`api/cms.php?action=delete_product&id=${id}`, { method: 'POST' })
+      cmsFetch(`api/cms.php?action=delete_product&id=${id}`, { method: 'POST' })
         .then(response => response.json().then(data => ({ ok: response.ok, data })))
         .then(({ ok, data }) => {
           if (ok && data.status === 'success') {
@@ -2976,7 +2993,7 @@
       }
       
       try {
-        const response = await fetch(`api/cms.php?action=save_product&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_product&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(prod)
@@ -3025,7 +3042,7 @@
       }
       
       try {
-        const response = await fetch(`api/cms.php?action=save_machine&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_machine&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(mach)
@@ -3109,7 +3126,7 @@
       }
       if (!confirm("Bu kategoriyi silmek istediğinize emin misiniz? Bu kategoriye ait ürünler silinmeyecektir ancak sahipsiz kalabilir.")) return;
 
-      fetch(`api/cms.php?action=delete_category&id=${id}`, { method: 'POST' })
+      cmsFetch(`api/cms.php?action=delete_category&id=${id}`, { method: 'POST' })
         .then(response => response.json().then(data => ({ ok: response.ok, data })))
         .then(({ ok, data }) => {
           if (ok && data.status === 'success') {
@@ -3158,7 +3175,7 @@
         image: image
       };
 
-      fetch(`api/cms.php?action=save_category&id=${id}`, {
+      cmsFetch(`api/cms.php?action=save_category&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(catData)
@@ -3188,7 +3205,7 @@
       messageDiv.textContent = "İlk kurulum başlatılıyor, lütfen bekleyin...";
 
       try {
-        const tResp = await fetch('api/cms.php?action=save_translations', {
+        const tResp = await cmsFetch('api/cms.php?action=save_translations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(fallbackTranslations)
@@ -3197,7 +3214,7 @@
 
         for (const cat of fallbackCategories) {
           const { id, ...data } = cat;
-          const cResp = await fetch(`api/cms.php?action=save_category&id=${id}`, {
+          const cResp = await cmsFetch(`api/cms.php?action=save_category&id=${id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -3205,25 +3222,25 @@
           if (!cResp.ok) throw new Error("Kategori kaydetme başarısız: " + id);
         }
 
-        const loadResp = await fetch('api/cms.php?action=load&t=' + Date.now());
+        const loadResp = await cmsFetch('api/cms.php?action=load&t=' + Date.now());
         const loadDataObj = await loadResp.json();
         if (loadDataObj.status === 'success') {
           for (const p of loadDataObj.products || []) {
-            await fetch(`api/cms.php?action=delete_product&id=${p.id}`, { method: 'POST' });
+            await cmsFetch(`api/cms.php?action=delete_product&id=${p.id}`, { method: 'POST' });
           }
           for (const c of loadDataObj.categories || []) {
             if (!["pp", "pe", "pprc", "other"].includes(c.id)) {
-              await fetch(`api/cms.php?action=delete_category&id=${c.id}`, { method: 'POST' });
+              await cmsFetch(`api/cms.php?action=delete_category&id=${c.id}`, { method: 'POST' });
             }
           }
           for (const cert of loadDataObj.certificates || []) {
-            await fetch(`api/cms.php?action=delete_certificate&id=${cert.id}`, { method: 'POST' });
+            await cmsFetch(`api/cms.php?action=delete_certificate&id=${cert.id}`, { method: 'POST' });
           }
         }
 
         for (const prod of fallbackProducts) {
           const { id, ...data } = prod;
-          const pResp = await fetch(`api/cms.php?action=save_product&id=${id}`, {
+          const pResp = await cmsFetch(`api/cms.php?action=save_product&id=${id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -3233,7 +3250,7 @@
 
         for (const cert of fallbackCertificates) {
           const { id, ...data } = cert;
-          const certResp = await fetch(`api/cms.php?action=save_certificate`, {
+          const certResp = await cmsFetch(`api/cms.php?action=save_certificate`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id, ...data })
@@ -3485,7 +3502,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const actionUrl = 'api/cms.php?action=save_translations' + (urlParams.get('local_session') ? '&local_session=1' : '');
         
-        const response = await fetch(actionUrl, {
+        const response = await cmsFetch(actionUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(parsed)
@@ -3551,7 +3568,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const actionUrl = 'api/cms.php?action=save_translations' + (urlParams.get('local_session') ? '&local_session=1' : '');
         
-        const response = await fetch(actionUrl, {
+        const response = await cmsFetch(actionUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(translationsData)
@@ -4208,6 +4225,9 @@
         });
 
         xhr.open("POST", "api/upload.php");
+        if (cmsCsrfToken) {
+          xhr.setRequestHeader("X-CSRF-Token", cmsCsrfToken);
+        }
         xhr.send(formData);
       });
     }
@@ -4271,7 +4291,7 @@
       };
 
       try {
-        const response = await fetch('api/cms.php?action=save_translations', {
+        const response = await cmsFetch('api/cms.php?action=save_translations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedTranslations)
@@ -4341,7 +4361,7 @@
       };
 
       try {
-        const response = await fetch('api/cms.php?action=save_certificate', {
+        const response = await cmsFetch('api/cms.php?action=save_certificate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -4451,7 +4471,7 @@
       };
 
       try {
-        const response = await fetch('api/cms.php?action=save_certificate', {
+        const response = await cmsFetch('api/cms.php?action=save_certificate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -4475,7 +4495,7 @@
       if (!confirm("Bu belgeyi silmek istediğinize emin misiniz?")) return;
 
       try {
-        const response = await fetch(`api/cms.php?action=delete_certificate&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=delete_certificate&id=${id}`, {
           method: 'POST'
         });
         const resData = await response.json();
@@ -4760,7 +4780,7 @@
 
       try {
         // 1. Save standard site translations
-        const response = await fetch('api/cms.php?action=save_translations', {
+        const response = await cmsFetch('api/cms.php?action=save_translations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(translationsData)
@@ -4786,7 +4806,7 @@
               image: newImgUrl
             };
             
-            const catResponse = await fetch(`api/cms.php?action=save_category&id=${cat.id}`, {
+            const catResponse = await cmsFetch(`api/cms.php?action=save_category&id=${cat.id}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(catData)
@@ -4916,7 +4936,7 @@
     window.deleteMachine = async function(id) {
       if (!confirm("Bu makineyi silmek istediğinize emin misiniz?")) return;
       try {
-        const response = await fetch(`api/cms.php?action=delete_machine&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=delete_machine&id=${id}`, {
           method: 'POST'
         });
         const resData = await response.json();
@@ -4955,7 +4975,7 @@
       };
 
       try {
-        const response = await fetch(`api/cms.php?action=save_machine&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_machine&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(machineData)
@@ -5053,7 +5073,7 @@
     window.deleteContactSubmission = async function(id) {
       if (!confirm("Bu mesaj kaydını silmek istediğinize emin misiniz?")) return;
       try {
-        const response = await fetch(`api/cms.php?action=delete_contact&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=delete_contact&id=${id}`, {
           method: 'POST'
         });
         const resData = await response.json();
@@ -5311,7 +5331,7 @@
         featured:document.getElementById('blog-featured').value==='true',sort_order:parseInt(document.getElementById('blog-sort-order').value,10)||1
       };
       try {
-        const response=await fetch('api/cms.php?action=save_blog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        const response=await cmsFetch('api/cms.php?action=save_blog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
         const result=await response.json();
         if(!response.ok||result.status!=='success') throw new Error(result.message||'Kaydetme hatası');
         closeBlogModal(); alert('Blog yazısı kaydedildi.'); loadCMSData();
@@ -5321,7 +5341,7 @@
     window.deleteBlog=async function(id){
       if(!confirm('Bu blog yazısını silmek istediğinize emin misiniz?')) return;
       try {
-        const response=await fetch('api/cms.php?action=delete_blog&id='+encodeURIComponent(id),{method:'POST'});
+        const response=await cmsFetch('api/cms.php?action=delete_blog&id='+encodeURIComponent(id),{method:'POST'});
         const result=await response.json();
         if(!response.ok||result.status!=='success') throw new Error(result.message||'Silme hatası');
         alert('Blog yazısı silindi.'); loadCMSData();
@@ -5435,7 +5455,7 @@
     window.deleteFaq = async function(id) {
       if (!confirm("Bu soruyu silmek istediğinize emin misiniz?")) return;
       try {
-        const response = await fetch(`api/cms.php?action=delete_faq&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=delete_faq&id=${id}`, {
           method: 'POST'
         });
         const resData = await response.json();
@@ -5457,7 +5477,7 @@
       faq.status = isChecked ? "active" : "passive";
 
       try {
-        const response = await fetch(`api/cms.php?action=save_faq&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_faq&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(faq)
@@ -5480,7 +5500,7 @@
       faq.show_home = isChecked;
 
       try {
-        const response = await fetch(`api/cms.php?action=save_faq&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_faq&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(faq)
@@ -5518,7 +5538,7 @@
       };
 
       try {
-        const response = await fetch(`api/cms.php?action=save_faq&id=${id}`, {
+        const response = await cmsFetch(`api/cms.php?action=save_faq&id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(faqData)

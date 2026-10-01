@@ -12,6 +12,7 @@ Disallow: /api/data/
 Disallow: /api/cms.php
 Disallow: /api/upload.php
 Disallow: /blog.php
+Disallow: /blog-index.php
 Disallow: /sss.php
 Disallow: /deploy/
 Disallow: /deploy_v2/

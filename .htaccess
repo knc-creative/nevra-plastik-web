@@ -71,7 +71,7 @@ RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^(.*)$ https://nevraplastik.com/$1 [R=301,L]
 
 # Dynamic clean blog article URLs
-RewriteRule ^blog/([A-Za-z0-9-]+)/?$ blog-detay.html?slug=$1 [L,QSA]
+RewriteRule ^blog/([A-Za-z0-9-]+)/?$ blog.php?slug=$1 [L,QSA]
 
 # 4. Internal Clean URL Rewriting: Map extensionless requests to .html file if it exists
 RewriteCond %{REQUEST_FILENAME} !-f

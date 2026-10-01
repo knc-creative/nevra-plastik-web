@@ -206,6 +206,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Keep Blog available across all legacy page headers/footers.
+  if (navList && !navList.querySelector('[data-auto-blog-link]')) {
+    const li = document.createElement('li');
+    li.innerHTML = '<a href="blog.html" class="nav-link" data-auto-blog-link="1">Blog</a>';
+    const faqLink = navList.querySelector('a[href="sss.html"], a[href="/sss"], a[href="sss"]');
+    if (faqLink && faqLink.parentElement) {
+      navList.insertBefore(li, faqLink.parentElement);
+    } else {
+      navList.appendChild(li);
+    }
+  }
+  document.querySelectorAll('.footer-links').forEach(list => {
+    if (!list.querySelector('[data-auto-blog-link]')) {
+      const li = document.createElement('li');
+      li.innerHTML = '<a href="blog.html" data-auto-blog-link="1">Blog</a>';
+      list.appendChild(li);
+    }
+  });
+
   // ------------------------------------------------------------------------
   // 2. Scroll Reveal Animations (Intersection Observer)
   // ------------------------------------------------------------------------
@@ -1367,7 +1386,8 @@ document.addEventListener('DOMContentLoaded', () => {
             translations: data.translations || fallbackTranslations,
             machines: ((data.machines && data.machines.length > 0) ? data.machines : fallbackMachines).filter(m => m.status !== 'passive'),
             certificates: data.certificates || fallbackCertificates,
-            faqs: data.faqs || (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : [])
+            faqs: data.faqs || (typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []),
+            blogs: data.blogs || (typeof fallbackBlogs !== 'undefined' ? fallbackBlogs : [])
           };
         } else {
           throw new Error(data.message || 'Unknown CMS error');
@@ -1381,7 +1401,8 @@ document.addEventListener('DOMContentLoaded', () => {
           translations: fallbackTranslations,
           machines: fallbackMachines.filter(m => m.status !== 'passive'),
           certificates: fallbackCertificates,
-          faqs: typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : []
+          faqs: typeof fallbackFaqs !== 'undefined' ? fallbackFaqs : [],
+          blogs: typeof fallbackBlogs !== 'undefined' ? fallbackBlogs : []
         };
       })
       .finally(() => {
@@ -1637,6 +1658,132 @@ document.addEventListener('DOMContentLoaded', () => {
     const lang=(e.detail && e.detail.lang) || localStorage.getItem('nevra_lang') || 'tr';
     renderFaqTeaser(lang);
     renderFaqPage(lang);
+  });
+
+
+  // ------------------------------------------------------------------------
+  // Blog Dynamic Rendering
+  // ------------------------------------------------------------------------
+  function _blogEsc(value) {
+    return String(value || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function _blogField(item, key, lang) {
+    const tr = item[key + '_tr'] || '';
+    const en = item[key + '_en'] || '';
+    return lang === 'en' && en ? en : tr;
+  }
+
+  function _activeBlogs() {
+    const source = window.siteData && Array.isArray(window.siteData.blogs)
+      ? window.siteData.blogs
+      : (typeof fallbackBlogs !== 'undefined' ? fallbackBlogs : []);
+    return source.filter(b => b.status === 'active')
+      .sort((a,b) => {
+        const featured = Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+        if (featured) return featured;
+        const order = Number(a.sort_order || 999) - Number(b.sort_order || 999);
+        if (order) return order;
+        return String(b.publish_date || '').localeCompare(String(a.publish_date || ''));
+      });
+  }
+
+  function _formatBlogDate(dateStr, lang) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    if (Number.isNaN(d.getTime())) return dateStr;
+    return new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : 'tr-TR', {day:'2-digit',month:'long',year:'numeric'}).format(d);
+  }
+
+  function _blogUrl(slug) {
+    return 'blog-detay.html?slug=' + encodeURIComponent(slug || '');
+  }
+
+  function renderBlogIndex(lang) {
+    const grid = document.getElementById('blog-grid');
+    if (!grid) return;
+    const blogs = _activeBlogs();
+    if (!blogs.length) {
+      grid.innerHTML = '<div class="blog-empty">Henüz yayınlanmış blog yazısı bulunmuyor.</div>';
+      return;
+    }
+    grid.innerHTML = blogs.map((b,i) => {
+      const title=_blogEsc(_blogField(b,'title',lang));
+      const excerpt=_blogEsc(_blogField(b,'excerpt',lang));
+      const image=_blogEsc(b.cover_image || 'assets/facility.webp');
+      const tags=Array.isArray(b.tags) ? b.tags.slice(0,3) : [];
+      return `<article class="blog-card scroll-reveal ${b.featured && i===0 ? 'blog-card-featured' : ''}">
+        <a class="blog-card-media" href="${_blogUrl(b.slug)}" aria-label="${title}">
+          <img src="${image}" alt="${title}" loading="lazy">
+        </a>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span>${_formatBlogDate(b.publish_date,lang)}</span>${b.featured ? '<span class="blog-featured-pill">Öne Çıkan</span>' : ''}</div>
+          <h2><a href="${_blogUrl(b.slug)}">${title}</a></h2>
+          <p>${excerpt}</p>
+          <div class="blog-card-footer">
+            <div class="blog-tags">${tags.map(t=>`<span>${_blogEsc(t)}</span>`).join('')}</div>
+            <a class="blog-read-link" href="${_blogUrl(b.slug)}">${lang==='en'?'Read':'Devamını Oku'} <span>↗</span></a>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+    if (window.initializeScrollReveal) window.initializeScrollReveal();
+  }
+
+  function renderBlogDetail(lang) {
+    const root = document.getElementById('blog-detail-root');
+    if (!root) return;
+    const slug = new URLSearchParams(window.location.search).get('slug') || '';
+    const blog = _activeBlogs().find(b => b.slug === slug);
+    if (!blog) {
+      root.innerHTML = '<div class="container blog-not-found"><span class="section-tag">Blog</span><h1>Yazı bulunamadı.</h1><p>Aradığınız içerik kaldırılmış veya bağlantı hatalı olabilir.</p><a class="btn btn-primary" href="blog.html">Bloga Dön</a></div>';
+      document.title = 'Blog Yazısı Bulunamadı | Nevra Plastik';
+      return;
+    }
+    const title=_blogField(blog,'title',lang);
+    const excerpt=_blogField(blog,'excerpt',lang);
+    const content=_blogField(blog,'content',lang);
+    const image=blog.cover_image || 'assets/facility.webp';
+    const paragraphs=String(content || '').split(/\n\s*\n/).filter(Boolean);
+    const tags=Array.isArray(blog.tags) ? blog.tags : [];
+    root.innerHTML = `<article>
+      <header class="blog-detail-hero">
+        <div class="container blog-detail-head">
+          <a class="blog-back-link" href="blog.html">← ${lang==='en'?'Back to Blog':'Bloga Dön'}</a>
+          <div class="blog-detail-meta"><span>${_formatBlogDate(blog.publish_date,lang)}</span>${blog.featured?'<span class="blog-featured-pill">Öne Çıkan</span>':''}</div>
+          <h1>${_blogEsc(title)}</h1>
+          <p>${_blogEsc(excerpt)}</p>
+          <div class="blog-tags">${tags.map(t=>`<span>${_blogEsc(t)}</span>`).join('')}</div>
+        </div>
+      </header>
+      <div class="container blog-detail-layout">
+        <div class="blog-detail-cover"><img src="${_blogEsc(image)}" alt="${_blogEsc(title)}"></div>
+        <div class="blog-article-content">${paragraphs.map(p=>`<p>${_blogEsc(p)}</p>`).join('')}</div>
+        <div class="blog-detail-cta">
+          <div><span class="section-tag">Nevra Plastik</span><h2>${lang==='en'?'Need technical information?':'Teknik bilgiye mi ihtiyacınız var?'}</h2><p>${lang==='en'?'Contact our team for product and raw material requirements.':'Ürün ve hammadde ihtiyaçlarınız için ekibimizle iletişime geçin.'}</p></div>
+          <a class="btn btn-primary" href="iletisim.html">${lang==='en'?'Contact Us':'İletişime Geç'}</a>
+        </div>
+      </div>
+    </article>`;
+
+    document.title = (lang === 'en' ? (blog.meta_title_en || blog.title_en) : (blog.meta_title_tr || blog.title_tr)) || document.title;
+    const desc = lang === 'en' ? blog.meta_description_en : blog.meta_description_tr;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && desc) metaDesc.setAttribute('content', desc);
+    let canonical=document.querySelector('link[rel="canonical"]');
+    if (!canonical) { canonical=document.createElement('link'); canonical.rel='canonical'; document.head.appendChild(canonical); }
+    canonical.href='https://nevraplastik.com/blog/' + encodeURIComponent(blog.slug);
+  }
+
+  window.addEventListener('siteDataLoaded', () => {
+    const lang=localStorage.getItem('nevra_lang') || 'tr';
+    renderBlogIndex(lang);
+    renderBlogDetail(lang);
+  });
+  window.addEventListener('languageChanged', e => {
+    const lang=(e.detail && e.detail.lang) || localStorage.getItem('nevra_lang') || 'tr';
+    renderBlogIndex(lang);
+    renderBlogDetail(lang);
   });
 
 });

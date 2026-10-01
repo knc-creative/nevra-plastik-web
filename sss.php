@@ -50,7 +50,7 @@ function faq_h($value) {
   <meta name="twitter:image" content="https://nevraplastik.com/uploads/1782162829_2949_a685cf01-90a2-4c1a-b70b-37d38e13cce4.png">
 
   <?php if (!empty($faqs)): ?>
-  <script type="application/ld+json">
+  <script id="faq-jsonld-server" type="application/ld+json">
   <?= json_encode([
       "@context" => "https://schema.org",
       "@type" => "FAQPage",

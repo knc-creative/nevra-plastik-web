@@ -1271,9 +1271,9 @@ const fallbackFaqs = [
     "id": "faq_013",
     "category": "production",
     "question_tr": "Üretim tesisi ziyaret edebilir miyim?",
-    "answer_tr": "Evet. Potansiyel müşterilere ve iş ortaklarına tesis ziyareti imkânı sunulmaktadır. Ziyaret talebinizi önceden bildirmenizi ve randevu almanızı öneririz. Adres: Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk. No:30/32, Karatay / KONYA.",
+    "answer_tr": "Evet. Potansiyel müşterilere ve iş ortaklarına tesis ziyareti imkânı sunulmaktadır. Ziyaret talebinizi önceden bildirmenizi ve randevu almanızı öneririz. Adres: Fevzi Çakmak Mah. 10636 Sk. No: 12 Karatay / KONYA.",
     "question_en": "Can I visit your production facility?",
-    "answer_en": "Yes. We welcome prospective customers and business partners to visit our plant. Please notify us in advance to schedule an appointment. Address: Tatlicak Mah. Vatan Sanayi Sitesi, Isildak Sk. No:30/32, Karatay / KONYA, Turkey.",
+    "answer_en": "Yes. We welcome prospective customers and business partners to visit our plant. Please notify us in advance to schedule an appointment. Address: Fevzi Cakmak Mah. 10636 Sk. No: 12 Karatay / KONYA, Turkey.",
     "show_home": false,
     "sort_order": 13,
     "status": "active"

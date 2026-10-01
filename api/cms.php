@@ -109,6 +109,7 @@ $machinesFile = $dataDir . '/machines.json';
 $certificatesFile = $dataDir . '/certificates.json';
 $contactsFile = $dataDir . '/contacts.json';
 $faqsFile = $dataDir . '/faqs.json';
+$blogsFile = $dataDir . '/blogs.json';
 
 // Get expected setup token if any
 function getExpectedSetupToken($dataDir) {
@@ -318,6 +319,7 @@ switch ($action) {
         $machines = file_exists($machinesFile) ? json_decode(file_get_contents($machinesFile), true) : [];
         $certificates = file_exists($certificatesFile) ? json_decode(file_get_contents($certificatesFile), true) : [];
         $faqs = file_exists($faqsFile) ? json_decode(file_get_contents($faqsFile), true) : [];
+        $blogs = file_exists($blogsFile) ? json_decode(file_get_contents($blogsFile), true) : [];
 
         $contacts = [];
         if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && file_exists($contactsFile)) {
@@ -333,6 +335,7 @@ switch ($action) {
             "contacts" => $contacts,
             "certificates" => $certificates,
             "faqs" => $faqs,
+            "blogs" => $blogs,
             "csrf_token" => (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) ? get_csrf_token() : null
         ]);
         break;
@@ -629,6 +632,80 @@ switch ($action) {
 
         safe_json_write($faqsFile, $faqs);
         echo json_encode(["status" => "success", "message" => "Durum güncellendi."]);
+        break;
+
+
+    case 'save_blog':
+        check_admin_auth();
+        check_csrf_token();
+        $rawPost = file_get_contents('php://input');
+        $item = json_decode($rawPost, true);
+        if (!$item || !isset($item['id']) || empty($item['slug']) || empty($item['title_tr'])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Geçersiz blog verisi. ID, slug ve Türkçe başlık zorunludur."]);
+            exit();
+        }
+
+        $item['slug'] = strtolower(trim(preg_replace('/[^a-zA-Z0-9-]+/', '-', $item['slug']), '-'));
+        if ($item['slug'] === '') {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Geçerli bir slug girilmelidir."]);
+            exit();
+        }
+
+        $blogs = file_exists($blogsFile) ? json_decode(file_get_contents($blogsFile), true) : [];
+        if (!is_array($blogs)) $blogs = [];
+
+        foreach ($blogs as $existing) {
+            if (isset($existing['slug']) && $existing['slug'] === $item['slug'] && (!isset($existing['id']) || $existing['id'] !== $item['id'])) {
+                http_response_code(409);
+                echo json_encode(["status" => "error", "message" => "Bu blog bağlantısı (slug) zaten kullanılıyor."]);
+                exit();
+            }
+        }
+
+        $updated = false;
+        for ($i = 0; $i < count($blogs); $i++) {
+            if (isset($blogs[$i]['id']) && $blogs[$i]['id'] === $item['id']) {
+                $blogs[$i] = $item;
+                $updated = true;
+                break;
+            }
+        }
+        if (!$updated) $blogs[] = $item;
+
+        if (!safe_json_write($blogsFile, $blogs)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Blog verisi kaydedilemedi."]);
+            exit();
+        }
+
+        echo json_encode(["status" => "success", "message" => "Blog yazısı kaydedildi."]);
+        break;
+
+    case 'delete_blog':
+        check_admin_auth();
+        check_csrf_token();
+        $id = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if ($id === '') {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID zorunludur."]);
+            exit();
+        }
+
+        $blogs = file_exists($blogsFile) ? json_decode(file_get_contents($blogsFile), true) : [];
+        if (!is_array($blogs)) $blogs = [];
+        $blogs = array_values(array_filter($blogs, function($b) use ($id) {
+            return !isset($b['id']) || $b['id'] !== $id;
+        }));
+
+        if (!safe_json_write($blogsFile, $blogs)) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "Blog yazısı silinemedi."]);
+            exit();
+        }
+
+        echo json_encode(["status" => "success", "message" => "Blog yazısı silindi."]);
         break;
 
     default:

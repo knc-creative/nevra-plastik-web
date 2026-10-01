@@ -183,6 +183,9 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
         <?php foreach (preg_split('/\R\s*\R/', (string)($blog['content_tr'] ?? '')) as $paragraph): ?>
           <?php if (trim($paragraph) !== ''): ?><p><?= h(trim($paragraph)) ?></p><?php endif; ?>
         <?php endforeach; ?>
+        <?php if (!empty($blog['related_url'])): ?>
+          <p class="blog-related-link"><a href="<?= h($blog['related_url']) ?>"><?= h($blog['related_label_tr'] ?? 'İlgili içeriği inceleyin') ?> <span aria-hidden="true">↗</span></a></p>
+        <?php endif; ?>
       </div>
       <div class="blog-detail-cta">
         <div><span class="section-tag">Nevra Plastik</span><h2>Teknik bilgiye mi ihtiyacınız var?</h2><p>Ürün ve hammadde ihtiyaçlarınız için ekibimizle iletişime geçin.</p></div>

@@ -69,6 +69,27 @@ function faq_h($value) {
   <?php endif; ?>
 
 
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Anasayfa",
+      "item": "https://nevraplastik.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Sık Sorulan Sorular",
+      "item": "https://nevraplastik.com/sss"
+    }
+  ]
+}
+  </script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

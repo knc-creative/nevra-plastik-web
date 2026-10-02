@@ -121,7 +121,7 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
 
   <header class="main-header">
     <div class="container header-container">
-      <a href="index.html" class="logo-link" aria-label="Nevra Plastik Anasayfa">
+      <a href="/" class="logo-link" aria-label="Nevra Plastik Anasayfa">
         <img src="uploads/1783198954_3487_nevra_gu_ncel_logo.svg" alt="Nevra Plastik Logo" class="logo-img" data-translate-key="img_logo">
       </a>
 
@@ -133,7 +133,7 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
       <!-- Navigation Menu Drawer -->
       <nav id="primary-navigation" class="nav-menu">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="/" class="nav-link" data-translate-key="nav_home">Anasayfa</a></li>
           <li><a href="hakkimizda" class="nav-link" data-translate-key="nav_about">Hakkımızda</a></li>
           <li><a href="urunler" class="nav-link" data-translate-key="nav_products">Ürünler</a></li>
           <li><a href="makineler" class="nav-link" data-translate-key="nav_machines">Makineler</a></li>
@@ -141,8 +141,8 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
           <li><a href="kalite" class="nav-link" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
           <li><a href="surdurulebilirlik" class="nav-link" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
           <li><a href="iletisim" class="nav-link" data-translate-key="nav_contact">İletişim</a></li>
-          <li><a href="blog.html" class="nav-link active">Blog</a></li>
-          <li><a href="sss.html" class="nav-link" data-translate-key="nav_faq">SSS</a></li>
+          <li><a href="/blog" class="nav-link active">Blog</a></li>
+          <li><a href="/sss" class="nav-link" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </nav>
 
@@ -163,7 +163,7 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
   <article>
     <header class="blog-detail-hero">
       <div class="container blog-detail-head">
-        <a class="blog-back-link" href="blog.html">← Bloga Dön</a>
+        <a class="blog-back-link" href="/blog">← Bloga Dön</a>
         <div class="blog-detail-meta">
           <time datetime="<?= h($blog['publish_date'] ?? '') ?>"><?= h($blog['publish_date'] ?? '') ?></time>
           <?php if (!empty($blog['featured'])): ?><span class="blog-featured-pill">Öne Çıkan</span><?php endif; ?>
@@ -198,7 +198,7 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
       <span class="section-tag">Blog</span>
       <h1>Yazı bulunamadı.</h1>
       <p>Aradığınız içerik kaldırılmış veya bağlantı hatalı olabilir.</p>
-      <a class="btn btn-primary" href="blog.html">Bloga Dön</a>
+      <a class="btn btn-primary" href="/blog">Bloga Dön</a>
     </div>
   <?php endif; ?>
   </main>
@@ -230,13 +230,13 @@ $coverAbs = preg_match('~^https?://~', $cover) ? $cover : 'https://nevraplastik.
       <div class="footer-col">
         <h4 class="footer-title" data-translate-key="footer_links_title">Hızlı Menü</h4>
         <ul class="footer-links">
-          <li><a href="index.html" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="/" data-translate-key="nav_home">Anasayfa</a></li>
           <li><a href="hakkimizda" data-translate-key="nav_about">Hakkımızda</a></li>
           <li><a href="urunler" data-translate-key="nav_products">Ürünler</a></li>
           <li><a href="makineler" data-translate-key="nav_machines">Makineler</a></li>
           <li><a href="uretim-sureci" data-translate-key="nav_process">Üretim Süreci</a></li>
           <li><a href="kalite" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
-          <li><a href="sss.html" data-translate-key="nav_faq">SSS</a></li>
+          <li><a href="/sss" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </div>
 

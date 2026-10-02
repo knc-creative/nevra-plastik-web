@@ -160,23 +160,25 @@ function getLoginRateLimitState($dataDir, $clientIp) {
 }
 
 function recordFailedLoginAttempt($state, $clientIp) {
-    $all = $state['all'];
-    if (!isset($all[$clientIp]) || !is_array($all[$clientIp])) {
-        $all[$clientIp] = ['attempts' => []];
-    }
-    if (!isset($all[$clientIp]['attempts']) || !is_array($all[$clientIp]['attempts'])) {
-        $all[$clientIp]['attempts'] = [];
-    }
-    $all[$clientIp]['attempts'][] = time();
-    safe_json_write($state['file'], $all);
+    safe_json_mutate($state['file'], function($all) use ($clientIp) {
+        if (!isset($all[$clientIp]) || !is_array($all[$clientIp])) {
+            $all[$clientIp] = ['attempts' => []];
+        }
+        if (!isset($all[$clientIp]['attempts']) || !is_array($all[$clientIp]['attempts'])) {
+            $all[$clientIp]['attempts'] = [];
+        }
+        $all[$clientIp]['attempts'][] = time();
+        return $all;
+    }, []);
 }
 
 function clearLoginAttempts($state, $clientIp) {
-    $all = $state['all'];
-    if (isset($all[$clientIp])) {
-        unset($all[$clientIp]);
-        safe_json_write($state['file'], $all);
-    }
+    safe_json_mutate($state['file'], function($all) use ($clientIp) {
+        if (isset($all[$clientIp])) {
+            unset($all[$clientIp]);
+        }
+        return $all;
+    }, []);
 }
 
 switch ($action) {

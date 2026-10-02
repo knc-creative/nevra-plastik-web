@@ -179,7 +179,6 @@ function safe_json_mutate($filepath, $callback, $default = []) {
     } finally {
         flock($lockHandle, LOCK_UN);
         fclose($lockHandle);
-        @unlink($lockFile);
     }
 }
 

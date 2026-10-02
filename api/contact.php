@@ -74,6 +74,40 @@ if (!empty($honeypot)) {
     exit;
 }
 
+// Maximum Server-Side Length Controls (Fail-safe safe_strlen)
+if (safe_strlen($name) > 100 || safe_strlen($company) > 150 || safe_strlen($email) > 254 || safe_strlen($phone) > 30 || safe_strlen($capacity) > 100 || safe_strlen($message) > 3000) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_length']]);
+    exit;
+}
+
+// Basic Validation
+if (empty($name) || empty($company) || empty($email) || empty($phone) || empty($message)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_empty']]);
+    exit;
+}
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_email']]);
+    exit;
+}
+
+// Phone Number Regex & Minimum Digit Validation (International friendly)
+$digitsOnly = preg_replace('/\D/', '', $phone);
+if (!preg_match('/^[+\d\s\(\)\-]{7,30}$/', $phone) || strlen($digitsOnly) < 7) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_phone']]);
+    exit;
+}
+
+if (!$kvkk) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $activeMsgs['err_kvkk']]);
+    exit;
+}
+
 // 1. IP-based Rate Limiting (Max 5 submissions per IP in 10 minutes)
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 $rateLimitFile = __DIR__ . '/data/rate_limit.json';
@@ -132,39 +166,6 @@ flock($rateLock, LOCK_UN);
 fclose($rateLock);
 @unlink($rateLockFile);
 
-// Maximum Server-Side Length Controls (Fail-safe safe_strlen)
-if (safe_strlen($name) > 100 || safe_strlen($company) > 150 || safe_strlen($email) > 254 || safe_strlen($phone) > 30 || safe_strlen($capacity) > 100 || safe_strlen($message) > 3000) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => $activeMsgs['err_length']]);
-    exit;
-}
-
-// Basic Validation
-if (empty($name) || empty($company) || empty($email) || empty($phone) || empty($message)) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => $activeMsgs['err_empty']]);
-    exit;
-}
-
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => $activeMsgs['err_email']]);
-    exit;
-}
-
-// Phone Number Regex & Minimum Digit Validation (International friendly)
-$digitsOnly = preg_replace('/\D/', '', $phone);
-if (!preg_match('/^[+\d\s\(\)\-]{7,30}$/', $phone) || strlen($digitsOnly) < 7) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => $activeMsgs['err_phone']]);
-    exit;
-}
-
-if (!$kvkk) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => $activeMsgs['err_kvkk']]);
-    exit;
-}
 
 // Map product codes to names
 $productNames = [

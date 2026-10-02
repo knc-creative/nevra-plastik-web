@@ -229,10 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Keep Blog available across all legacy page headers/footers.
-  if (navList && !navList.querySelector('a[href="blog.html"], a[href="blog"]')) {
+  if (navList && !navList.querySelector('a[href="/blog"], a[href="blog"]')) {
     const li = document.createElement('li');
-    li.innerHTML = '<a href="blog.html" class="nav-link" data-auto-blog-link="1">Blog</a>';
-    const faqLink = navList.querySelector('a[href="sss.html"], a[href="/sss"], a[href="sss"]');
+    li.innerHTML = '<a href="/blog" class="nav-link" data-auto-blog-link="1">Blog</a>';
+    const faqLink = navList.querySelector('a[href="/sss"], a[href="/sss"], a[href="sss"]');
     if (faqLink && faqLink.parentElement) {
       navList.insertBefore(li, faqLink.parentElement);
     } else {
@@ -240,9 +240,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   document.querySelectorAll('.footer-links').forEach(list => {
-    if (!list.querySelector('a[href="blog.html"], a[href="blog"]')) {
+    if (!list.querySelector('a[href="/blog"], a[href="blog"]')) {
       const li = document.createElement('li');
-      li.innerHTML = '<a href="blog.html" data-auto-blog-link="1">Blog</a>';
+      li.innerHTML = '<a href="/blog" data-auto-blog-link="1">Blog</a>';
       list.appendChild(li);
     }
   });
@@ -1764,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slug = querySlug || (pathMatch ? decodeURIComponent(pathMatch[1]) : '');
     const blog = _activeBlogs().find(b => b.slug === slug);
     if (!blog) {
-      root.innerHTML = '<div class="container blog-not-found"><span class="section-tag">Blog</span><h1>Yazı bulunamadı.</h1><p>Aradığınız içerik kaldırılmış veya bağlantı hatalı olabilir.</p><a class="btn btn-primary" href="blog.html">Bloga Dön</a></div>';
+      root.innerHTML = '<div class="container blog-not-found"><span class="section-tag">Blog</span><h1>Yazı bulunamadı.</h1><p>Aradığınız içerik kaldırılmış veya bağlantı hatalı olabilir.</p><a class="btn btn-primary" href="/blog">Bloga Dön</a></div>';
       document.title = 'Blog Yazısı Bulunamadı | Nevra Plastik';
       return;
     }
@@ -1777,7 +1777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     root.innerHTML = `<article>
       <header class="blog-detail-hero">
         <div class="container blog-detail-head">
-          <a class="blog-back-link" href="blog.html">← ${lang==='en'?'Back to Blog':'Bloga Dön'}</a>
+          <a class="blog-back-link" href="/blog">← ${lang==='en'?'Back to Blog':'Bloga Dön'}</a>
           <div class="blog-detail-meta"><span>${_formatBlogDate(blog.publish_date,lang)}</span>${blog.featured?'<span class="blog-featured-pill">Öne Çıkan</span>':''}</div>
           <h1>${_blogEsc(title)}</h1>
           <p>${_blogEsc(excerpt)}</p>
@@ -1791,7 +1791,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="blog-detail-cta">
           <div><span class="section-tag">Nevra Plastik</span><h2>${lang==='en'?'Need technical information?':'Teknik bilgiye mi ihtiyacınız var?'}</h2><p>${lang==='en'?'Contact our team for product and raw material requirements.':'Ürün ve hammadde ihtiyaçlarınız için ekibimizle iletişime geçin.'}</p></div>
-          <a class="btn btn-primary" href="iletisim.html">${lang==='en'?'Contact Us':'İletişime Geç'}</a>
+          <a class="btn btn-primary" href="/iletisim">${lang==='en'?'Contact Us':'İletişime Geç'}</a>
         </div>
       </div>
     </article>`;

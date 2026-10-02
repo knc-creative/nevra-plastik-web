@@ -141,7 +141,6 @@ $userTimestamps = $rateData[$clientIp] ?? [];
 if (count($userTimestamps) >= $maxSubmissions) {
     flock($rateLock, LOCK_UN);
     fclose($rateLock);
-    @unlink($rateLockFile);
     http_response_code(429);
     header('Retry-After: 600');
     echo json_encode([
@@ -156,7 +155,6 @@ $rateData[$clientIp][] = $now;
 if (!safe_json_write($rateLimitFile, $rateData)) {
     flock($rateLock, LOCK_UN);
     fclose($rateLock);
-    @unlink($rateLockFile);
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => $activeMsgs['err_write']]);
     exit;
@@ -164,7 +162,6 @@ if (!safe_json_write($rateLimitFile, $rateData)) {
 
 flock($rateLock, LOCK_UN);
 fclose($rateLock);
-@unlink($rateLockFile);
 
 
 // Map product codes to names
@@ -224,7 +221,6 @@ $contacts[] = $submission;
 if (!safe_json_write($contactsFile, $contacts)) {
     flock($contactsLock, LOCK_UN);
     fclose($contactsLock);
-    @unlink($contactsLockFile);
     error_log("Nevra Contact API Error: Failed to write contacts.json");
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => $activeMsgs['err_write']]);
@@ -233,7 +229,6 @@ if (!safe_json_write($contactsFile, $contacts)) {
 
 flock($contactsLock, LOCK_UN);
 fclose($contactsLock);
-@unlink($contactsLockFile);
 
 // 2. Prepare and Send E-mail Notification
 $to = 'info@nevraplastik.com';

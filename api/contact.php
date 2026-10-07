@@ -166,8 +166,10 @@ fclose($rateLock);
 
 // Map product codes to names
 $productNames = [
-    'pp' => 'PP Granül (Polipropilen)',
-    'pe' => 'PE Granül (Poliyetilen)',
+    'pp' => 'PP Moblen Granül',
+    'pe' => 'Elteks PE Granül',
+    'pprc' => 'PPR-C Granül',
+    'other' => 'Özel Kompaundlar (Diğer)',
     'compound' => 'Özel Geri Dönüştürülmüş Kompaundlar',
     'custom' => 'Müşteriye Özel Formülasyonlar'
 ];

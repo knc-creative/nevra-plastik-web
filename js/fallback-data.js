@@ -212,7 +212,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784663610536",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784663610536"
   },
   {
     "code": "NVR-KRM",
@@ -240,7 +240,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784664413651",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784664413651"
   },
   {
     "code": "NVR-BYZ",
@@ -268,7 +268,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784664895037",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784664895037"
   },
   {
     "code": "NVR-MV",
@@ -296,7 +296,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784665018669",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784665018669"
   },
   {
     "code": "NVR-PMB",
@@ -324,7 +324,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784666016161",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784666016161"
   },
   {
     "code": "NVR-YSL",
@@ -352,7 +352,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784666613038",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784666613038"
   },
   {
     "id": "pe-ld-trans",
@@ -460,7 +460,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784664675419",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784664675419"
   },
   {
     "code": "NVR-LTKS",
@@ -488,7 +488,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784665332536",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784665332536"
   },
   {
     "id": "comp-calcite",

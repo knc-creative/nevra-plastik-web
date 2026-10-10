@@ -42,8 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentLang = localStorage.getItem('nevra_lang') || 'tr';
   // Native scrolling is intentionally used for better performance and stability.
   window.lenis = null;
-    requestAnimationFrame(raf);
-  }
 
   // ------------------------------------------------------------------------
   // 1. Navigation & Sticky Header

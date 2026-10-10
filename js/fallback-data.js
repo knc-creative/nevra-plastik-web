@@ -74,7 +74,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "pp-gray",
-    "detail_url": "urun-detail-pp-gray"
+    "detail_url": "urun-detay?id=pp-gray"
   },
   {
     "code": "NVR-NY",
@@ -112,7 +112,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "pp-color",
-    "detail_url": "urun-detail-pp-color"
+    "detail_url": "urun-detay?id=pp-color"
   },
   {
     "code": "AK-100",
@@ -150,7 +150,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "pp-black",
-    "detail_url": "urun-detail-pp-black"
+    "detail_url": "urun-detay?id=pp-black"
   },
   {
     "code": "NVR-NS",
@@ -184,7 +184,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "pe-hd",
-    "detail_url": "urun-detail-pe-hd"
+    "detail_url": "urun-detay?id=pe-hd"
   },
   {
     "code": "NVR-KHV",
@@ -212,7 +212,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784663610536",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784663610536"
   },
   {
     "code": "NVR-KRM",
@@ -240,7 +240,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784664413651",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784664413651"
   },
   {
     "code": "NVR-BYZ",
@@ -268,7 +268,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784664895037",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784664895037"
   },
   {
     "code": "NVR-MV",
@@ -296,7 +296,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784665018669",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784665018669"
   },
   {
     "code": "NVR-PMB",
@@ -324,7 +324,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784666016161",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784666016161"
   },
   {
     "code": "NVR-YSL",
@@ -352,7 +352,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784666613038",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784666613038"
   },
   {
     "id": "pe-ld-trans",
@@ -372,7 +372,7 @@ const fallbackProducts = [
     "usage_en": "Packaging films, shrink rolls, greenhouse covers, plastic bags.",
     "image": "assets/product-pe.webp",
     "filter": "opacity(0.8) brightness(1.2)",
-    "detail_url": "urun-detail-pe-ld-trans"
+    "detail_url": "urun-detay?id=pe-ld-trans"
   },
   {
     "id": "pe-ld-black",
@@ -392,7 +392,7 @@ const fallbackProducts = [
     "usage_en": "Drip irrigation pipes, cable sheathing, flexible pipe extrusion, garbage bag raw material.",
     "image": "assets/product-pe.webp",
     "filter": "brightness(0.35)",
-    "detail_url": "urun-detail-pe-ld-black"
+    "detail_url": "urun-detay?id=pe-ld-black"
   },
   {
     "id": "pprc-gray",
@@ -412,7 +412,7 @@ const fallbackProducts = [
     "usage_en": "Sanitary plumbing fittings, elbows, couplers, pipe networks.",
     "image": "assets/product-compound.webp",
     "filter": "grayscale(1) brightness(0.9)",
-    "detail_url": "urun-detail-pprc"
+    "detail_url": "urun-detay?id=pprc-gray"
   },
   {
     "id": "pprc-white",
@@ -432,7 +432,7 @@ const fallbackProducts = [
     "usage_en": "Domestic clean water plumbing, white sanitary fittings, drinking water networks.",
     "image": "assets/product-compound.webp",
     "filter": "brightness(1.3)",
-    "detail_url": "urun-detail-pprc"
+    "detail_url": "urun-detay?id=pprc-white"
   },
   {
     "code": "NVR-LTK",
@@ -460,7 +460,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784664675419",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784664675419"
   },
   {
     "code": "NVR-LTKS",
@@ -488,7 +488,7 @@ const fallbackProducts = [
     "filter": "none",
     "status": "active",
     "id": "prod_1784665332536",
-    "detail_url": "urunler"
+    "detail_url": "urun-detay?id=prod_1784665332536"
   },
   {
     "id": "comp-calcite",
@@ -508,7 +508,7 @@ const fallbackProducts = [
     "usage_en": "Automotive trim, home appliance parts, furniture frames, high strength industrial housings.",
     "image": "assets/product-compound.webp",
     "filter": "grayscale(1) brightness(1.2)",
-    "detail_url": "urun-detail-calcite"
+    "detail_url": "urun-detay?id=comp-calcite"
   },
   {
     "id": "comp-gf30",
@@ -528,7 +528,7 @@ const fallbackProducts = [
     "usage_en": "Automotive under-the-hood parts, fan shrouds, household appliance parts requiring high mechanical strength and rigidity.",
     "image": "assets/product-compound.webp",
     "filter": "hue-rotate(45deg) brightness(0.9)",
-    "detail_url": "urun-detail-custom"
+    "detail_url": "urun-detay?id=comp-gf30"
   },
   {
     "id": "comp-custom",
@@ -550,7 +550,7 @@ const fallbackProducts = [
     "usage_en": "Engineering plastics custom-formulated for B2B partners' machinery, molds, and mechanical specifications.",
     "image": "assets/product-compound.webp",
     "filter": "hue-rotate(270deg) brightness(1.0)",
-    "detail_url": "urun-detail-custom"
+    "detail_url": "urun-detay?id=comp-custom"
   }
 ];
 

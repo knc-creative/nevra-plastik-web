@@ -41,7 +41,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 
   <!-- Fallback local database -->
-  <script src="js/fallback-data.js?v=9.4"></script>
+  <script src="js/fallback-data.js?v=10.1"></script>
 </head>
 <body>
   <!-- Preloader Screen -->
@@ -220,7 +220,7 @@
             <div class="image-wrapper decorative-border" style="background-color: var(--light-gray); border-radius: 16px; position: relative; overflow: hidden; height: 450px; width: 100%;">
               <!-- Main Image Slider -->
               <div id="detail-slider-container" style="width: 100%; height: 100%; cursor: pointer;">
-                <img id="detail-img" src="assets/product-pp.webp" alt="Nevra Ürün" class="about-img" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease, transform 0.4s ease; opacity: 1; transform: scale(1);" loading="lazy" decoding="async" width="1024" height="1024">
+                <img id="detail-img" src="assets/product-pp.webp" alt="Nevra Ürün" class="about-img" style="width: 100%; height: 100%; object-fit: contain; transition: opacity 0.4s ease, transform 0.4s ease; opacity: 1; transform: scale(1);" loading="eager" fetchpriority="high" decoding="async" width="1024" height="1024">
               </div>
               
               <!-- Indicator Dots -->
@@ -286,64 +286,66 @@
           </a>
         </div>
       </div>
-      
-      <!-- Column 2: Quick Links -->
+
+      <!-- Column 2: Fast Links -->
       <div class="footer-col">
-        <h4 data-translate-key="footer_links_title">Hızlı Bağlantılar</h4>
+        <h4 class="footer-title" data-translate-key="footer_links_title">Hızlı Menü</h4>
         <ul class="footer-links">
-          <li><a href="index" data-translate-key="nav_home">Anasayfa</a></li>
+          <li><a href="/" data-translate-key="nav_home">Anasayfa</a></li>
           <li><a href="hakkimizda" data-translate-key="nav_about">Hakkımızda</a></li>
           <li><a href="urunler" data-translate-key="nav_products">Ürünler</a></li>
+          <li><a href="makineler" data-translate-key="nav_machines">Makineler</a></li>
           <li><a href="uretim-sureci" data-translate-key="nav_process">Üretim Süreci</a></li>
           <li><a href="kalite" data-translate-key="nav_quality">Kalite & Sertifikalar</a></li>
-          <li><a href="surdurulebilirlik" data-translate-key="nav_sustain">Sürdürülebilirlik</a></li>
-          <li><a href="iletisim" data-translate-key="nav_contact">İletişim</a></li>
           <li><a href="/sss" data-translate-key="nav_faq">SSS</a></li>
         </ul>
       </div>
 
-      <!-- Column 3: Contact Info -->
+      <!-- Column 3: Products -->
       <div class="footer-col">
-        <h4 data-translate-key="footer_contact_title">İrtibat</h4>
-        <ul class="footer-contact-info">
-          <li>
-            <strong data-translate-key="info_phone">Telefon:</strong>
-            <a href="tel:+903323559656">+90 332 355 96 56</a>
-          </li>
-          <li>
-            <strong>E-posta:</strong>
-            <a href="mailto:info@nevraplastik.com">info@nevraplastik.com</a>
-          </li>
-          <li>
-            <strong data-translate-key="info_address">Adres:</strong>
-            <span>Tatlıcak Mah. Vatan Sanayi Sitesi, Işıldak Sk. No:30/32, Karatay / KONYA</span>
-          </li>
+        <h4 class="footer-title" data-translate-key="footer_products_title">Ürün Grupları</h4>
+        <ul class="footer-links">
+          <li><a href="urun-pp-moblen">PP Moblen Granül</a></li>
+          <li><a href="urun-elteks">Elteks PE Granül</a></li>
+          <li><a href="urun-diger" data-translate-key="opt_compound">Kompaund & Özel Polimerler</a></li>
         </ul>
       </div>
 
-      <!-- Column 4: Certifications -->
+      <!-- Column 4: Location -->
       <div class="footer-col">
-        <h4 data-translate-key="footer_certs_title">Sertifikalarımız</h4>
-        <ul class="footer-certs-list" style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--gray);">ISO 9001:2015</li>
-          <li style="margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--gray);">ISO 14001:2015</li>
-          <li style="margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--gray);" data-translate-key="qual_item_1">T.C. Çevre ve Şehircilik Bakanlığı Lisansı</li>
+        <h4 class="footer-title" data-translate-key="footer_contact_title">İletişim Bilgileri</h4>
+        <ul class="footer-links-contact">
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_address">Adres:</span>
+            <span>Fevzi Çakmak Mah. 10636 Sk. No: 12 Karatay / KONYA</span>
+          </li>
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_phone">Telefon:</span>
+            <a href="tel:+903323559656">+90 332 355 96 56</a>
+          </li>
+          <li class="contact-detail-item">
+            <span class="contact-label" data-translate-key="info_email">E-posta:</span>
+            <a href="mailto:info@nevraplastik.com">info@nevraplastik.com</a>
+          </li>
         </ul>
       </div>
 
     </div>
 
-    <!-- Copyright -->
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <div class="container footer-bottom-container" style="display: flex; justify-content: center; text-align: center;">
-        <p class="copyright-text" data-translate-key="footer_copy" style="margin: 0;">&copy; 2026 Nevra Plastik. Tüm Hakları Saklıdır. | Designed by <a href="https://www.kncdesign.com.tr" target="_blank" rel="noopener noreferrer" style="color: #ff2700; font-weight: 600; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">KNC Creative</a></p>
+      <div class="container footer-bottom-flex">
+        <p class="copyright">&copy; 2026 Nevra Plastik. <span data-translate-key="copyright_text">Tüm Hakları Saklıdır.</span> | Designed by <a href="https://www.kncdesign.com.tr" target="_blank" rel="noopener noreferrer" style="color: #ff2700; font-weight: 600; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">KNC Creative</a></p>
+        <p class="sustainable-signature">
+          <span class="green-dot"></span> <span data-translate-key="foot_signature">Sürdürülebilir Gelecek İçin Döngüsel Çözümler</span>
+        </p>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
-  <script src="js/app.js?v=9.3"></script>
+  <script src="js/app.js?v=10.1"></script>
   
   <script>
     // Dynamic Product Detail Loader
@@ -364,7 +366,7 @@
 
       // 1. Setup local function to render the UI
       function renderProductDetail(prod) {
-        const currentLang = localStorage.getItem("selectedLang") || "tr";
+        const currentLang = localStorage.getItem("nevra_lang") || localStorage.getItem("selectedLang") || "tr";
         const isEn = currentLang === "en";
 
         // Category Tag Mapping
@@ -423,7 +425,7 @@
 
         // Render dot indicators
         const dotsContainer = document.getElementById("slider-indicators");
-        dotsContainer.innerHTML = ";
+        dotsContainer.innerHTML = "";
         
         if (imgList.length > 1) {
           imgList.forEach((_, idx) => {
@@ -516,7 +518,7 @@
           setTimeout(() => {
             lb.style.opacity = "0";
             lb.style.pointerEvents = "none";
-            document.body.style.overflow = ";
+            document.body.style.overflow = "";
           }, 150);
         }
       };

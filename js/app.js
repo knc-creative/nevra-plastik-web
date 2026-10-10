@@ -17,14 +17,14 @@ function hidePreloader() {
   const preloader = document.getElementById("preloader");
   if (preloader && !preloader.classList.contains("hide-up")) {
     const elapsedTime = Date.now() - preloaderStartTime;
-    const minDelay = window.innerWidth <= 768 ? 250 : 650;
+    const minDelay = window.innerWidth <= 768 ? 200 : 450;
     const remainingTime = Math.max(0, minDelay - elapsedTime);
     
     setTimeout(() => {
       preloader.classList.add("hide-up");
       setTimeout(() => {
         preloader.remove();
-      }, 1000);
+      }, 350);
     }, remainingTime);
   }
 }
@@ -34,8 +34,8 @@ window.addEventListener('load', () => {
   hidePreloader();
 });
 
-// Safety fallback: auto-dismiss preloader after 1.5 seconds max
-setTimeout(hidePreloader, window.innerWidth <= 768 ? 900 : 1200);
+// Safety fallback: auto-dismiss preloader after 800ms max (600ms on mobile)
+setTimeout(hidePreloader, window.innerWidth <= 768 ? 600 : 800);
 
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0, 0);

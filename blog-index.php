@@ -157,15 +157,10 @@ function blog_index_date($date) {
   <main>
     <section class="blog-hero">
       <div class="container blog-hero-grid">
-        <div class="scroll-reveal">
-          <span class="section-tag">Bilgi Merkezi</span>
-          <h1>Plastik Hammadde ve Geri Dönüşüm Üzerine İçgörüler</h1>
-          <p>Teknik hammadde seçimi, geri dönüştürülmüş polimerler, üretim süreçleri ve sürdürülebilirlik başlıklarında pratik ve anlaşılır içerikler.</p>
-        </div>
-        <div class="blog-hero-note scroll-reveal">
-          <strong>Teknik bilgi, sade anlatım.</strong>
-          <p>Blog içeriklerimizi üretim profesyonellerinin hızlıca yararlanabileceği şekilde hazırlıyoruz.</p>
-          <a href="/iletisim" class="ref-faq-mini-link">Bir konu sorun <span>↗</span></a>
+        <div>
+          <span class="section-tag">NEVRA PLASTİK</span>
+          <h1>Blog &amp; İçgörüler</h1>
+          <p>Plastik geri dönüşüm, üretim süreçleri, sürdürülebilirlik ve sektör hakkında güncel içerikler.</p>
         </div>
       </div>
     </section>

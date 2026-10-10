@@ -40,23 +40,8 @@ setTimeout(hidePreloader, window.innerWidth <= 768 ? 900 : 1200);
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0, 0);
   let currentLang = localStorage.getItem('nevra_lang') || 'tr';
-
-  // Initialize Lenis Smooth Scroll only when motion is welcome and the device has fine pointer input.
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-  if (typeof Lenis !== 'undefined' && !reduceMotion && !coarsePointer) {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false
-    });
-    window.lenis = lenis;
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+  // Native scrolling is intentionally used for better performance and stability.
+  window.lenis = null;
     requestAnimationFrame(raf);
   }
 

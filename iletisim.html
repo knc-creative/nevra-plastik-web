@@ -78,7 +78,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 
   <!-- Fallback local database -->
-  <script src="js/fallback-data.js?v=10.0" defer></script>
+  <script src="js/fallback-data.js?v=10.2" defer></script>
 </head>
 <body>
   <!-- Preloader Screen -->
@@ -380,10 +380,7 @@
                   <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                     <label for="form-product" style="font-weight: 600; font-size: 0.9rem;" data-translate-key="form_product">Talep Edilen Hammadde</label>
                     <select id="form-product" name="product" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; transition: var(--transition-fast); background: var(--white); font-family: var(--font-body); font-size: 0.95rem;">
-                      <option value="pp" data-translate-key="opt_pp_moblen">PP Moblen Granül</option>
-                      <option value="pe" data-translate-key="opt_elteks">Elteks PE Granül</option>
-                      <option value="pprc" data-translate-key="opt_pprc">PPR-C Granül</option>
-                      <option value="other" data-translate-key="opt_other">Özel Kompaundlar (Diğer)</option>
+                      <option value="">Ürün kategorileri yükleniyor...</option>
                     </select>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -516,6 +513,73 @@
   </footer>
 
   <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js" defer></script>
-  <script src="js/app.js?v=10.0" defer></script>
+  <script src="js/app.js?v=10.2" defer></script>
+
+  <script>
+    (() => {
+      const select = document.getElementById('form-product');
+      if (!select) return;
+
+      function getLang(event) {
+        if (event && event.detail && event.detail.lang) return event.detail.lang;
+        return localStorage.getItem('nevra_lang') || 'tr';
+      }
+
+      function getCategories() {
+        if (window.siteData && Array.isArray(window.siteData.categories)) {
+          return window.siteData.categories;
+        }
+        if (typeof fallbackCategories !== 'undefined' && Array.isArray(fallbackCategories)) {
+          return fallbackCategories;
+        }
+        return [];
+      }
+
+      function resolveRequestedCategory(categories) {
+        const requested = new URLSearchParams(window.location.search).get('product');
+        if (!requested) return '';
+
+        if (categories.some(category => category.id === requested)) {
+          return requested;
+        }
+
+        const products = window.siteData && Array.isArray(window.siteData.products)
+          ? window.siteData.products
+          : (typeof fallbackProducts !== 'undefined' && Array.isArray(fallbackProducts) ? fallbackProducts : []);
+
+        const product = products.find(item => item.id === requested);
+        return product && product.category_id ? product.category_id : '';
+      }
+
+      function renderProductCategories(event) {
+        const categories = getCategories();
+        if (!categories.length) return;
+
+        const lang = getLang(event);
+        const previousValue = select.value;
+        const requestedCategory = resolveRequestedCategory(categories);
+
+        select.innerHTML = '';
+        categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category.id || '';
+          option.textContent = lang === 'en'
+            ? (category.title_en || category.title_tr || category.id || '')
+            : (category.title_tr || category.title_en || category.id || '');
+          select.appendChild(option);
+        });
+
+        const targetValue = requestedCategory || previousValue;
+        if (targetValue && categories.some(category => category.id === targetValue)) {
+          select.value = targetValue;
+        }
+      }
+
+      renderProductCategories();
+      window.addEventListener('siteDataLoaded', renderProductCategories);
+      window.addEventListener('languageChanged', renderProductCategories);
+    })();
+  </script>
+
 </body>
 </html>

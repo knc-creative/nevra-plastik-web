@@ -442,17 +442,30 @@ switch ($action) {
         check_csrf_token();
         $rawPost = file_get_contents('php://input');
         $item = json_decode($rawPost, true);
-        if (!$item || !isset($item['id'])) {
+        if (!is_array($item)) {
+            $item = [];
+        }
+
+        // Backward compatible: older admin builds sent the product ID in the query string.
+        if (empty($item['id']) && isset($_GET['id'])) {
+            $item['id'] = trim($_GET['id']);
+        }
+
+        if (empty($item['id'])) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Geçersiz ürün verisi."]);
+            echo json_encode(["status" => "error", "message" => "Geçersiz ürün verisi: ürün ID eksik."]);
             exit();
         }
 
+        // All product cards use the unified dynamic detail route.
+        $item['detail_url'] = 'urun-detay?id=' . rawurlencode((string)$item['id']);
+
         $products = file_exists($productsFile) ? json_decode(file_get_contents($productsFile), true) : [];
+        if (!is_array($products)) $products = [];
         $updated = false;
         for ($i = 0; $i < count($products); $i++) {
-            if ($products[$i]['id'] === $item['id']) {
-                $products[$i] = $item;
+            if (isset($products[$i]['id']) && $products[$i]['id'] === $item['id']) {
+                $products[$i] = array_merge($products[$i], $item);
                 $updated = true;
                 break;
             }

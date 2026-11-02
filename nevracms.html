@@ -2903,6 +2903,8 @@
       }
 
       const productData = {
+        id,
+        detail_url: `urun-detay?id=${encodeURIComponent(id)}`,
         code,
         category_id: categoryId,
         name_tr: nameTr,
